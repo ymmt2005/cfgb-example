@@ -41,3 +41,9 @@ origin. The fixture clock is for tests only; production validation uses real tim
 Search expectations must run against actual Pagefind output in a browser.
 Initial data validation only checks that query targets exist, not actual ranking.
 No production validator or test harness is implemented in this repository.
+
+The unified `ymmt2005/cfgb-action` must run the same corpus against its selected
+CLI release and preserve CLI diagnostics/exit status for every supported operation.
+Action installation/cache/input-mapping tests belong in `cfgb-action`; they do not
+duplicate domain expectations here. See the [Action contract](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/09-github-action.md).
+No live Action acceptance has been run at this documentation-only stage.
