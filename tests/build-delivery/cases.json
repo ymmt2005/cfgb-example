@@ -142,11 +142,16 @@
         "sourceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "sourceBranch": "post/test",
         "buildUUID": "build-example-001",
-        "provenanceProvider": "workers-builds",
-        "toolchainSessionId": "f3fe128799d695ca97104e66837b91700cb71a1f0d815856c366ebbcd3e89448"
+        "provenanceProvider": "workers-builds"
       },
-      "expectedExit": 0,
-      "expectedWorkspacePath": "$HOME/.cache/cfgb/builds/f3fe128799d695ca97104e66837b91700cb71a1f0d815856c366ebbcd3e89448/"
+      "expectedWorkspace": {
+        "parent": "os.TempDir()",
+        "basenamePattern": "cfgb-build-*",
+        "manifestIdEqualsBasename": true,
+        "rawBuildIdChoosesPath": false,
+        "distinctAcrossBuilds": true
+      },
+      "expectedExit": 0
     },
     {
       "id": "partial-workers-provenance",
@@ -252,10 +257,14 @@
       },
       "expectedManifest": {
         "buildUUID": "../build/opaque\\segment",
-        "toolchainSessionId": "66e8ed4b0011d20542e68165c4648a7fdd4081a46372359d49be0a64c9c4e8d5",
         "provenanceProvider": "workers-builds"
       },
-      "expectedWorkspacePath": "$HOME/.cache/cfgb/builds/66e8ed4b0011d20542e68165c4648a7fdd4081a46372359d49be0a64c9c4e8d5/",
+      "expectedWorkspace": {
+        "parent": "os.TempDir()",
+        "basenamePattern": "cfgb-build-*",
+        "manifestIdEqualsBasename": true,
+        "rawBuildIdChoosesPath": false
+      },
       "expectedRawBuildIdUsedAsPath": false,
       "expectedExit": 0
     },

@@ -67,9 +67,12 @@ URLs with Access protection, for fresh and previously configured Workers.
 Bootstrap acceptance
 checks pinned executable reuse across separate Workers Builds command shells.
 Build IDs are synthetic opaque strings, not required RFC UUIDs. Preserve their
-exact values in the manifest; `toolchainSessionId` and the workspace component
-are lowercase SHA-256 of the exact UTF-8 build-ID bytes. Path-separator cases
-assert only the hashed component is used and no raw-value path is created.
+exact values in the manifest as `buildUUID`. `toolchainSessionId` is the basename
+of a fresh workspace under the shared temporary directory (`os.TempDir()`),
+matching `cfgb-build-*`. The manifest ID equals that basename. Do not require a
+particular random suffix. The raw build identifier does not choose the workspace
+path, including when it contains path separators. Two builds get distinct
+workspaces even when their build identifiers are equal.
 
 Artifact hash/source/session checks test deployment correctness and reproducibility.
 They assume operator-trusted CI artifact storage/transfer and deployment environments;
