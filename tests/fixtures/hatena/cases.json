@@ -15,7 +15,8 @@
         "uniqueOwnedAssets": 1,
         "conversionReview": 2,
         "excludedDrafts": 1
-      }
+      },
+      "expectedModelCalls": 0
     },
     {
       "id": "identical-rerun",
@@ -23,7 +24,8 @@
         "apply baseline",
         "apply same plan again"
       ],
-      "expected": "byte-identical tree and manifest"
+      "expected": "byte-identical tree and manifest",
+      "expectedModelCalls": 0
     },
     {
       "id": "manual-target-edit",
@@ -32,7 +34,8 @@
         "append human paragraph to ja introduction",
         "rerun unchanged source"
       ],
-      "expected": "preserve edit and report local change"
+      "expected": "preserve edit and report local change",
+      "expectedModelCalls": 0
     },
     {
       "id": "source-and-target-edit",
@@ -45,7 +48,8 @@
       "expected": "E_CONFLICT; preserve local target",
       "expectedReport": "expected/conflicts/source-and-target-changed.json",
       "expectedManifestUnchanged": true,
-      "expectedSidecarsUnchanged": true
+      "expectedSidecarsUnchanged": true,
+      "expectedModelCalls": 0
     },
     {
       "id": "source-only-edit",
@@ -54,7 +58,8 @@
         "edit source body",
         "plan new replacement"
       ],
-      "expected": "reviewable replacement; no write until apply"
+      "expected": "reviewable replacement; no write until apply",
+      "expectedModelCalls": 0
     },
     {
       "id": "occupied-unowned-target",
@@ -65,7 +70,8 @@
       "expected": "E_CONFLICT; preserve existing file",
       "expectedReport": "expected/conflicts/unowned-target.json",
       "expectedManifestEntryCreated": false,
-      "expectedSidecarsUnchanged": true
+      "expectedSidecarsUnchanged": true,
+      "expectedModelCalls": 0
     },
     {
       "id": "interrupted-apply",
@@ -73,14 +79,29 @@
         "interrupt after target rename before manifest write",
         "resume using journal"
       ],
-      "expected": "recover matching write or report conflict; no duplicate assets"
+      "expected": "recover matching write or report conflict; no duplicate assets",
+      "expectedModelCalls": 0
     },
     {
       "id": "forward-fragment-link",
       "steps": [
         "plan ja intro before ja followup"
       ],
-      "expected": "/ja/posts/imported-followup/#続き"
+      "expected": "/ja/posts/imported-followup/#続き",
+      "expectedModelCalls": 0
+    },
+    {
+      "id": "deterministic-pairing-without-ai",
+      "steps": [
+        "unset all AI credentials",
+        "inventory synthetic snapshot",
+        "plan without approved pairing decisions",
+        "repeat plan from identical snapshot and CFGB version",
+        "load approved decisions and plan again"
+      ],
+      "expected": "byte-identical candidate reports on repeated plan; unapproved candidates stay separate; only explicit decisions create pairs",
+      "expectedModelCalls": 0,
+      "expectedAutomaticPairing": false
     }
   ]
 }

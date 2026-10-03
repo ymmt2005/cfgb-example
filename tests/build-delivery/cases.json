@@ -276,6 +276,59 @@
       "expectedExit": 1,
       "expectedRendererCalls": 0,
       "expectedUploadCalls": 0
+    },
+    {
+      "id": "runtime-config-production",
+      "command": "deploy --from dist",
+      "branch": "main",
+      "releaseRequirements": {
+        "workerCompatibilityDate": "2026-10-03"
+      },
+      "executionDate": "2026-11-04",
+      "expectedWranglerConfig": {
+        "compatibility_date": "2026-10-03",
+        "previews": {}
+      },
+      "expectedAssetsTopLevel": true,
+      "expectedRebuildCalls": 0,
+      "expectedExit": 0
+    },
+    {
+      "id": "runtime-config-preview",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "releaseRequirements": {
+        "workerCompatibilityDate": "2026-10-03"
+      },
+      "executionDate": "2026-11-04",
+      "expectedWranglerConfig": {
+        "compatibility_date": "2026-10-03",
+        "previews": {}
+      },
+      "expectedAssetsTopLevel": true,
+      "expectedRebuildCalls": 0,
+      "expectedExit": 0
+    },
+    {
+      "id": "worker-runtime-date-mismatch",
+      "command": "deploy --from dist",
+      "branch": "main",
+      "releaseRequirements": {
+        "workerCompatibilityDate": "2026-10-03"
+      },
+      "mutation": "artifact toolchain.workerCompatibilityDate changed to 2026-10-02",
+      "expectedError": "E_ARTIFACT",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "missing-worker-runtime-date",
+      "command": "build --out dist",
+      "mutation": "embedded release requirements omit workerCompatibilityDate",
+      "expectedError": "E_TOOLCHAIN",
+      "expectedExit": 2,
+      "expectedRendererCalls": 0,
+      "expectedUploadCalls": 0
     }
   ]
 }

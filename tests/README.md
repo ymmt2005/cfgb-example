@@ -8,7 +8,9 @@ Supported fixture operations: set/remove a frontmatter key, replace body, remove
 an asset, copy a variant. Each operation is declarative input to the future test harness. Assert the specified
 `expectedError` or `expectedWarning` and `expectedExit`; warning-only authoring
 cases must succeed. `default` means no mode flag. Summary structural types are
-checked before semantic missing/empty/Unicode White_Space checks.
+checked before semantic missing/empty/Unicode White_Space checks. Alias arrays
+may pass Schema with duplicates; semantic validation must emit `E_ALIAS_DUPLICATE`
+in every mode, including duplicates across variants.
 
 `fixtures/configuration/cases.json` uses `setConfig`/`removeConfig` operations
 with JSON Pointer paths on a copy of `cfgb.yaml`. Omitted preview-access settings
@@ -24,6 +26,9 @@ prior successful entry where present. Expected conflict reports are validated
 against CFGB's separate conflict Schema. `proposedTarget` is synthetic plan output,
 not proof of importer conversion. Conflicts preserve target, sidecars and the
 last-applied manifest pair, and never create ownership of an unowned target.
+Migration cases require zero model calls even with all AI credentials absent.
+Pair candidates use deterministic snapshot heuristics; only approved explicit
+decisions form translation groups. Summary generation is a later authoring step.
 
 Expected routes are origin-relative. `expected/static-routes.json` lists emitted
 public routes; `expected/worker-routes.json` lists runtime endpoints and locale
@@ -37,12 +42,22 @@ Successful upload cases assert no rebuild. These are declarative acceptance case
 not executed Cloudflare tests. Cases may provide simulated CI variables/Git
 metadata, release-runtime mismatches, retained-session failures and Worker-level
 Access policy conditions. Unspecified requirements remain satisfied; provenance
-SHA values are synthetic, not actual repository commits. Bootstrap acceptance
+SHA values are synthetic, not actual repository commits. Runtime-config cases use a synthetic release compatibility date: both upload
+commands must emit that exact top-level `compatibility_date`, `previews: {}` and
+top-level assets, independently of execution date. No real release compatibility
+test is claimed. Bootstrap acceptance
 checks pinned executable reuse across separate Workers Builds command shells.
 Build IDs are synthetic opaque strings, not required RFC UUIDs. Preserve their
 exact values in the manifest; `toolchainSessionId` and the workspace component
 are lowercase SHA-256 of the exact UTF-8 build-ID bytes. Path-separator cases
 assert only the hashed component is used and no raw-value path is created.
+`expected/sitemap.json` fixes the corpus index, numbered sitemap file, canonical
+HTML URL set and article alternates. Parse real `@astrojs/sitemap` output in
+renderer acceptance; the index must reference every emitted file and their URL
+union must equal `canonicalPaths`, excluding the listed resources. Substitute
+`site.baseUrl` for origin-relative fixture paths; compare URL sets rather than
+XML byte layout. Paired articles with different slugs retain their actual
+alternates; unpaired articles do not gain invented alternates.
 Rendering checks substitute `site.baseUrl`
 for absolute canonical metadata. Preview origin must never replace canonical
 origin. The fixture clock is for tests only; production validation uses real time.

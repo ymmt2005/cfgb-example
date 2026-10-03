@@ -9,6 +9,11 @@ English article is an explicitly approved translation pair and shares the same
 asset bytes. Another entry uses raw HTML, another Hatena syntax, and a synthetic
 draft must be excluded. The latter three have no publishable expected output.
 
+Migration makes no model calls and needs no AI credentials. Repeated pairing
+candidate reports use deterministic heuristics on the same snapshot; only
+explicit approved decisions form pairs. Summaries are handled separately during
+authoring.
+
 `decisions/` contains reviewed pair/category/ownership decisions. `expected/site/`
 contains three expected Markdown variants, per-variant provenance, one shared
 asset and a complete manifest. The summaries are supplied fixture values, not

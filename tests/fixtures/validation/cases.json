@@ -481,6 +481,56 @@
       ],
       "expectedError": "E_SCHEMA",
       "expectedExit": 1
+    },
+    {
+      "id": "duplicate-alias-default",
+      "mode": "default",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "aliases",
+          "value": [
+            "/ja/posts/old/",
+            "/ja/posts/old/"
+          ]
+        }
+      ],
+      "expectedError": "E_ALIAS_DUPLICATE",
+      "expectedExit": 1
+    },
+    {
+      "id": "duplicate-alias-authoring",
+      "mode": "authoring",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "aliases",
+          "value": [
+            "/ja/posts/old/",
+            "/ja/posts/old/"
+          ]
+        }
+      ],
+      "expectedError": "E_ALIAS_DUPLICATE",
+      "expectedExit": 1
+    },
+    {
+      "id": "duplicate-alias-across-variants",
+      "mode": "default",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-20-markdown-showcase/ja.md",
+          "field": "aliases",
+          "value": [
+            "/ja/posts/old-protobuf-guide/"
+          ]
+        }
+      ],
+      "expectedError": "E_ALIAS_DUPLICATE",
+      "expectedExit": 1
     }
   ]
 }

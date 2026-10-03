@@ -45,7 +45,7 @@ They are not statements or imported publications by the repository owner.
 | `tests/build-delivery/` | Artifact, command boundary and deployment gate cases |
 | `tests/ai/` | Summary evaluation and ownership transition cases |
 | `tests/fixtures/` | Negative validation and synthetic migration inputs |
-| `tests/expected/` | Static routes, Worker routes, 404 fallbacks, translation groups and aliases |
+| `tests/expected/` | Static routes, Worker routes, 404 fallbacks, sitemap expectations, translation groups and aliases |
 
 ## Using the corpus
 
