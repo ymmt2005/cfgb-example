@@ -75,6 +75,34 @@
       "expectedExit": 1
     },
     {
+      "id": "future-date-authoring",
+      "mode": "authoring",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "publishedAt",
+          "value": "2099-01-01T00:00:00Z"
+        }
+      ],
+      "expectedExit": 0,
+      "expectedWarning": "W_FUTURE_DATE"
+    },
+    {
+      "id": "future-date-default",
+      "mode": "default",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "publishedAt",
+          "value": "2099-01-01T00:00:00Z"
+        }
+      ],
+      "expectedExit": 0,
+      "expectedWarning": "W_FUTURE_DATE"
+    },
+    {
       "id": "updated-before-published",
       "mode": "publish",
       "operations": [
@@ -124,7 +152,7 @@
           "op": "setFrontmatter",
           "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
           "field": "ogImage",
-          "value": "../outside.png"
+          "value": "./assets/x/../../../outside.png"
         }
       ],
       "expectedError": "E_LOCAL_PATH",
@@ -530,6 +558,22 @@
         }
       ],
       "expectedError": "E_ALIAS_DUPLICATE",
+      "expectedExit": 1
+    },
+    {
+      "id": "cross-locale-alias",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "aliases",
+          "value": [
+            "/en/posts/ja-alias/"
+          ]
+        }
+      ],
+      "expectedError": "E_URL_COLLISION",
       "expectedExit": 1
     }
   ]

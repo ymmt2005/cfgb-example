@@ -46,6 +46,64 @@
       ],
       "expectedError": "E_SCHEMA",
       "expectedExit": 2
+    },
+    {
+      "id": "production-branch-explicit-master",
+      "operations": [
+        {
+          "op": "setConfig",
+          "pointer": "/deploy/productionBranch",
+          "value": "master"
+        }
+      ],
+      "expectedExit": 0,
+      "expectedEffectiveProductionBranch": "master"
+    },
+    {
+      "id": "production-branch-omitted",
+      "operations": [
+        {
+          "op": "removeConfig",
+          "pointer": "/deploy/productionBranch"
+        }
+      ],
+      "expectedExit": 0,
+      "expectedEffectiveProductionBranch": "main"
+    },
+    {
+      "id": "deploy-section-omitted",
+      "operations": [
+        {
+          "op": "removeConfig",
+          "pointer": "/deploy"
+        }
+      ],
+      "expectedExit": 0,
+      "expectedEffectiveProductionBranch": "main"
+    },
+    {
+      "id": "production-branch-invalid-ref",
+      "operations": [
+        {
+          "op": "setConfig",
+          "pointer": "/deploy/productionBranch",
+          "value": "master..old"
+        }
+      ],
+      "expectedError": "E_DEPLOY_TARGET",
+      "expectedExit": 2
+    },
+    {
+      "id": "ai-enabled-empty-summary",
+      "operations": [
+        {
+          "op": "setConfig",
+          "pointer": "/ai/enabled",
+          "value": true
+        }
+      ],
+      "expectedError": "E_PROVIDER_CONFIG",
+      "expectedExit": 2
     }
   ]
 }

@@ -333,6 +333,43 @@
       "expectedExit": 2,
       "expectedRendererCalls": 0,
       "expectedUploadCalls": 0
+    },
+    {
+      "id": "custom-production-deploy",
+      "command": "deploy --from dist",
+      "productionBranch": "master",
+      "branch": "master",
+      "expectedRebuildCalls": 0,
+      "expectedUploadArtifact": "verified-input-artifact",
+      "expectedExit": 0
+    },
+    {
+      "id": "custom-production-preview-rejected",
+      "command": "preview --from dist",
+      "productionBranch": "master",
+      "branch": "master",
+      "expectedError": "E_DEPLOY_TARGET",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "main-deploy-rejected-for-master",
+      "command": "deploy --from dist",
+      "productionBranch": "master",
+      "branch": "main",
+      "expectedError": "E_DEPLOY_TARGET",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "main-preview-for-master",
+      "command": "preview --from dist",
+      "productionBranch": "master",
+      "branch": "main",
+      "accessVerified": true,
+      "expectedRebuildCalls": 0,
+      "expectedUploadArtifact": "verified-input-artifact",
+      "expectedExit": 0
     }
   ]
 }

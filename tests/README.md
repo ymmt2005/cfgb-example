@@ -10,12 +10,20 @@ an asset, copy a variant. Each operation is declarative input to the future test
 cases must succeed. `default` means no mode flag. Summary structural types are
 checked before semantic missing/empty/Unicode White_Space checks. Alias arrays
 may pass Schema with duplicates; semantic validation must emit `E_ALIAS_DUPLICATE`
-in every mode, including duplicates across variants.
+in every mode, including duplicates across variants. The OG path-escape mutation
+is schema-valid but resolves outside the article directory; path containment is
+checked before asset existence. A schema-valid cross-locale alias emits
+`E_URL_COLLISION`. Future publication dates warn with `W_FUTURE_DATE` and exit 0
+in default/authoring mode; publish mode rejects them.
 
 `fixtures/configuration/cases.json` uses `setConfig`/`removeConfig` operations
 with JSON Pointer paths on a copy of `cfgb.yaml`. Omitted preview-access settings
 must be populated by the configuration loader as true; Schema defaults alone do
-not mutate data. Invalid configuration exits 2.
+not mutate data. `deploy.productionBranch` defaults to `main` when the field or
+section is absent and accepts a valid custom Git short branch name such as
+`master`. Schema-valid invalid refs fail semantic `E_DEPLOY_TARGET`; enabled AI
+with an empty summary map fails semantic `E_PROVIDER_CONFIG`. Invalid
+configuration exits 2.
 
 AI lifecycle records carry complete title/body/summary and sidecar hashes; a fake
 provider should be invoked only for `generate` cases, and never for protected/no-op
@@ -39,7 +47,13 @@ Assets if they reach the Worker, without an independent fallback algorithm.
 `build-delivery/cases.json` assumes all unspecified prerequisites are valid: a
 finalized artifact with matching source identity, completed checks and consistent
 recorded hashes, a clean checkout, configured target and trusted access.
-Successful upload cases assert no rebuild. These are declarative acceptance cases,
+A case's optional `productionBranch` sets `deploy.productionBranch` consistently
+in the source configuration and matching built artifact; omission means `main`.
+`branch` is the matching recorded/current source branch unless a case explicitly
+mutates provenance. Custom-branch cases verify deploy accepts only the configured
+branch and preview accepts other branches, including `main` when production is
+`master`. Successful upload cases assert no rebuild. These are declarative
+acceptance cases,
 not executed Cloudflare tests. Cases may provide simulated CI variables/Git
 metadata, release-runtime mismatches, retained-session failures and Worker-level
 Access policy conditions. Unspecified requirements remain satisfied; provenance

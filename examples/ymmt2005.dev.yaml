@@ -21,6 +21,8 @@ ai:
   enabled: false
   gateway: cloudflare
   summary: {}
+deploy:
+  productionBranch: main
 security:
   previewAccess: true
 hatena:
