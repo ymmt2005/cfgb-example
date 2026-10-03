@@ -15,7 +15,8 @@
           ]
         }
       ],
-      "expectedError": "E_TOPIC"
+      "expectedError": "E_TOPIC",
+      "expectedExit": 1
     },
     {
       "id": "unknown-key",
@@ -28,7 +29,8 @@
           "value": true
         }
       ],
-      "expectedError": "E_SCHEMA"
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
     },
     {
       "id": "invalid-slug",
@@ -41,7 +43,8 @@
           "value": "Upper Case"
         }
       ],
-      "expectedError": "E_SCHEMA"
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
     },
     {
       "id": "invalid-date",
@@ -54,7 +57,8 @@
           "value": "not-a-date"
         }
       ],
-      "expectedError": "E_SCHEMA"
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
     },
     {
       "id": "future-date",
@@ -67,7 +71,8 @@
           "value": "2099-01-01T00:00:00Z"
         }
       ],
-      "expectedError": "E_FUTURE_DATE"
+      "expectedError": "E_FUTURE_DATE",
+      "expectedExit": 1
     },
     {
       "id": "updated-before-published",
@@ -80,7 +85,8 @@
           "value": "2020-01-01T00:00:00Z"
         }
       ],
-      "expectedError": "E_DATE"
+      "expectedError": "E_DATE",
+      "expectedExit": 1
     },
     {
       "id": "empty-summary",
@@ -93,7 +99,8 @@
           "value": ""
         }
       ],
-      "expectedError": "E_SUMMARY_REQUIRED"
+      "expectedError": "E_SUMMARY_REQUIRED",
+      "expectedExit": 1
     },
     {
       "id": "missing-og",
@@ -106,7 +113,8 @@
           "value": "./assets/missing.png"
         }
       ],
-      "expectedError": "E_ASSET_MISSING"
+      "expectedError": "E_ASSET_MISSING",
+      "expectedExit": 1
     },
     {
       "id": "og-path-escape",
@@ -119,7 +127,8 @@
           "value": "../outside.png"
         }
       ],
-      "expectedError": "E_LOCAL_PATH"
+      "expectedError": "E_LOCAL_PATH",
+      "expectedExit": 1
     },
     {
       "id": "reserved-alias",
@@ -134,7 +143,8 @@
           ]
         }
       ],
-      "expectedError": "E_URL_COLLISION"
+      "expectedError": "E_URL_COLLISION",
+      "expectedExit": 1
     },
     {
       "id": "self-alias",
@@ -149,7 +159,8 @@
           ]
         }
       ],
-      "expectedError": "E_URL_COLLISION"
+      "expectedError": "E_URL_COLLISION",
+      "expectedExit": 1
     },
     {
       "id": "external-alias",
@@ -164,7 +175,8 @@
           ]
         }
       ],
-      "expectedError": "E_SCHEMA"
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
     },
     {
       "id": "duplicate-alias",
@@ -180,7 +192,8 @@
           ]
         }
       ],
-      "expectedError": "E_ALIAS_DUPLICATE"
+      "expectedError": "E_ALIAS_DUPLICATE",
+      "expectedExit": 1
     },
     {
       "id": "missing-summary",
@@ -192,7 +205,8 @@
           "field": "summary"
         }
       ],
-      "expectedError": "E_SUMMARY_REQUIRED"
+      "expectedError": "E_SUMMARY_REQUIRED",
+      "expectedExit": 1
     },
     {
       "id": "missing-asset",
@@ -203,7 +217,8 @@
           "path": "src/content/posts/2026/2026-09-19-protobuf-guide/assets/schema.svg"
         }
       ],
-      "expectedError": "E_ASSET_MISSING"
+      "expectedError": "E_ASSET_MISSING",
+      "expectedExit": 1
     },
     {
       "id": "broken-link",
@@ -215,7 +230,8 @@
           "body": "## Broken\n\n[missing](/ja/posts/does-not-exist/)\n"
         }
       ],
-      "expectedError": "E_LINK_BROKEN"
+      "expectedError": "E_LINK_BROKEN",
+      "expectedExit": 1
     },
     {
       "id": "duplicate-locale-slug",
@@ -228,7 +244,8 @@
           "value": "protobuf-schema-guide"
         }
       ],
-      "expectedError": "E_SLUG_DUPLICATE"
+      "expectedError": "E_SLUG_DUPLICATE",
+      "expectedExit": 1
     },
     {
       "id": "unsupported-variant",
@@ -240,7 +257,230 @@
           "to": "src/content/posts/2026/2026-09-19-protobuf-guide/fr.md"
         }
       ],
-      "expectedError": "E_TRANSLATION_GROUP"
+      "expectedError": "E_TRANSLATION_GROUP",
+      "expectedExit": 1
+    },
+    {
+      "id": "missing-summary-authoring",
+      "mode": "authoring",
+      "operations": [
+        {
+          "op": "removeFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary"
+        }
+      ],
+      "expectedWarning": "W_SUMMARY_REQUIRED",
+      "expectedExit": 0
+    },
+    {
+      "id": "missing-summary-default",
+      "mode": "default",
+      "operations": [
+        {
+          "op": "removeFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary"
+        }
+      ],
+      "expectedError": "E_SUMMARY_REQUIRED",
+      "expectedExit": 1
+    },
+    {
+      "id": "empty-summary-authoring",
+      "mode": "authoring",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": ""
+        }
+      ],
+      "expectedWarning": "W_SUMMARY_REQUIRED",
+      "expectedExit": 0
+    },
+    {
+      "id": "empty-summary-default",
+      "mode": "default",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": ""
+        }
+      ],
+      "expectedError": "E_SUMMARY_REQUIRED",
+      "expectedExit": 1
+    },
+    {
+      "id": "whitespace-summary-authoring",
+      "mode": "authoring",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": " \t　 "
+        }
+      ],
+      "expectedWarning": "W_SUMMARY_REQUIRED",
+      "expectedExit": 0
+    },
+    {
+      "id": "whitespace-summary-default",
+      "mode": "default",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": " \t　 "
+        }
+      ],
+      "expectedError": "E_SUMMARY_REQUIRED",
+      "expectedExit": 1
+    },
+    {
+      "id": "whitespace-summary-publish",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": " \t　 "
+        }
+      ],
+      "expectedError": "E_SUMMARY_REQUIRED",
+      "expectedExit": 1
+    },
+    {
+      "id": "null-summary-authoring",
+      "mode": "authoring",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": null
+        }
+      ],
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
+    },
+    {
+      "id": "null-summary-default",
+      "mode": "default",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": null
+        }
+      ],
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
+    },
+    {
+      "id": "null-summary-publish",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": null
+        }
+      ],
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
+    },
+    {
+      "id": "numeric-summary-authoring",
+      "mode": "authoring",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": 42
+        }
+      ],
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
+    },
+    {
+      "id": "numeric-summary-default",
+      "mode": "default",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": 42
+        }
+      ],
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
+    },
+    {
+      "id": "numeric-summary-publish",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": 42
+        }
+      ],
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
+    },
+    {
+      "id": "boolean-summary-authoring",
+      "mode": "authoring",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": false
+        }
+      ],
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
+    },
+    {
+      "id": "boolean-summary-default",
+      "mode": "default",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": false
+        }
+      ],
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
+    },
+    {
+      "id": "boolean-summary-publish",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": false
+        }
+      ],
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 1
     }
   ]
 }

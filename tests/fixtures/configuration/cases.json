@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "preview-access-explicit-true",
+      "operations": [
+        {
+          "op": "setConfig",
+          "pointer": "/security/previewAccess",
+          "value": true
+        }
+      ],
+      "expectedExit": 0,
+      "expectedEffectivePreviewAccess": true
+    },
+    {
+      "id": "preview-access-omitted",
+      "operations": [
+        {
+          "op": "removeConfig",
+          "pointer": "/security/previewAccess"
+        }
+      ],
+      "expectedExit": 0,
+      "expectedEffectivePreviewAccess": true
+    },
+    {
+      "id": "security-omitted",
+      "operations": [
+        {
+          "op": "removeConfig",
+          "pointer": "/security"
+        }
+      ],
+      "expectedExit": 0,
+      "expectedEffectivePreviewAccess": true
+    },
+    {
+      "id": "preview-access-false",
+      "operations": [
+        {
+          "op": "setConfig",
+          "pointer": "/security/previewAccess",
+          "value": false
+        }
+      ],
+      "expectedError": "E_SCHEMA",
+      "expectedExit": 2
+    }
+  ]
+}

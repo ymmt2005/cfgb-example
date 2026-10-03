@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "notFoundHandling": "404-page",
+  "assets": [
+    {
+      "path": "/404.html",
+      "locale": "bilingual"
+    },
+    {
+      "path": "/ja/404.html",
+      "locale": "ja"
+    },
+    {
+      "path": "/en/404.html",
+      "locale": "en"
+    }
+  ],
+  "excludedFromSitemap": true,
+  "cases": [
+    {
+      "id": "ja-navigation",
+      "path": "/ja/posts/missing/",
+      "requestKind": "navigation",
+      "method": "GET",
+      "expectedStatus": 404,
+      "expectedAsset": "/ja/404.html"
+    },
+    {
+      "id": "en-navigation",
+      "path": "/en/missing/",
+      "requestKind": "navigation",
+      "method": "GET",
+      "expectedStatus": 404,
+      "expectedAsset": "/en/404.html"
+    },
+    {
+      "id": "unknown-locale",
+      "path": "/fr/missing/",
+      "requestKind": "navigation",
+      "method": "GET",
+      "expectedStatus": 404,
+      "expectedAsset": "/404.html"
+    },
+    {
+      "id": "ja-fetch",
+      "path": "/ja/posts/missing/",
+      "requestKind": "fetch",
+      "method": "GET",
+      "expectedStatus": 404,
+      "delegateIfWorkerInvoked": "ASSETS.fetch"
+    },
+    {
+      "id": "en-curl",
+      "path": "/en/missing/",
+      "requestKind": "curl",
+      "method": "GET",
+      "expectedStatus": 404,
+      "delegateIfWorkerInvoked": "ASSETS.fetch"
+    },
+    {
+      "id": "missing-image",
+      "path": "/ja/assets/missing.png",
+      "requestKind": "fetch",
+      "method": "GET",
+      "expectedStatus": 404,
+      "delegateIfWorkerInvoked": "ASSETS.fetch"
+    },
+    {
+      "id": "ja-head",
+      "path": "/ja/posts/missing/",
+      "requestKind": "navigation",
+      "method": "HEAD",
+      "expectedStatus": 404,
+      "expectedBodyBytes": 0
+    }
+  ]
+}

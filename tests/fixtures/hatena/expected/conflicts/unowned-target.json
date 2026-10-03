@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "conflicts": [
+    {
+      "sourceId": "synthetic-ja-001",
+      "sourceUrl": "https://ja-blog.example.invalid/entry/2020/01/02/030405",
+      "locale": "ja",
+      "articleKey": "2020/2020-01-02-imported-intro",
+      "targetUrl": "/ja/posts/imported-intro/",
+      "reason": "unowned-target",
+      "observedSourceHash": "sha256:cfa9a3e41aa6062fd01b5f6820930c4ac6553fce14069daabd8d5ad95312c660",
+      "observedTargetHash": "sha256:fc0a8b6dd777d6f7be5f477e10108017b6c308e266e9dfb3e1cf2206bec3b00d",
+      "proposedTargetHash": "sha256:74d722d35bae0e7cc1ae0fd7d73036b83036992ec293d8090e1ad494955f7b4d"
+    }
+  ]
+}

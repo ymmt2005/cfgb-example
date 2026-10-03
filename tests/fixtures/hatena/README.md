@@ -16,3 +16,11 @@ actual AI responses. Paths are outside normal `src/content` discovery.
 
 `cases.json` supplies restart/conflict scenarios for the future importer harness.
 No importer implementation or live credentials are included.
+
+The manifest records successful applications only and has no `status` field.
+Its source/target hashes are a pair from the last successful apply. Conflicts
+never update either hash or create a new ownership entry. Separate reports in
+`expected/conflicts/` carry observed/proposed hashes and optional last-applied
+pairs; `input/conflict-inputs.json` provides their exact input bytes. Live reports
+belong under `.cfgb-work/hatena/`, outside discoverable content. Preserve local
+targets and provenance sidecars on conflict.

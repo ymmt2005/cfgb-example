@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "unowned-target",
+      "sourceBody": "## 導入\n\n[次の記事](/entry/2020/02/03/040506#old-section)\n\n![共有画像](https://assets.example.invalid/owned/shared.png)\n",
+      "observedTarget": "Unrelated pre-existing content.\n",
+      "proposedTarget": "---\ntitle: 移行サンプル：導入\nslug: imported-intro\npublishedAt: '2020-01-02T03:04:05+09:00'\ntopics:\n- software-engineering\nsummary: 架空の旧ブログから取り込む導入記事です。続きの記事への相対リンクと共有画像を含み、全記事の URL 対応表を先に作ってからリンクを変換する移行手順と、日英の記事で画像を共有する処理を確認します。\n---\n## 導入\n\n[次の記事](/ja/posts/imported-followup/#続き)\n\n![共有画像](./assets/shared.png)\n",
+      "priorEntry": null,
+      "expectedReport": "../expected/conflicts/unowned-target.json",
+      "expectedManifestAction": "no-entry-created",
+      "expectedTargetUnchanged": true,
+      "expectedSidecarsUnchanged": true
+    },
+    {
+      "id": "source-and-target-changed",
+      "sourceBody": "## 導入\n\n[次の記事](/entry/2020/02/03/040506#old-section)\n\n![共有画像](https://assets.example.invalid/owned/shared.png)\n\nUpstream edit.\n",
+      "observedTarget": "---\ntitle: 移行サンプル：導入\nslug: imported-intro\npublishedAt: '2020-01-02T03:04:05+09:00'\ntopics:\n- software-engineering\nsummary: 架空の旧ブログから取り込む導入記事です。続きの記事への相対リンクと共有画像を含み、全記事の URL 対応表を先に作ってからリンクを変換する移行手順と、日英の記事で画像を共有する処理を確認します。\n---\n## 導入\n\n[次の記事](/ja/posts/imported-followup/#続き)\n\n![共有画像](./assets/shared.png)\n\nHuman edit.\n",
+      "proposedTarget": "---\ntitle: 移行サンプル：導入\nslug: imported-intro\npublishedAt: '2020-01-02T03:04:05+09:00'\ntopics:\n- software-engineering\nsummary: 架空の旧ブログから取り込む導入記事です。続きの記事への相対リンクと共有画像を含み、全記事の URL 対応表を先に作ってからリンクを変換する移行手順と、日英の記事で画像を共有する処理を確認します。\n---\n## 導入\n\n[次の記事](/ja/posts/imported-followup/#続き)\n\n![共有画像](./assets/shared.png)\n\nUpstream edit.\n",
+      "priorEntry": {
+        "sourceId": "synthetic-ja-001",
+        "sourceUrl": "https://ja-blog.example.invalid/entry/2020/01/02/030405",
+        "locale": "ja",
+        "sourceHash": "sha256:cfa9a3e41aa6062fd01b5f6820930c4ac6553fce14069daabd8d5ad95312c660",
+        "articleKey": "2020/2020-01-02-imported-intro",
+        "targetUrl": "/ja/posts/imported-intro/",
+        "targetHash": "sha256:74d722d35bae0e7cc1ae0fd7d73036b83036992ec293d8090e1ad494955f7b4d"
+      },
+      "expectedReport": "../expected/conflicts/source-and-target-changed.json",
+      "expectedManifestAction": "prior-entry-byte-identical",
+      "expectedTargetUnchanged": true,
+      "expectedSidecarsUnchanged": true
+    }
+  ]
+}

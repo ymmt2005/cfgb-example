@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "build-no-upload",
+      "command": "build --out dist",
+      "expectedUploadCalls": 0,
+      "expectedSourceFilesAdded": [],
+      "expectedExit": 0
+    },
+    {
+      "id": "deploy-same-artifact",
+      "command": "deploy --from dist",
+      "branch": "main",
+      "expectedRebuildCalls": 0,
+      "expectedUploadArtifact": "verified-input-artifact",
+      "expectedExit": 0
+    },
+    {
+      "id": "preview-same-artifact",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "expectedRebuildCalls": 0,
+      "expectedUploadArtifact": "verified-input-artifact",
+      "expectedExit": 0
+    },
+    {
+      "id": "modified-artifact",
+      "command": "deploy --from dist",
+      "mutation": "modify site bytes after sealing",
+      "expectedError": "E_ARTIFACT",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "stale-source",
+      "command": "preview --from dist",
+      "mutation": "change source commit after build",
+      "expectedError": "E_BUILD_SOURCE",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "future-date-build",
+      "command": "build --out dist",
+      "publishedAt": "2099-01-01T00:00:00Z",
+      "expectedWarning": "W_FUTURE_DATE",
+      "expectedExit": 0,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "future-date-production",
+      "command": "deploy --from dist",
+      "branch": "main",
+      "publishedAt": "2099-01-01T00:00:00Z",
+      "expectedError": "E_FUTURE_DATE",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "future-date-preview",
+      "command": "preview --from dist",
+      "branch": "post/future",
+      "publishedAt": "2099-01-01T00:00:00Z",
+      "accessVerified": true,
+      "expectedExit": 0
+    },
+    {
+      "id": "main-preview",
+      "command": "preview --from dist",
+      "branch": "main",
+      "expectedError": "E_DEPLOY_TARGET",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "branch-production",
+      "command": "deploy --from dist",
+      "branch": "post/test",
+      "expectedError": "E_DEPLOY_TARGET",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "unprotected-preview",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": false,
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "fork-pr",
+      "event": "external-fork-pull-request",
+      "expectedPrivilegedCredentials": false,
+      "expectedAutomaticPreview": false
+    }
+  ]
+}

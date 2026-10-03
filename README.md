@@ -6,7 +6,10 @@ Cloudflare, Inc.
 
 This repository is a **content/specification corpus**, not an implemented Astro
 site or the Go CLI. Nothing here deploys a website or calls an AI provider.
-The command examples describe the CLI to be implemented.
+The command examples describe the CLI to be implemented. CFGB owns the reusable
+renderer, Worker and pinned dependencies, with sources embedded in its Go release
+binary. This corpus and real content repositories remain free of Astro, Worker
+and package configuration; Node.js is a CFGB build prerequisite.
 
 ## Start here
 
@@ -37,9 +40,10 @@ They are not statements or imported publications by the repository owner.
 | `src/data/linkcards/` | Committed metadata; no build-time fetch |
 | [CFGB schemas](https://github.com/ymmt2005/cfgb/tree/main/schemas) | Canonical JSON Schema 2020-12 contracts |
 | `tests/search/queries.yaml` | Search acceptance queries; renderer still required |
+| `tests/build-delivery/` | Artifact, command boundary and deployment gate cases |
 | `tests/ai/` | Summary evaluation and ownership transition cases |
 | `tests/fixtures/` | Negative validation and synthetic migration inputs |
-| `tests/expected/` | Golden routes, translation groups and aliases |
+| `tests/expected/` | Static routes, Worker routes, 404 fallbacks, translation groups and aliases |
 
 ## Using the corpus
 

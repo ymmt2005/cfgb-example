@@ -42,7 +42,10 @@
         "edit local target body",
         "plan and apply"
       ],
-      "expected": "E_CONFLICT; preserve local target"
+      "expected": "E_CONFLICT; preserve local target",
+      "expectedReport": "expected/conflicts/source-and-target-changed.json",
+      "expectedManifestUnchanged": true,
+      "expectedSidecarsUnchanged": true
     },
     {
       "id": "source-only-edit",
@@ -59,7 +62,10 @@
         "create unrelated target at planned path",
         "apply baseline"
       ],
-      "expected": "E_CONFLICT; preserve existing file"
+      "expected": "E_CONFLICT; preserve existing file",
+      "expectedReport": "expected/conflicts/unowned-target.json",
+      "expectedManifestEntryCreated": false,
+      "expectedSidecarsUnchanged": true
     },
     {
       "id": "interrupted-apply",

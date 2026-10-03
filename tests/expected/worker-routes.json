@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "routes": [
+    {
+      "path": "/",
+      "methods": [
+        "GET",
+        "HEAD"
+      ],
+      "generatedAsset": false,
+      "status": 302
+    },
+    {
+      "path": "/__locale",
+      "methods": [
+        "GET"
+      ],
+      "generatedAsset": false,
+      "status": 303
+    }
+  ],
+  "cases": [
+    {
+      "id": "root-default",
+      "path": "/",
+      "headers": {},
+      "expectedStatus": 302,
+      "expectedLocation": "/ja/"
+    },
+    {
+      "id": "root-cookie",
+      "path": "/",
+      "headers": {
+        "Cookie": "cfgb_locale=en",
+        "Accept-Language": "ja"
+      },
+      "expectedStatus": 302,
+      "expectedLocation": "/en/"
+    },
+    {
+      "id": "root-quality",
+      "path": "/",
+      "headers": {
+        "Accept-Language": "ja;q=0.2, en-US;q=0.9"
+      },
+      "expectedStatus": 302,
+      "expectedLocation": "/en/"
+    },
+    {
+      "id": "root-zero-quality",
+      "path": "/",
+      "headers": {
+        "Accept-Language": "en;q=0, ja;q=0.5"
+      },
+      "expectedStatus": 302,
+      "expectedLocation": "/ja/"
+    },
+    {
+      "id": "root-unsupported",
+      "path": "/",
+      "headers": {
+        "Cookie": "cfgb_locale=fr",
+        "Accept-Language": "fr"
+      },
+      "expectedStatus": 302,
+      "expectedLocation": "/ja/"
+    },
+    {
+      "id": "locale-valid-next",
+      "path": "/__locale?lang=en&next=%2Fen%2Fabout%2F",
+      "expectedStatus": 303,
+      "expectedLocation": "/en/about/",
+      "expectedCookieLocale": "en"
+    },
+    {
+      "id": "locale-external-next",
+      "path": "/__locale?lang=en&next=https%3A%2F%2Fevil.invalid%2F",
+      "expectedStatus": 303,
+      "expectedLocation": "/en/",
+      "expectedCookieLocale": "en"
+    },
+    {
+      "id": "locale-network-next",
+      "path": "/__locale?lang=en&next=%2F%2Fevil.invalid%2F",
+      "expectedStatus": 303,
+      "expectedLocation": "/en/",
+      "expectedCookieLocale": "en"
+    },
+    {
+      "id": "locale-wrong-locale-next",
+      "path": "/__locale?lang=en&next=%2Fja%2Fabout%2F",
+      "expectedStatus": 303,
+      "expectedLocation": "/en/",
+      "expectedCookieLocale": "en"
+    }
+  ],
+  "allResponses": {
+    "cacheControlIncludes": [
+      "no-store"
+    ]
+  },
+  "rootVary": [
+    "Cookie",
+    "Accept-Language"
+  ],
+  "cookie": {
+    "name": "cfgb_locale",
+    "secure": true,
+    "httpOnly": true,
+    "sameSite": "Lax",
+    "path": "/",
+    "maxAge": 31536000
+  },
+  "rootCacheControl": "private, no-store"
+}
