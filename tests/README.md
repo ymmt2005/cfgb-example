@@ -43,9 +43,13 @@ not executed Cloudflare tests. Cases may provide simulated CI variables/Git
 metadata, release-runtime mismatches, retained-session failures and Worker-level
 Access policy conditions. Unspecified requirements remain satisfied; provenance
 SHA values are synthetic, not actual repository commits. Runtime-config cases use a synthetic release compatibility date: both upload
-commands must emit that exact top-level `compatibility_date`, `previews: {}` and
+commands must emit that exact top-level `compatibility_date`, `workers_dev: false`,
+`preview_urls: true`, `previews: {}` and
 top-level assets, independently of execution date. No real release compatibility
-test is claimed. Bootstrap acceptance
+test is claimed. Live integration acceptance also checks the public canonical
+custom domain, disabled production workers.dev route, and enabled Preview/Version
+URLs with Access protection, for fresh and previously configured Workers.
+Bootstrap acceptance
 checks pinned executable reuse across separate Workers Builds command shells.
 Build IDs are synthetic opaque strings, not required RFC UUIDs. Preserve their
 exact values in the manifest; `toolchainSessionId` and the workspace component

@@ -287,6 +287,8 @@
       "executionDate": "2026-11-04",
       "expectedWranglerConfig": {
         "compatibility_date": "2026-10-03",
+        "workers_dev": false,
+        "preview_urls": true,
         "previews": {}
       },
       "expectedAssetsTopLevel": true,
@@ -303,6 +305,8 @@
       "executionDate": "2026-11-04",
       "expectedWranglerConfig": {
         "compatibility_date": "2026-10-03",
+        "workers_dev": false,
+        "preview_urls": true,
         "previews": {}
       },
       "expectedAssetsTopLevel": true,
