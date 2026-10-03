@@ -40,6 +40,7 @@ They are not statements or imported publications by the repository owner.
 | --- | --- |
 | `src/content/posts/<year>/<article-key>/{ja,en}.md` | Publishable positive examples |
 | `src/content/home/`, `src/content/pages/about/` | Locale-specific standalone pages |
+| `src/content/aside/` | Optional locale Markdown for the right-hand column. Not a page |
 | `src/data/topics.yaml` | Shared topic IDs and localized labels |
 | `src/data/linkcards/` | Committed metadata; no build-time fetch |
 | [CFGB schemas](https://github.com/ymmt2005/cfgb/tree/main/schemas) | Canonical JSON Schema 2020-12 contracts |
