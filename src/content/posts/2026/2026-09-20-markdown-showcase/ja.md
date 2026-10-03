@@ -8,7 +8,7 @@ summary: 表、注意書き、脚注、コードのファイル名と行強調�
 ---
 ## コード
 
-構文強調と行強調、コピー操作を確認します。
+構文強調と行強調、コピー操作を確認します。コピーは行番号や強調の印を含めず、元のテキストを対象にします。
 
 ```go title="main.go" {4-6} /Println/
 package main
@@ -32,55 +32,55 @@ func main() {
 Mermaid の図、注意書き、表、脚注を確認します。
 
 > [!NOTE]
-> This is a note.
+> これは注記です。
 
 > [!TIP]
-> Copy the code with the keyboard too.
+> キーボードでもコードをコピーします。
 
 > [!IMPORTANT]
-> Keep the original source in Git.
+> 元のソースは Git に残します。
 
 > [!WARNING]
-> A preview is not automatically private.
+> プレビューは、それだけでは非公開になりません。
 
 > [!CAUTION]
-> Review external embeds before publishing.
+> 外部の埋め込みは公開前に確認します。
 
-| Feature | State |
+| 機能 | 状態 |
 | --- | --- |
-| Table | Ready |
-| ~~Old label~~ | Replaced |
+| 表 | 準備完了 |
+| ~~古いラベル~~ | 置き換え済み |
 
-- [x] Write Markdown
-- [ ] Review the preview
+- [x] Markdown を書く
+- [ ] プレビューを確認する
 
-<details><summary>Raw HTML disclosure</summary><p id="html-anchor">A stable explicit HTML anchor.</p></details>
+<details><summary>素の HTML の折りたたみ</summary><p id="html-anchor">明示した HTML アンカーは安定しています。</p></details>
 
-![Lossless raster fixture with three colored bars](./assets/bars.png)
+![三本の色付きバーを持つ可逆ラスタの見本](./assets/bars.png)
 
 ```mermaid
 flowchart TD
-  Draft["Draft"] --> Review["Review"]
-  Review --> Publish["Publish"]
+  Draft["下書き"] --> Review["レビュー"]
+  Review --> Publish["公開"]
   Review --> Draft
 ```
 
-An inline [ordinary link](https://www.iana.org/domains/reserved) stays a link.
-This standalone URL has no cache and must fall back to a hyperlink:
+インラインの[普通のリンク](https://www.iana.org/domains/reserved)はリンクのままです。
+この単独の URL にはキャッシュがなく、ハイパーリンクへ戻る必要があります。
 
 https://www.iana.org/domains/reserved
 
-Footnotes are supported.[^one]
+脚注に対応しています。[^one]
 
-[^one]: A local note, not an external request.
+[^one]: 外部への依頼ではなく、この記事の注です。
 
-## 補足
+## テスト
 
 [Protocol Buffers の記事][proto]へ戻ります。
 
 [proto]: ../2026-09-19-protobuf-guide/ja.md#フィールド番号
 
-## 補足
+## テスト
 
 同じ見出しでも固有のアンカーが必要です。
 
