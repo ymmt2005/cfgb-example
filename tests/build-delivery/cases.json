@@ -96,6 +96,142 @@
       "event": "external-fork-pull-request",
       "expectedPrivilegedCredentials": false,
       "expectedAutomaticPreview": false
+    },
+    {
+      "id": "unsupported-node",
+      "command": "build --out dist",
+      "mutation": "actual Node version outside release nodeRange",
+      "expectedError": "E_TOOLCHAIN",
+      "expectedExit": 2,
+      "expectedRendererCalls": 0,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "wrong-pnpm",
+      "command": "build --out dist",
+      "mutation": "actual pnpm differs from exact release requirement",
+      "expectedError": "E_TOOLCHAIN",
+      "expectedExit": 2,
+      "expectedRendererCalls": 0,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "missing-same-build-toolchain",
+      "command": "deploy --from dist",
+      "environment": "workers-builds",
+      "mutation": "remove retained toolchain session after successful build",
+      "expectedError": "E_TOOLCHAIN",
+      "expectedExit": 2,
+      "expectedRebuildCalls": 0,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "detached-workers-checkout",
+      "command": "build --out dist",
+      "environment": {
+        "WORKERS_CI": "1",
+        "WORKERS_CI_COMMIT_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "WORKERS_CI_BRANCH": "post/test",
+        "WORKERS_CI_BUILD_UUID": "00000000-0000-4000-8000-000000000001"
+      },
+      "git": {
+        "head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "branch": null
+      },
+      "expectedManifest": {
+        "sourceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sourceBranch": "post/test",
+        "buildUUID": "00000000-0000-4000-8000-000000000001",
+        "provenanceProvider": "workers-builds"
+      },
+      "expectedExit": 0
+    },
+    {
+      "id": "partial-workers-provenance",
+      "command": "build --out dist",
+      "environment": {
+        "WORKERS_CI": "1",
+        "WORKERS_CI_COMMIT_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expectedError": "E_BUILD_SOURCE",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "workers-commit-mismatch",
+      "command": "build --out dist",
+      "environment": {
+        "WORKERS_CI": "1",
+        "WORKERS_CI_COMMIT_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "WORKERS_CI_BRANCH": "post/test",
+        "WORKERS_CI_BUILD_UUID": "00000000-0000-4000-8000-000000000001"
+      },
+      "git": {
+        "head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "branch": null
+      },
+      "expectedError": "E_BUILD_SOURCE",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "wrong-build-uuid",
+      "command": "preview --from dist",
+      "environment": "workers-builds",
+      "mutation": "current WORKERS_CI_BUILD_UUID differs from sealed artifact UUID",
+      "expectedError": "E_BUILD_SOURCE",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "transferred-artifact-toolchain",
+      "command": "deploy --from dist",
+      "branch": "main",
+      "environment": "outside-original-build",
+      "mutation": "no original toolchain workspace; verified artifact and same CFGB release available",
+      "expectedToolchainRecreation": true,
+      "expectedRebuildCalls": 0,
+      "expectedArtifactBytesUnchanged": true,
+      "expectedExit": 0
+    },
+    {
+      "id": "first-worker-preview-access",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "access": {
+        "destinationType": "preview_worker",
+        "workerIdMatches": true,
+        "reviewedPoliciesSafe": true,
+        "previewUrlExistsBeforeUpload": false
+      },
+      "accessVerified": true,
+      "expectedExit": 0,
+      "expectedReadinessRequiresPostUploadChecks": true
+    },
+    {
+      "id": "wrong-access-worker",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "access": {
+        "destinationType": "preview_worker",
+        "workerIdMatches": false
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "preview-public-bypass",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "access": {
+        "destinationType": "preview_worker",
+        "workerIdMatches": true,
+        "publicBypass": true
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
     }
   ]
 }

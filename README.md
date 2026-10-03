@@ -23,6 +23,7 @@ and package configuration; Node.js is a CFGB build prerequisite.
 - [Acceptance matrix and fixture guide](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/07-acceptance.md)
 - [Primary-source references](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/08-references.md)
 - [GitHub setup Action contract](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/09-github-action.md)
+- [Build runtime and bootstrap](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/10-build-runtime.md)
 
 `cfgb.yaml` deliberately uses `https://example.invalid`: the example must not
 claim the canonical URLs of the real blog. The separate production site uses

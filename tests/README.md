@@ -34,7 +34,12 @@ Assets if they reach the Worker, without an independent fallback algorithm.
 `build-delivery/cases.json` assumes all unspecified prerequisites are valid: a
 sealed matching artifact, clean checkout, configured target and trusted access.
 Successful upload cases assert no rebuild. These are declarative acceptance cases,
-not executed Cloudflare tests. Rendering checks substitute `site.baseUrl`
+not executed Cloudflare tests. Cases may provide simulated CI variables/Git
+metadata, release-runtime mismatches, retained-session failures and Worker-level
+Access policy conditions. Unspecified requirements remain satisfied; provenance
+SHA values are synthetic, not actual repository commits. Bootstrap acceptance
+checks pinned executable reuse across separate Workers Builds command shells.
+Rendering checks substitute `site.baseUrl`
 for absolute canonical metadata. Preview origin must never replace canonical
 origin. The fixture clock is for tests only; production validation uses real time.
 
