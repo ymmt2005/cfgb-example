@@ -39,6 +39,10 @@ metadata, release-runtime mismatches, retained-session failures and Worker-level
 Access policy conditions. Unspecified requirements remain satisfied; provenance
 SHA values are synthetic, not actual repository commits. Bootstrap acceptance
 checks pinned executable reuse across separate Workers Builds command shells.
+Build IDs are synthetic opaque strings, not required RFC UUIDs. Preserve their
+exact values in the manifest; `toolchainSessionId` and the workspace component
+are lowercase SHA-256 of the exact UTF-8 build-ID bytes. Path-separator cases
+assert only the hashed component is used and no raw-value path is created.
 Rendering checks substitute `site.baseUrl`
 for absolute canonical metadata. Preview origin must never replace canonical
 origin. The fixture clock is for tests only; production validation uses real time.
@@ -47,7 +51,8 @@ Search expectations must run against actual Pagefind output in a browser.
 Initial data validation only checks that query targets exist, not actual ranking.
 No production validator or test harness is implemented in this repository.
 
-`ymmt2005/cfgb-action` installs a verified CLI and registers it on PATH. Workflow
+`ymmt2005/cfgb-action` requires an exact version and independently reviewed
+OS/architecture-specific `cfgb-sha256`, installs a verified CLI and registers it on PATH. Workflow
 `run` steps execute the selected CLI release against this corpus directly.
 Installation/cache/PATH tests belong in `cfgb-action`; domain diagnostics and exit
 status remain CLI expectations here. See the [setup Action contract](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/09-github-action.md).

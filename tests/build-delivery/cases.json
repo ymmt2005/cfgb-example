@@ -132,7 +132,7 @@
         "WORKERS_CI": "1",
         "WORKERS_CI_COMMIT_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "WORKERS_CI_BRANCH": "post/test",
-        "WORKERS_CI_BUILD_UUID": "00000000-0000-4000-8000-000000000001"
+        "WORKERS_CI_BUILD_UUID": "build-example-001"
       },
       "git": {
         "head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -141,10 +141,12 @@
       "expectedManifest": {
         "sourceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "sourceBranch": "post/test",
-        "buildUUID": "00000000-0000-4000-8000-000000000001",
-        "provenanceProvider": "workers-builds"
+        "buildUUID": "build-example-001",
+        "provenanceProvider": "workers-builds",
+        "toolchainSessionId": "f3fe128799d695ca97104e66837b91700cb71a1f0d815856c366ebbcd3e89448"
       },
-      "expectedExit": 0
+      "expectedExit": 0,
+      "expectedWorkspacePath": "$HOME/.cache/cfgb/builds/f3fe128799d695ca97104e66837b91700cb71a1f0d815856c366ebbcd3e89448/"
     },
     {
       "id": "partial-workers-provenance",
@@ -164,7 +166,7 @@
         "WORKERS_CI": "1",
         "WORKERS_CI_COMMIT_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "WORKERS_CI_BRANCH": "post/test",
-        "WORKERS_CI_BUILD_UUID": "00000000-0000-4000-8000-000000000001"
+        "WORKERS_CI_BUILD_UUID": "build-example-001"
       },
       "git": {
         "head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
@@ -178,10 +180,12 @@
       "id": "wrong-build-uuid",
       "command": "preview --from dist",
       "environment": "workers-builds",
-      "mutation": "current WORKERS_CI_BUILD_UUID differs from sealed artifact UUID",
+      "mutation": "current opaque WORKERS_CI_BUILD_UUID differs from sealed artifact build identifier",
       "expectedError": "E_BUILD_SOURCE",
       "expectedExit": 1,
-      "expectedUploadCalls": 0
+      "expectedUploadCalls": 0,
+      "artifactBuildUUID": "build-example-001",
+      "currentBuildUUID": "build-example-002"
     },
     {
       "id": "transferred-artifact-toolchain",
@@ -231,6 +235,46 @@
       },
       "expectedError": "E_PREVIEW_ACCESS",
       "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "opaque-build-id-path-safety",
+      "command": "build --out dist",
+      "environment": {
+        "WORKERS_CI": "1",
+        "WORKERS_CI_COMMIT_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "WORKERS_CI_BRANCH": "post/test",
+        "WORKERS_CI_BUILD_UUID": "../build/opaque\\segment"
+      },
+      "git": {
+        "head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "branch": null
+      },
+      "expectedManifest": {
+        "buildUUID": "../build/opaque\\segment",
+        "toolchainSessionId": "66e8ed4b0011d20542e68165c4648a7fdd4081a46372359d49be0a64c9c4e8d5",
+        "provenanceProvider": "workers-builds"
+      },
+      "expectedWorkspacePath": "$HOME/.cache/cfgb/builds/66e8ed4b0011d20542e68165c4648a7fdd4081a46372359d49be0a64c9c4e8d5/",
+      "expectedRawBuildIdUsedAsPath": false,
+      "expectedExit": 0
+    },
+    {
+      "id": "empty-workers-build-id",
+      "command": "build --out dist",
+      "environment": {
+        "WORKERS_CI": "1",
+        "WORKERS_CI_COMMIT_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "WORKERS_CI_BRANCH": "post/test",
+        "WORKERS_CI_BUILD_UUID": ""
+      },
+      "git": {
+        "head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "branch": null
+      },
+      "expectedError": "E_BUILD_SOURCE",
+      "expectedExit": 1,
+      "expectedRendererCalls": 0,
       "expectedUploadCalls": 0
     }
   ]
