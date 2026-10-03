@@ -22,7 +22,7 @@ and package configuration; Node.js is a CFGB build prerequisite.
 - [Hatena migration](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/06-migration.md)
 - [Acceptance matrix and fixture guide](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/07-acceptance.md)
 - [Primary-source references](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/08-references.md)
-- [Unified GitHub Action contract](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/09-github-action.md)
+- [GitHub setup Action contract](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/09-github-action.md)
 
 `cfgb.yaml` deliberately uses `https://example.invalid`: the example must not
 claim the canonical URLs of the real blog. The separate production site uses
@@ -56,10 +56,11 @@ Cloudflare Access, Hatena migration or LLM generation have already been tested.
 Pin a Git commit when consuming this repository. Review schema changes in the
 [tool repository](https://github.com/ymmt2005/cfgb) together with example changes.
 Tool version, schema version, and site version remain independent. The
-[cfgb-action repository](https://github.com/ymmt2005/cfgb-action) owns one integrated
-Action for setup/prepare/validate/summarize/build and optional uploads. It uses
-this corpus for CLI parity checks; Action and CLI releases are separately pinned.
-No Action implementation or active workflow is added to this corpus.
+[cfgb-action repository](https://github.com/ymmt2005/cfgb-action) installs a verified
+CLI and registers it on PATH. Workflows run the CLI directly against this corpus;
+Action and CLI releases are separately pinned. Future GitHub-specific capabilities
+stay in that single Action repository and entry point when justified. No Action
+implementation or active workflow is added to this corpus.
 
 ## License
 

@@ -42,8 +42,8 @@ Search expectations must run against actual Pagefind output in a browser.
 Initial data validation only checks that query targets exist, not actual ranking.
 No production validator or test harness is implemented in this repository.
 
-The unified `ymmt2005/cfgb-action` must run the same corpus against its selected
-CLI release and preserve CLI diagnostics/exit status for every supported operation.
-Action installation/cache/input-mapping tests belong in `cfgb-action`; they do not
-duplicate domain expectations here. See the [Action contract](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/09-github-action.md).
+`ymmt2005/cfgb-action` installs a verified CLI and registers it on PATH. Workflow
+`run` steps execute the selected CLI release against this corpus directly.
+Installation/cache/PATH tests belong in `cfgb-action`; domain diagnostics and exit
+status remain CLI expectations here. See the [setup Action contract](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/09-github-action.md).
 No live Action acceptance has been run at this documentation-only stage.
