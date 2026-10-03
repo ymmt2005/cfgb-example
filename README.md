@@ -1,7 +1,7 @@
 # CFGB example and implementation contract
 
-Reference content for the v1 implementation specifications for **CFGB — Cloudflare
-Git-based Blog**, an independent open-source project not affiliated with
+Reference content for the v1 implementation specifications for **CFGB — Git-based Blog on Cloudflare**,
+an independent open-source project not affiliated with
 Cloudflare, Inc.
 
 This repository is a **content/specification corpus**, not an implemented Astro
@@ -51,3 +51,8 @@ Cloudflare Access, Hatena migration or LLM generation have already been tested.
 Pin a Git commit when consuming this repository. Review schema changes in the
 [tool repository](https://github.com/ymmt2005/cfgb) together with example changes.
 Tool version, schema version, and site version remain independent.
+
+## License
+
+This repository, including its documentation, sample articles, original assets
+and test fixtures, is licensed under the [Apache License, Version 2.0](LICENSE).
