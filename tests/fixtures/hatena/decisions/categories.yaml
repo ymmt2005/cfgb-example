@@ -1,0 +1,8 @@
+schemaVersion: 1
+mappings:
+- locale: ja
+  category: 技術
+  topic: software-engineering
+- locale: en
+  category: Engineering
+  topic: software-engineering

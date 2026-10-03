@@ -1,0 +1,12 @@
+{
+  "requiresConversionReview": [
+    "synthetic-ja-html",
+    "synthetic-ja-hatena"
+  ],
+  "excludedDrafts": [
+    "synthetic-ja-draft"
+  ],
+  "pairedGroups": 1,
+  "publishedVariants": 3,
+  "uniqueOwnedAssets": 1
+}

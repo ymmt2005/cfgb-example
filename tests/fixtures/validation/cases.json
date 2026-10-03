@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "now": "2026-10-03T12:00:00+09:00",
+  "cases": [
+    {
+      "id": "unknown-topic",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "topics",
+          "value": [
+            "unknown-topic"
+          ]
+        }
+      ],
+      "expectedError": "E_TOPIC"
+    },
+    {
+      "id": "unknown-key",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "draft",
+          "value": true
+        }
+      ],
+      "expectedError": "E_SCHEMA"
+    },
+    {
+      "id": "invalid-slug",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "slug",
+          "value": "Upper Case"
+        }
+      ],
+      "expectedError": "E_SCHEMA"
+    },
+    {
+      "id": "invalid-date",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "publishedAt",
+          "value": "not-a-date"
+        }
+      ],
+      "expectedError": "E_SCHEMA"
+    },
+    {
+      "id": "future-date",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "publishedAt",
+          "value": "2099-01-01T00:00:00Z"
+        }
+      ],
+      "expectedError": "E_FUTURE_DATE"
+    },
+    {
+      "id": "updated-before-published",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "updatedAt",
+          "value": "2020-01-01T00:00:00Z"
+        }
+      ],
+      "expectedError": "E_DATE"
+    },
+    {
+      "id": "empty-summary",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": ""
+        }
+      ],
+      "expectedError": "E_SUMMARY_REQUIRED"
+    },
+    {
+      "id": "missing-og",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "ogImage",
+          "value": "./assets/missing.png"
+        }
+      ],
+      "expectedError": "E_ASSET_MISSING"
+    },
+    {
+      "id": "og-path-escape",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "ogImage",
+          "value": "../outside.png"
+        }
+      ],
+      "expectedError": "E_LOCAL_PATH"
+    },
+    {
+      "id": "reserved-alias",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "aliases",
+          "value": [
+            "/ja/posts/"
+          ]
+        }
+      ],
+      "expectedError": "E_URL_COLLISION"
+    },
+    {
+      "id": "self-alias",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "aliases",
+          "value": [
+            "/ja/posts/protobuf-schema-guide/"
+          ]
+        }
+      ],
+      "expectedError": "E_URL_COLLISION"
+    },
+    {
+      "id": "external-alias",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "aliases",
+          "value": [
+            "https://old.invalid/entry/1"
+          ]
+        }
+      ],
+      "expectedError": "E_SCHEMA"
+    },
+    {
+      "id": "duplicate-alias",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "aliases",
+          "value": [
+            "/ja/posts/old/",
+            "/ja/posts/old/"
+          ]
+        }
+      ],
+      "expectedError": "E_ALIAS_DUPLICATE"
+    },
+    {
+      "id": "missing-summary",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "removeFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary"
+        }
+      ],
+      "expectedError": "E_SUMMARY_REQUIRED"
+    },
+    {
+      "id": "missing-asset",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "removeFile",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/assets/schema.svg"
+        }
+      ],
+      "expectedError": "E_ASSET_MISSING"
+    },
+    {
+      "id": "broken-link",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "replaceBody",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "body": "## Broken\n\n[missing](/ja/posts/does-not-exist/)\n"
+        }
+      ],
+      "expectedError": "E_LINK_BROKEN"
+    },
+    {
+      "id": "duplicate-locale-slug",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-20-markdown-showcase/ja.md",
+          "field": "slug",
+          "value": "protobuf-schema-guide"
+        }
+      ],
+      "expectedError": "E_SLUG_DUPLICATE"
+    },
+    {
+      "id": "unsupported-variant",
+      "mode": "publish",
+      "operations": [
+        {
+          "op": "copyFile",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "to": "src/content/posts/2026/2026-09-19-protobuf-guide/fr.md"
+        }
+      ],
+      "expectedError": "E_TRANSLATION_GROUP"
+    }
+  ]
+}

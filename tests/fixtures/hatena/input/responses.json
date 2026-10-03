@@ -1,0 +1,5 @@
+{
+  "https://api.example.invalid/ja": "ja-page-1.xml",
+  "https://api.example.invalid/ja?page=2": "ja-page-2.xml",
+  "https://api.example.invalid/en": "en-page-1.xml"
+}

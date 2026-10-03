@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:hatena="http://www.hatena.ne.jp/info/xmlns#" xmlns:app="http://www.w3.org/2007/app">
+<link rel="next" href="https://api.example.invalid/ja?page=2"/>
+<entry><id>synthetic-ja-001</id><title>移行サンプル：導入</title><published>2020-01-02T03:04:05+09:00</published><updated>2020-01-02T03:04:05+09:00</updated><link rel="alternate" href="https://ja-blog.example.invalid/entry/2020/01/02/030405"/><category term="技術"/><content type="text/x-markdown">## 導入
+
+[次の記事](/entry/2020/02/03/040506#old-section)
+
+![共有画像](https://assets.example.invalid/owned/shared.png)
+</content><hatena:formatted-content type="text/html">&lt;h2 id="old-intro"&gt;導入&lt;/h2&gt;</hatena:formatted-content><app:control><app:draft>no</app:draft></app:control></entry>
+</feed>

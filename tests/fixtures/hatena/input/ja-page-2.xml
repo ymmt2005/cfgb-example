@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:hatena="http://www.hatena.ne.jp/info/xmlns#" xmlns:app="http://www.w3.org/2007/app">
+<entry><id>synthetic-ja-002</id><title>移行サンプル：続き</title><published>2020-02-03T04:05:06+09:00</published><updated>2020-02-03T04:05:06+09:00</updated><link rel="alternate" href="https://ja-blog.example.invalid/entry/2020/02/03/040506"/><category term="技術"/><content type="text/x-markdown">## 続き
+
+&lt;a href="https://ja-blog.example.invalid/entry/2020/01/02/030405#old-intro"&gt;導入&lt;/a&gt;
+</content><hatena:formatted-content type="text/html">&lt;h2 id="old-section"&gt;続き&lt;/h2&gt;</hatena:formatted-content><app:control><app:draft>no</app:draft></app:control></entry>
+<entry><id>synthetic-ja-html</id><title>HTML conversion review</title><published>2020-03-01T00:00:00+09:00</published><updated>2020-03-01T00:00:00+09:00</updated><link rel="alternate" href="https://ja-blog.example.invalid/entry/html-only"/><category term="技術"/><content type="text/html">&lt;p&gt;HTML source requires review.&lt;/p&gt;</content><hatena:formatted-content type="text/html">&lt;p&gt;HTML source requires review.&lt;/p&gt;</hatena:formatted-content><app:control><app:draft>no</app:draft></app:control></entry>
+<entry><id>synthetic-ja-hatena</id><title>Hatena syntax review</title><published>2020-03-02T00:00:00+09:00</published><updated>2020-03-02T00:00:00+09:00</updated><link rel="alternate" href="https://ja-blog.example.invalid/entry/hatena-syntax"/><category term="技術"/><content type="text/x-hatena-syntax">* 見出し
+はてな記法のサンプル。
+</content><hatena:formatted-content type="text/html">&lt;h3&gt;見出し&lt;/h3&gt;&lt;p&gt;はてな記法のサンプル。&lt;/p&gt;</hatena:formatted-content><app:control><app:draft>no</app:draft></app:control></entry>
+<entry><id>synthetic-ja-draft</id><title>Synthetic private draft</title><published>2020-03-03T00:00:00+09:00</published><updated>2020-03-03T00:00:00+09:00</updated><link rel="alternate" href="https://ja-blog.example.invalid/entry/private-draft"/><category term="技術"/><content type="text/x-markdown">Never include this synthetic draft in the publication plan.
+</content><hatena:formatted-content type="text/html">&lt;p&gt;Draft&lt;/p&gt;</hatena:formatted-content><app:control><app:draft>yes</app:draft></app:control></entry>
+</feed>

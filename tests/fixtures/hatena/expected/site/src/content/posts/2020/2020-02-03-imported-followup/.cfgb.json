@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "variants": {
+    "ja": {
+      "import": {
+        "provider": "hatena",
+        "sourceId": "synthetic-ja-002",
+        "sourceUrl": "https://ja-blog.example.invalid/entry/2020/02/03/040506",
+        "sourceHash": "sha256:ed19afe0dc9bfb20aa4528c987a761409d5f8f1858b5749fa28ce2500d83e6b2"
+      }
+    }
+  }
+}

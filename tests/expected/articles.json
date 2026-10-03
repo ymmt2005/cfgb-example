@@ -1,0 +1,94 @@
+[
+  {
+    "articleKey": "2026/2026-09-19-protobuf-guide",
+    "locale": "ja",
+    "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+    "url": "/ja/posts/protobuf-schema-guide/",
+    "archive": "/ja/archive/2026/09/",
+    "alternates": {
+      "ja": "/ja/posts/protobuf-schema-guide/",
+      "en": "/en/posts/reading-protobuf-schemas/"
+    }
+  },
+  {
+    "articleKey": "2026/2026-09-19-protobuf-guide",
+    "locale": "en",
+    "path": "src/content/posts/2026/2026-09-19-protobuf-guide/en.md",
+    "url": "/en/posts/reading-protobuf-schemas/",
+    "archive": "/en/archive/2026/09/",
+    "alternates": {
+      "ja": "/ja/posts/protobuf-schema-guide/",
+      "en": "/en/posts/reading-protobuf-schemas/"
+    }
+  },
+  {
+    "articleKey": "2026/2026-09-20-markdown-showcase",
+    "locale": "ja",
+    "path": "src/content/posts/2026/2026-09-20-markdown-showcase/ja.md",
+    "url": "/ja/posts/markdown-showcase/",
+    "archive": "/ja/archive/2026/09/",
+    "alternates": {
+      "ja": "/ja/posts/markdown-showcase/",
+      "en": "/en/posts/markdown-rendering-showcase/"
+    }
+  },
+  {
+    "articleKey": "2026/2026-09-20-markdown-showcase",
+    "locale": "en",
+    "path": "src/content/posts/2026/2026-09-20-markdown-showcase/en.md",
+    "url": "/en/posts/markdown-rendering-showcase/",
+    "archive": "/en/archive/2026/09/",
+    "alternates": {
+      "ja": "/ja/posts/markdown-showcase/",
+      "en": "/en/posts/markdown-rendering-showcase/"
+    }
+  },
+  {
+    "articleKey": "2026/2026-09-21-quantum-notes",
+    "locale": "ja",
+    "path": "src/content/posts/2026/2026-09-21-quantum-notes/ja.md",
+    "url": "/ja/posts/post-quantum-notes/",
+    "archive": "/ja/archive/2026/09/",
+    "alternates": {}
+  },
+  {
+    "articleKey": "2026/2026-09-22-auth-boundaries",
+    "locale": "ja",
+    "path": "src/content/posts/2026/2026-09-22-auth-boundaries/ja.md",
+    "url": "/ja/posts/authentication-and-authorization/",
+    "archive": "/ja/archive/2026/09/",
+    "alternates": {}
+  },
+  {
+    "articleKey": "2026/2026-09-23-async-events",
+    "locale": "en",
+    "path": "src/content/posts/2026/2026-09-23-async-events/en.md",
+    "url": "/en/posts/retries-and-events/",
+    "archive": "/en/archive/2026/09/",
+    "alternates": {}
+  },
+  {
+    "articleKey": "2025/2025-12-15-writing-small",
+    "locale": "ja",
+    "path": "src/content/posts/2025/2025-12-15-writing-small/ja.md",
+    "url": "/ja/posts/what-to-keep-in-a-short-post/",
+    "archive": "/ja/archive/2025/12/",
+    "alternates": {}
+  },
+  {
+    "articleKey": "2026/2026-09-24-example-release",
+    "locale": "en",
+    "path": "src/content/posts/2026/2026-09-24-example-release/en.md",
+    "url": "/en/posts/introducing-the-example-corpus/",
+    "archive": "/en/archive/2026/09/",
+    "alternates": {}
+  },
+  {
+    "articleKey": "2026/2026-09-30-timezone-boundary",
+    "locale": "ja",
+    "path": "src/content/posts/2026/2026-09-30-timezone-boundary/ja.md",
+    "url": "/ja/posts/archive-timezone-boundary/",
+    "archive": "/ja/archive/2026/10/",
+    "alternates": {}
+  }
+]

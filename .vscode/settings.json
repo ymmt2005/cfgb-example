@@ -1,0 +1,8 @@
+{
+  "markdown.copyFiles.destination": {
+    "/src/content/posts/**/*.md": "${documentDirName}/assets/image-${unixTime}.${fileExtName}"
+  },
+  "markdown.copyFiles.overwriteBehavior": "nameIncrementally",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true
+}

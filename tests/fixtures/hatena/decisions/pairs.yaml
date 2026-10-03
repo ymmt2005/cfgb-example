@@ -1,0 +1,6 @@
+schemaVersion: 1
+approved:
+- ja: synthetic-ja-001
+  en: synthetic-en-001
+  articleKey: 2020/2020-01-02-imported-intro
+rejected: []

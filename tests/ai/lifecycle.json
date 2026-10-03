@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "missing-summary",
+      "input": {
+        "locale": "ja",
+        "title": "Protocol Buffers のスキーマを読む",
+        "body": "## スキーマの入口\n\nProtocol Buffers のスキーマは、メッセージとフィールドの関係を定義します。型の参照をたどると、API が返すデータの形を確認できます。\n\n![メッセージとフィールドの関係](./assets/schema.svg)\n\n### フィールド番号\n\nフィールド番号は互換性を考える手がかりです。このサンプルでは名前と番号を分けて表示します。\n\n```proto title=\"user.proto\" {3}\nsyntax = \"proto3\";\nmessage User {\n  string display_name = 1;\n}\n```\n\n## 関連する資料\n\n次の単独 URL はキャッシュ済みのリンクカードになります。\n\nhttps://github.com/ymmt2005/pbschema-lens\n\n[Markdown 表現のサンプル](../2026-09-20-markdown-showcase/ja.md#コード)も参照してください。\n",
+        "summary": null,
+        "record": null
+      },
+      "expected": "generate"
+    },
+    {
+      "id": "manual-summary",
+      "input": {
+        "locale": "ja",
+        "title": "Protocol Buffers のスキーマを読む",
+        "body": "## スキーマの入口\n\nProtocol Buffers のスキーマは、メッセージとフィールドの関係を定義します。型の参照をたどると、API が返すデータの形を確認できます。\n\n![メッセージとフィールドの関係](./assets/schema.svg)\n\n### フィールド番号\n\nフィールド番号は互換性を考える手がかりです。このサンプルでは名前と番号を分けて表示します。\n\n```proto title=\"user.proto\" {3}\nsyntax = \"proto3\";\nmessage User {\n  string display_name = 1;\n}\n```\n\n## 関連する資料\n\n次の単独 URL はキャッシュ済みのリンクカードになります。\n\nhttps://github.com/ymmt2005/pbschema-lens\n\n[Markdown 表現のサンプル](../2026-09-20-markdown-showcase/ja.md#コード)も参照してください。\n",
+        "summary": "Protocol Buffers のメッセージ、フィールド番号、型の参照を小さな例で確認します。スキーマの関係図と Go のコードを使い、変更時に確認したい互換性の観点を整理する、日本語と英語の対訳サンプルです。",
+        "record": null
+      },
+      "expected": "preserve-manual"
+    },
+    {
+      "id": "unchanged",
+      "input": {
+        "locale": "ja",
+        "title": "Protocol Buffers のスキーマを読む",
+        "body": "## スキーマの入口\n\nProtocol Buffers のスキーマは、メッセージとフィールドの関係を定義します。型の参照をたどると、API が返すデータの形を確認できます。\n\n![メッセージとフィールドの関係](./assets/schema.svg)\n\n### フィールド番号\n\nフィールド番号は互換性を考える手がかりです。このサンプルでは名前と番号を分けて表示します。\n\n```proto title=\"user.proto\" {3}\nsyntax = \"proto3\";\nmessage User {\n  string display_name = 1;\n}\n```\n\n## 関連する資料\n\n次の単独 URL はキャッシュ済みのリンクカードになります。\n\nhttps://github.com/ymmt2005/pbschema-lens\n\n[Markdown 表現のサンプル](../2026-09-20-markdown-showcase/ja.md#コード)も参照してください。\n",
+        "summary": "Protocol Buffers のメッセージ、フィールド番号、型の参照を小さな例で確認します。スキーマの関係図と Go のコードを使い、変更時に確認したい互換性の観点を整理する、日本語と英語の対訳サンプルです。",
+        "record": {
+          "sourceHash": "sha256:77757d64dacf2dda44583c67a6facd20c8ea4bf7c782fb0ccb21de5ecdc0eeeb",
+          "outputHash": "sha256:85d07251f9b532e9907a0ded5fe04f8630d78809d386e985ef898e713bdac9e3",
+          "provider": "fixture",
+          "model": "deterministic-fixture-v1",
+          "promptVersion": "summary-ja-v1"
+        }
+      },
+      "expected": "noop"
+    },
+    {
+      "id": "body-changed",
+      "input": {
+        "locale": "ja",
+        "title": "Protocol Buffers のスキーマを読む",
+        "body": "## スキーマの入口\n\nProtocol Buffers のスキーマは、メッセージとフィールドの関係を定義します。型の参照をたどると、API が返すデータの形を確認できます。\n\n![メッセージとフィールドの関係](./assets/schema.svg)\n\n### フィールド番号\n\nフィールド番号は互換性を考える手がかりです。このサンプルでは名前と番号を分けて表示します。\n\n```proto title=\"user.proto\" {3}\nsyntax = \"proto3\";\nmessage User {\n  string display_name = 1;\n}\n```\n\n## 関連する資料\n\n次の単独 URL はキャッシュ済みのリンクカードになります。\n\nhttps://github.com/ymmt2005/pbschema-lens\n\n[Markdown 表現のサンプル](../2026-09-20-markdown-showcase/ja.md#コード)も参照してください。\n\nNew paragraph.\n",
+        "summary": "Protocol Buffers のメッセージ、フィールド番号、型の参照を小さな例で確認します。スキーマの関係図と Go のコードを使い、変更時に確認したい互換性の観点を整理する、日本語と英語の対訳サンプルです。",
+        "record": {
+          "sourceHash": "sha256:77757d64dacf2dda44583c67a6facd20c8ea4bf7c782fb0ccb21de5ecdc0eeeb",
+          "outputHash": "sha256:85d07251f9b532e9907a0ded5fe04f8630d78809d386e985ef898e713bdac9e3",
+          "provider": "fixture",
+          "model": "deterministic-fixture-v1",
+          "promptVersion": "summary-ja-v1"
+        }
+      },
+      "expected": "generate"
+    },
+    {
+      "id": "title-changed",
+      "input": {
+        "locale": "ja",
+        "title": "Protocol Buffers のスキーマを読む（更新）",
+        "body": "## スキーマの入口\n\nProtocol Buffers のスキーマは、メッセージとフィールドの関係を定義します。型の参照をたどると、API が返すデータの形を確認できます。\n\n![メッセージとフィールドの関係](./assets/schema.svg)\n\n### フィールド番号\n\nフィールド番号は互換性を考える手がかりです。このサンプルでは名前と番号を分けて表示します。\n\n```proto title=\"user.proto\" {3}\nsyntax = \"proto3\";\nmessage User {\n  string display_name = 1;\n}\n```\n\n## 関連する資料\n\n次の単独 URL はキャッシュ済みのリンクカードになります。\n\nhttps://github.com/ymmt2005/pbschema-lens\n\n[Markdown 表現のサンプル](../2026-09-20-markdown-showcase/ja.md#コード)も参照してください。\n",
+        "summary": "Protocol Buffers のメッセージ、フィールド番号、型の参照を小さな例で確認します。スキーマの関係図と Go のコードを使い、変更時に確認したい互換性の観点を整理する、日本語と英語の対訳サンプルです。",
+        "record": {
+          "sourceHash": "sha256:77757d64dacf2dda44583c67a6facd20c8ea4bf7c782fb0ccb21de5ecdc0eeeb",
+          "outputHash": "sha256:85d07251f9b532e9907a0ded5fe04f8630d78809d386e985ef898e713bdac9e3",
+          "provider": "fixture",
+          "model": "deterministic-fixture-v1",
+          "promptVersion": "summary-ja-v1"
+        }
+      },
+      "expected": "generate"
+    },
+    {
+      "id": "manual-edited-body-changed",
+      "input": {
+        "locale": "ja",
+        "title": "Protocol Buffers のスキーマを読む",
+        "body": "## スキーマの入口\n\nProtocol Buffers のスキーマは、メッセージとフィールドの関係を定義します。型の参照をたどると、API が返すデータの形を確認できます。\n\n![メッセージとフィールドの関係](./assets/schema.svg)\n\n### フィールド番号\n\nフィールド番号は互換性を考える手がかりです。このサンプルでは名前と番号を分けて表示します。\n\n```proto title=\"user.proto\" {3}\nsyntax = \"proto3\";\nmessage User {\n  string display_name = 1;\n}\n```\n\n## 関連する資料\n\n次の単独 URL はキャッシュ済みのリンクカードになります。\n\nhttps://github.com/ymmt2005/pbschema-lens\n\n[Markdown 表現のサンプル](../2026-09-20-markdown-showcase/ja.md#コード)も参照してください。\n\n追記。\n",
+        "summary": "人間が書き直した短い要約です。",
+        "record": {
+          "sourceHash": "sha256:77757d64dacf2dda44583c67a6facd20c8ea4bf7c782fb0ccb21de5ecdc0eeeb",
+          "outputHash": "sha256:85d07251f9b532e9907a0ded5fe04f8630d78809d386e985ef898e713bdac9e3",
+          "provider": "fixture",
+          "model": "deterministic-fixture-v1",
+          "promptVersion": "summary-ja-v1"
+        }
+      },
+      "expected": "preserve-manual"
+    },
+    {
+      "id": "deleted-summary",
+      "input": {
+        "locale": "ja",
+        "title": "Protocol Buffers のスキーマを読む",
+        "body": "## スキーマの入口\n\nProtocol Buffers のスキーマは、メッセージとフィールドの関係を定義します。型の参照をたどると、API が返すデータの形を確認できます。\n\n![メッセージとフィールドの関係](./assets/schema.svg)\n\n### フィールド番号\n\nフィールド番号は互換性を考える手がかりです。このサンプルでは名前と番号を分けて表示します。\n\n```proto title=\"user.proto\" {3}\nsyntax = \"proto3\";\nmessage User {\n  string display_name = 1;\n}\n```\n\n## 関連する資料\n\n次の単独 URL はキャッシュ済みのリンクカードになります。\n\nhttps://github.com/ymmt2005/pbschema-lens\n\n[Markdown 表現のサンプル](../2026-09-20-markdown-showcase/ja.md#コード)も参照してください。\n",
+        "summary": "",
+        "record": {
+          "sourceHash": "sha256:77757d64dacf2dda44583c67a6facd20c8ea4bf7c782fb0ccb21de5ecdc0eeeb",
+          "outputHash": "sha256:85d07251f9b532e9907a0ded5fe04f8630d78809d386e985ef898e713bdac9e3",
+          "provider": "fixture",
+          "model": "deterministic-fixture-v1",
+          "promptVersion": "summary-ja-v1"
+        }
+      },
+      "expected": "generate"
+    },
+    {
+      "id": "crlf-only",
+      "input": {
+        "locale": "ja",
+        "title": "Protocol Buffers のスキーマを読む",
+        "body": "## スキーマの入口\r\n\r\nProtocol Buffers のスキーマは、メッセージとフィールドの関係を定義します。型の参照をたどると、API が返すデータの形を確認できます。\r\n\r\n![メッセージとフィールドの関係](./assets/schema.svg)\r\n\r\n### フィールド番号\r\n\r\nフィールド番号は互換性を考える手がかりです。このサンプルでは名前と番号を分けて表示します。\r\n\r\n```proto title=\"user.proto\" {3}\r\nsyntax = \"proto3\";\r\nmessage User {\r\n  string display_name = 1;\r\n}\r\n```\r\n\r\n## 関連する資料\r\n\r\n次の単独 URL はキャッシュ済みのリンクカードになります。\r\n\r\nhttps://github.com/ymmt2005/pbschema-lens\r\n\r\n[Markdown 表現のサンプル](../2026-09-20-markdown-showcase/ja.md#コード)も参照してください。\r\n",
+        "summary": "Protocol Buffers のメッセージ、フィールド番号、型の参照を小さな例で確認します。スキーマの関係図と Go のコードを使い、変更時に確認したい互換性の観点を整理する、日本語と英語の対訳サンプルです。",
+        "record": {
+          "sourceHash": "sha256:77757d64dacf2dda44583c67a6facd20c8ea4bf7c782fb0ccb21de5ecdc0eeeb",
+          "outputHash": "sha256:85d07251f9b532e9907a0ded5fe04f8630d78809d386e985ef898e713bdac9e3",
+          "provider": "fixture",
+          "model": "deterministic-fixture-v1",
+          "promptVersion": "summary-ja-v1"
+        }
+      },
+      "expected": "noop"
+    },
+    {
+      "id": "manual-restored-exact-bytes",
+      "input": {
+        "locale": "ja",
+        "title": "Protocol Buffers のスキーマを読む",
+        "body": "## スキーマの入口\n\nProtocol Buffers のスキーマは、メッセージとフィールドの関係を定義します。型の参照をたどると、API が返すデータの形を確認できます。\n\n![メッセージとフィールドの関係](./assets/schema.svg)\n\n### フィールド番号\n\nフィールド番号は互換性を考える手がかりです。このサンプルでは名前と番号を分けて表示します。\n\n```proto title=\"user.proto\" {3}\nsyntax = \"proto3\";\nmessage User {\n  string display_name = 1;\n}\n```\n\n## 関連する資料\n\n次の単独 URL はキャッシュ済みのリンクカードになります。\n\nhttps://github.com/ymmt2005/pbschema-lens\n\n[Markdown 表現のサンプル](../2026-09-20-markdown-showcase/ja.md#コード)も参照してください。\n",
+        "summary": "Protocol Buffers のメッセージ、フィールド番号、型の参照を小さな例で確認します。スキーマの関係図と Go のコードを使い、変更時に確認したい互換性の観点を整理する、日本語と英語の対訳サンプルです。",
+        "record": {
+          "sourceHash": "sha256:77757d64dacf2dda44583c67a6facd20c8ea4bf7c782fb0ccb21de5ecdc0eeeb",
+          "outputHash": "sha256:85d07251f9b532e9907a0ded5fe04f8630d78809d386e985ef898e713bdac9e3",
+          "provider": "fixture",
+          "model": "deterministic-fixture-v1",
+          "promptVersion": "summary-ja-v1"
+        }
+      },
+      "expected": "noop"
+    }
+  ]
+}

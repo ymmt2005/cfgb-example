@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "sourceId": "synthetic-ja-001",
+      "sourceUrl": "https://ja-blog.example.invalid/entry/2020/01/02/030405",
+      "locale": "ja",
+      "sourceHash": "sha256:cfa9a3e41aa6062fd01b5f6820930c4ac6553fce14069daabd8d5ad95312c660",
+      "articleKey": "2020/2020-01-02-imported-intro",
+      "targetUrl": "/ja/posts/imported-intro/",
+      "targetHash": "sha256:74d722d35bae0e7cc1ae0fd7d73036b83036992ec293d8090e1ad494955f7b4d",
+      "status": "applied"
+    },
+    {
+      "sourceId": "synthetic-en-001",
+      "sourceUrl": "https://en-blog.example.invalid/entry/2020/01/03/030405",
+      "locale": "en",
+      "sourceHash": "sha256:db984245d295983369e0052e10a9fef6cc4667bb67e413bba145e809694fa196",
+      "articleKey": "2020/2020-01-02-imported-intro",
+      "targetUrl": "/en/posts/migration-introduction/",
+      "targetHash": "sha256:f475fb7727f894dc9d8f5a5643e188365cc61c970f0f59b2192ec2ee247a58d2",
+      "status": "applied"
+    },
+    {
+      "sourceId": "synthetic-ja-002",
+      "sourceUrl": "https://ja-blog.example.invalid/entry/2020/02/03/040506",
+      "locale": "ja",
+      "sourceHash": "sha256:ed19afe0dc9bfb20aa4528c987a761409d5f8f1858b5749fa28ce2500d83e6b2",
+      "articleKey": "2020/2020-02-03-imported-followup",
+      "targetUrl": "/ja/posts/imported-followup/",
+      "targetHash": "sha256:b467921321454d0916a1e89b79b85f6970a20695d2ad84a37ca42c9ac3e5e31e",
+      "status": "applied"
+    }
+  ]
+}

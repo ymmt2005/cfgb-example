@@ -1,0 +1,125 @@
+schemaVersion: 1
+cases:
+- locale: ja
+  query: Protocol Buffers
+  topK: 5
+  expected:
+  - /ja/posts/protobuf-schema-guide/
+- locale: ja
+  query: フィールド番号
+  topK: 5
+  expected:
+  - /ja/posts/protobuf-schema-guide/
+- locale: ja
+  query: スキーマ
+  topK: 5
+  expected:
+  - /ja/posts/protobuf-schema-guide/
+- locale: ja
+  query: Mermaid
+  topK: 5
+  expected:
+  - /ja/posts/markdown-showcase/
+- locale: ja
+  query: 構文強調
+  topK: 5
+  expected:
+  - /ja/posts/markdown-showcase/
+- locale: ja
+  query: 脚注
+  topK: 5
+  expected:
+  - /ja/posts/markdown-showcase/
+- locale: ja
+  query: 注意書き
+  topK: 5
+  expected:
+  - /ja/posts/markdown-showcase/
+- locale: ja
+  query: 耐量子暗号
+  topK: 5
+  expected:
+  - /ja/posts/post-quantum-notes/
+- locale: ja
+  query: 量子コンピュータ
+  topK: 5
+  expected:
+  - /ja/posts/post-quantum-notes/
+- locale: ja
+  query: ML-KEM
+  topK: 5
+  expected:
+  - /ja/posts/post-quantum-notes/
+- locale: ja
+  query: ハイブリッド方式
+  topK: 5
+  expected:
+  - /ja/posts/post-quantum-notes/
+- locale: ja
+  query: 認証認可
+  topK: 5
+  expected:
+  - /ja/posts/authentication-and-authorization/
+- locale: ja
+  query: OAuth
+  topK: 5
+  expected:
+  - /ja/posts/authentication-and-authorization/
+- locale: ja
+  query: OIDC
+  topK: 5
+  expected:
+  - /ja/posts/authentication-and-authorization/
+- locale: ja
+  query: RBAC
+  topK: 5
+  expected:
+  - /ja/posts/authentication-and-authorization/
+- locale: ja
+  query: ABAC
+  topK: 5
+  expected:
+  - /ja/posts/authentication-and-authorization/
+- locale: ja
+  query: 短い文章
+  topK: 5
+  expected:
+  - /ja/posts/what-to-keep-in-a-short-post/
+- locale: ja
+  query: 持ち帰る
+  topK: 5
+  expected:
+  - /ja/posts/what-to-keep-in-a-short-post/
+- locale: ja
+  query: タイムゾーン
+  topK: 5
+  expected:
+  - /ja/posts/archive-timezone-boundary/
+- locale: ja
+  query: 月別アーカイブ
+  topK: 5
+  expected:
+  - /ja/posts/archive-timezone-boundary/
+- locale: en
+  query: Protocol Buffers
+  topK: 5
+  expected:
+  - /en/posts/reading-protobuf-schemas/
+- locale: en
+  query: idempotency
+  topK: 5
+  expected:
+  - /en/posts/retries-and-events/
+- locale: en
+  query: model evaluation
+  topK: 5
+  expected:
+  - /en/posts/introducing-the-example-corpus/
+- locale: ja
+  query: スキーマ
+  topK: 5
+  expected:
+  - /ja/posts/protobuf-schema-guide/
+  filters:
+    topic: protobuf
+    year: '2026'

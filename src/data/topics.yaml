@@ -1,0 +1,18 @@
+protobuf:
+  ja: Protocol Buffers
+  en: Protocol Buffers
+oss:
+  ja: オープンソース
+  en: Open Source
+software-engineering:
+  ja: ソフトウェアエンジニアリング
+  en: Software Engineering
+security:
+  ja: セキュリティ
+  en: Security
+ai:
+  ja: AI
+  en: AI
+writing:
+  ja: 文章を書く
+  en: Writing

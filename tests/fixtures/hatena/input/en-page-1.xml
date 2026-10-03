@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:hatena="http://www.hatena.ne.jp/info/xmlns#" xmlns:app="http://www.w3.org/2007/app">
+<entry><id>synthetic-en-001</id><title>Migration sample: introduction</title><published>2020-01-03T03:04:05+09:00</published><updated>2020-01-03T03:04:05+09:00</updated><link rel="alternate" href="https://en-blog.example.invalid/entry/2020/01/03/030405"/><category term="Engineering"/><content type="text/x-markdown">## Introduction
+
+![Shared image](https://assets.example.invalid/owned/shared.png)
+
+[Japanese](https://ja-blog.example.invalid/entry/2020/01/02/030405)
+</content><hatena:formatted-content type="text/html">&lt;h2 id="old-intro"&gt;Introduction&lt;/h2&gt;</hatena:formatted-content><app:control><app:draft>no</app:draft></app:control></entry>
+</feed>

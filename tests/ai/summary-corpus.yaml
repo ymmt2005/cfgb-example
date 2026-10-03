@@ -1,0 +1,39 @@
+schemaVersion: 1
+cases:
+- id: ja-short
+  path: src/content/posts/2026/2026-09-21-quantum-notes/ja.md
+  kind: short-ja-technical
+  locale: ja
+  requiredTerms: []
+- id: ja-long
+  path: src/content/posts/2026/2026-09-20-markdown-showcase/ja.md
+  kind: long-ja-technical
+  locale: ja
+  requiredTerms: []
+- id: ja-essay
+  path: src/content/posts/2025/2025-12-15-writing-small/ja.md
+  kind: ja-essay
+  locale: ja
+  requiredTerms: []
+- id: en-technical
+  path: src/content/posts/2026/2026-09-23-async-events/en.md
+  kind: en-technical
+  locale: en
+  requiredTerms: []
+- id: en-announcement
+  path: src/content/posts/2026/2026-09-24-example-release/en.md
+  kind: en-announcement
+  locale: en
+  requiredTerms: []
+- id: pair-ja
+  path: src/content/posts/2026/2026-09-19-protobuf-guide/ja.md
+  kind: bilingual-pair
+  locale: ja
+  requiredTerms:
+  - Protocol Buffers
+- id: pair-en
+  path: src/content/posts/2026/2026-09-19-protobuf-guide/en.md
+  kind: bilingual-pair
+  locale: en
+  requiredTerms:
+  - Protocol Buffers

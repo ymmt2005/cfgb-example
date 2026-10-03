@@ -1,0 +1,25 @@
+schemaVersion: 1
+site:
+  title: CFGB Example
+  baseUrl: https://example.invalid
+  defaultLocale: ja
+  timezone: Asia/Tokyo
+locales:
+  ja:
+    label: 日本語
+  en:
+    label: English
+content:
+  root: src/content
+  topics: src/data/topics.yaml
+  linkcards: src/data/linkcards
+home:
+  latestPosts: 5
+search:
+  provider: pagefind
+ai:
+  enabled: false
+  gateway: cloudflare
+  summary: {}
+security:
+  previewAccess: true

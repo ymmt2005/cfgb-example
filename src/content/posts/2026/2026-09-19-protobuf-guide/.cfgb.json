@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "variants": {
+    "ja": {
+      "summary": {
+        "sourceHash": "sha256:77757d64dacf2dda44583c67a6facd20c8ea4bf7c782fb0ccb21de5ecdc0eeeb",
+        "outputHash": "sha256:85d07251f9b532e9907a0ded5fe04f8630d78809d386e985ef898e713bdac9e3",
+        "provider": "fixture",
+        "model": "deterministic-fixture-v1",
+        "promptVersion": "summary-ja-v1"
+      }
+    }
+  }
+}

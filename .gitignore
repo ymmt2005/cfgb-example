@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.cfgb-work/
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+.astro/
+.wrangler/
+tests/ai/results/

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "initial-import",
+      "steps": [
+        "inventory all pages",
+        "load approved decisions",
+        "plan full URL map",
+        "apply"
+      ],
+      "expected": {
+        "publishedVariants": 3,
+        "pairedGroups": 1,
+        "uniqueOwnedAssets": 1,
+        "conversionReview": 2,
+        "excludedDrafts": 1
+      }
+    },
+    {
+      "id": "identical-rerun",
+      "steps": [
+        "apply baseline",
+        "apply same plan again"
+      ],
+      "expected": "byte-identical tree and manifest"
+    },
+    {
+      "id": "manual-target-edit",
+      "steps": [
+        "apply baseline",
+        "append human paragraph to ja introduction",
+        "rerun unchanged source"
+      ],
+      "expected": "preserve edit and report local change"
+    },
+    {
+      "id": "source-and-target-edit",
+      "steps": [
+        "apply baseline",
+        "edit source body",
+        "edit local target body",
+        "plan and apply"
+      ],
+      "expected": "E_CONFLICT; preserve local target"
+    },
+    {
+      "id": "source-only-edit",
+      "steps": [
+        "apply baseline",
+        "edit source body",
+        "plan new replacement"
+      ],
+      "expected": "reviewable replacement; no write until apply"
+    },
+    {
+      "id": "occupied-unowned-target",
+      "steps": [
+        "create unrelated target at planned path",
+        "apply baseline"
+      ],
+      "expected": "E_CONFLICT; preserve existing file"
+    },
+    {
+      "id": "interrupted-apply",
+      "steps": [
+        "interrupt after target rename before manifest write",
+        "resume using journal"
+      ],
+      "expected": "recover matching write or report conflict; no duplicate assets"
+    },
+    {
+      "id": "forward-fragment-link",
+      "steps": [
+        "plan ja intro before ja followup"
+      ],
+      "expected": "/ja/posts/imported-followup/#続き"
+    }
+  ]
+}

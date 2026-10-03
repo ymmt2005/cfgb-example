@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "sourceUrl": "https://assets.example.invalid/owned/shared.png",
+      "owned": true,
+      "inputFile": "input/shared.png",
+      "sha256": "sha256:fa47504ead68c5af60a98d3f16774764cc6d9e1a5d1fc824ae37931caf0314dd",
+      "articleKey": "2020/2020-01-02-imported-intro",
+      "targetPath": "assets/shared.png"
+    }
+  ]
+}

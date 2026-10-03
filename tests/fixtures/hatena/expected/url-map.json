@@ -1,0 +1,23 @@
+[
+  {
+    "sourceUrl": "https://ja-blog.example.invalid/entry/2020/01/02/030405",
+    "targetUrl": "/ja/posts/imported-intro/",
+    "fragments": {
+      "old-intro": "導入"
+    }
+  },
+  {
+    "sourceUrl": "https://en-blog.example.invalid/entry/2020/01/03/030405",
+    "targetUrl": "/en/posts/migration-introduction/",
+    "fragments": {
+      "old-intro": "introduction"
+    }
+  },
+  {
+    "sourceUrl": "https://ja-blog.example.invalid/entry/2020/02/03/040506",
+    "targetUrl": "/ja/posts/imported-followup/",
+    "fragments": {
+      "old-section": "続き"
+    }
+  }
+]
