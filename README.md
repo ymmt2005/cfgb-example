@@ -27,7 +27,9 @@ and package configuration; Node.js is a CFGB build prerequisite.
 
 `cfgb.yaml` deliberately uses `https://example.invalid`: the example must not
 claim the canonical URLs of the real blog. The separate production site uses
-`https://ymmt2005.dev`; see [its configuration overlay](examples/ymmt2005.dev.yaml).
+`https://ymmt2005.dev`; see [its complete configuration example](examples/ymmt2005.dev.yaml).
+Copy that example to the personal repository root as `cfgb.yaml`; it is not an
+overlay or implicit merge, and relative paths resolve from that root.
 No account IDs, API keys, personal drafts, or actual Hatena exports are included.
 All sample articles and migration records are synthetic, written for this corpus.
 They are not statements or imported publications by the repository owner.

@@ -37,7 +37,8 @@ cases. Error assets and Worker routes are not canonical article routes. The loca
 cookie name is `cfgb_locale`. Missing non-navigation requests delegate to Static
 Assets if they reach the Worker, without an independent fallback algorithm.
 `build-delivery/cases.json` assumes all unspecified prerequisites are valid: a
-sealed matching artifact, clean checkout, configured target and trusted access.
+finalized artifact with matching source identity, completed checks and consistent
+recorded hashes, a clean checkout, configured target and trusted access.
 Successful upload cases assert no rebuild. These are declarative acceptance cases,
 not executed Cloudflare tests. Cases may provide simulated CI variables/Git
 metadata, release-runtime mismatches, retained-session failures and Worker-level
@@ -55,6 +56,14 @@ Build IDs are synthetic opaque strings, not required RFC UUIDs. Preserve their
 exact values in the manifest; `toolchainSessionId` and the workspace component
 are lowercase SHA-256 of the exact UTF-8 build-ID bytes. Path-separator cases
 assert only the hashed component is used and no raw-value path is created.
+
+Artifact hash/source/session checks test deployment correctness and reproducibility.
+They assume operator-trusted CI artifact storage/transfer and deployment environments;
+they do not authenticate site artifacts against malicious storage or transport.
+Transferred-artifact cases preserve original bytes/provenance and recreate only
+the pinned upload toolchain. See the [artifact verification scope](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/10-build-runtime.md#artifact-verification-scope).
+CFGB executable release-attestation verification is a separate security requirement.
+
 `expected/sitemap.json` fixes the corpus index, numbered sitemap file, canonical
 HTML URL set and article alternates. Parse real `@astrojs/sitemap` output in
 renderer acceptance; the index must reference every emitted file and their URL

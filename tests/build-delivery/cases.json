@@ -28,7 +28,7 @@
     {
       "id": "modified-artifact",
       "command": "deploy --from dist",
-      "mutation": "modify site bytes after sealing",
+      "mutation": "modify site bytes after build finalizes the artifact manifest and output hashes",
       "expectedError": "E_ARTIFACT",
       "expectedExit": 1,
       "expectedUploadCalls": 0
@@ -180,7 +180,7 @@
       "id": "wrong-build-uuid",
       "command": "preview --from dist",
       "environment": "workers-builds",
-      "mutation": "current opaque WORKERS_CI_BUILD_UUID differs from sealed artifact build identifier",
+      "mutation": "current opaque WORKERS_CI_BUILD_UUID differs from the build identifier recorded in the artifact manifest",
       "expectedError": "E_BUILD_SOURCE",
       "expectedExit": 1,
       "expectedUploadCalls": 0,
