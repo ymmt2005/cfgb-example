@@ -74,13 +74,13 @@ Footnotes are supported.[^one]
 
 [^one]: A local note, not an external request.
 
-## Supplement
+## Test
 
 This returns to the [Protocol Buffers article][proto].
 
 [proto]: ../2026-09-19-protobuf-guide/en.md#field-numbers
 
-## Supplement
+## Test
 
 Identical headings still need distinct anchors.
 

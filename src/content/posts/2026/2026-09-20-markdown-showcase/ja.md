@@ -74,13 +74,13 @@ https://www.iana.org/domains/reserved
 
 [^one]: 外部への依頼ではなく、この記事の注です。
 
-## 補足
+## テスト
 
 [Protocol Buffers の記事][proto]へ戻ります。
 
 [proto]: ../2026-09-19-protobuf-guide/ja.md#フィールド番号
 
-## 補足
+## テスト
 
 同じ見出しでも固有のアンカーが必要です。
 
