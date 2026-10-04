@@ -13,7 +13,7 @@
       "command": "deploy --from dist",
       "branch": "main",
       "expectedRebuildCalls": 0,
-      "expectedUploadArtifact": "verified-input-artifact",
+      "expectedUploadArtifact": "supplied-artifact",
       "expectedExit": 0
     },
     {
@@ -22,24 +22,28 @@
       "branch": "post/test",
       "accessVerified": true,
       "expectedRebuildCalls": 0,
-      "expectedUploadArtifact": "verified-input-artifact",
+      "expectedUploadArtifact": "supplied-artifact",
       "expectedExit": 0
     },
     {
       "id": "modified-artifact",
       "command": "deploy --from dist",
-      "mutation": "modify site bytes after build finalizes the artifact manifest and output hashes",
-      "expectedError": "E_ARTIFACT",
-      "expectedExit": 1,
-      "expectedUploadCalls": 0
+      "branch": "main",
+      "mutation": "modify site bytes after the artifact is written",
+      "expectedRebuildCalls": 0,
+      "expectedArtifactBytesUnchanged": true,
+      "expectedUploadArtifact": "supplied-artifact",
+      "expectedExit": 0
     },
     {
       "id": "stale-source",
       "command": "preview --from dist",
-      "mutation": "change source commit after build",
-      "expectedError": "E_BUILD_SOURCE",
-      "expectedExit": 1,
-      "expectedUploadCalls": 0
+      "branch": "post/test",
+      "accessVerified": true,
+      "mutation": "source commit differs from the commit recorded in the artifact",
+      "expectedRebuildCalls": 0,
+      "expectedUploadArtifact": "supplied-artifact",
+      "expectedExit": 0
     },
     {
       "id": "future-date-build",
@@ -142,11 +146,16 @@
         "sourceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "sourceBranch": "post/test",
         "buildUUID": "build-example-001",
-        "provenanceProvider": "workers-builds",
-        "toolchainSessionId": "f3fe128799d695ca97104e66837b91700cb71a1f0d815856c366ebbcd3e89448"
+        "provenanceProvider": "workers-builds"
       },
-      "expectedExit": 0,
-      "expectedWorkspacePath": "$HOME/.cache/cfgb/builds/f3fe128799d695ca97104e66837b91700cb71a1f0d815856c366ebbcd3e89448/"
+      "expectedWorkspace": {
+        "parent": "os.TempDir()",
+        "basenamePattern": "cfgb-build-*",
+        "manifestIdEqualsBasename": true,
+        "rawBuildIdChoosesPath": false,
+        "distinctAcrossBuilds": true
+      },
+      "expectedExit": 0
     },
     {
       "id": "partial-workers-provenance",
@@ -155,8 +164,11 @@
         "WORKERS_CI": "1",
         "WORKERS_CI_COMMIT_SHA": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       },
-      "expectedError": "E_BUILD_SOURCE",
-      "expectedExit": 1,
+      "expectedManifest": {
+        "sourceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "provenanceProvider": "workers-builds"
+      },
+      "expectedExit": 0,
       "expectedUploadCalls": 0
     },
     {
@@ -172,27 +184,44 @@
         "head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
         "branch": null
       },
-      "expectedError": "E_BUILD_SOURCE",
-      "expectedExit": 1,
+      "expectedManifest": {
+        "sourceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sourceBranch": "post/test",
+        "buildUUID": "build-example-001",
+        "provenanceProvider": "workers-builds"
+      },
+      "expectedExit": 0,
       "expectedUploadCalls": 0
     },
     {
       "id": "wrong-build-uuid",
       "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
       "environment": "workers-builds",
-      "mutation": "current opaque WORKERS_CI_BUILD_UUID differs from the build identifier recorded in the artifact manifest",
-      "expectedError": "E_BUILD_SOURCE",
-      "expectedExit": 1,
-      "expectedUploadCalls": 0,
+      "mutation": "current opaque WORKERS_CI_BUILD_UUID differs from the build identifier recorded in the artifact; the workspace is still selected by toolchainSessionId",
+      "expectedRebuildCalls": 0,
+      "expectedUploadArtifact": "supplied-artifact",
+      "expectedExit": 0,
       "artifactBuildUUID": "build-example-001",
       "currentBuildUUID": "build-example-002"
+    },
+    {
+      "id": "recorded-branch-differs",
+      "command": "deploy --from dist",
+      "branch": "main",
+      "mutation": "artifact sourceBranch is post/test while the current invocation branch is main",
+      "artifactSourceBranch": "post/test",
+      "expectedRebuildCalls": 0,
+      "expectedUploadArtifact": "supplied-artifact",
+      "expectedExit": 0
     },
     {
       "id": "transferred-artifact-toolchain",
       "command": "deploy --from dist",
       "branch": "main",
       "environment": "outside-original-build",
-      "mutation": "no original toolchain workspace; verified artifact and same CFGB release available",
+      "mutation": "no original toolchain workspace; supplied artifact and same CFGB release available",
       "expectedToolchainRecreation": true,
       "expectedRebuildCalls": 0,
       "expectedArtifactBytesUnchanged": true,
@@ -252,10 +281,14 @@
       },
       "expectedManifest": {
         "buildUUID": "../build/opaque\\segment",
-        "toolchainSessionId": "66e8ed4b0011d20542e68165c4648a7fdd4081a46372359d49be0a64c9c4e8d5",
         "provenanceProvider": "workers-builds"
       },
-      "expectedWorkspacePath": "$HOME/.cache/cfgb/builds/66e8ed4b0011d20542e68165c4648a7fdd4081a46372359d49be0a64c9c4e8d5/",
+      "expectedWorkspace": {
+        "parent": "os.TempDir()",
+        "basenamePattern": "cfgb-build-*",
+        "manifestIdEqualsBasename": true,
+        "rawBuildIdChoosesPath": false
+      },
       "expectedRawBuildIdUsedAsPath": false,
       "expectedExit": 0
     },
@@ -272,9 +305,13 @@
         "head": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "branch": null
       },
-      "expectedError": "E_BUILD_SOURCE",
-      "expectedExit": 1,
-      "expectedRendererCalls": 0,
+      "expectedManifest": {
+        "sourceCommit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "sourceBranch": "post/test",
+        "provenanceProvider": "workers-builds"
+      },
+      "expectedRawBuildIdUsedAsPath": false,
+      "expectedExit": 0,
       "expectedUploadCalls": 0
     },
     {
@@ -340,7 +377,7 @@
       "productionBranch": "master",
       "branch": "master",
       "expectedRebuildCalls": 0,
-      "expectedUploadArtifact": "verified-input-artifact",
+      "expectedUploadArtifact": "supplied-artifact",
       "expectedExit": 0
     },
     {
@@ -368,7 +405,7 @@
       "branch": "main",
       "accessVerified": true,
       "expectedRebuildCalls": 0,
-      "expectedUploadArtifact": "verified-input-artifact",
+      "expectedUploadArtifact": "supplied-artifact",
       "expectedExit": 0
     }
   ]

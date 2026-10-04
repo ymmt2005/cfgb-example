@@ -44,38 +44,47 @@ redirect cases; `expected/fallbacks.json` lists 404 assets and navigation/fetch/
 cases. Error assets and Worker routes are not canonical article routes. The locale
 cookie name is `cfgb_locale`. Missing non-navigation requests delegate to Static
 Assets if they reach the Worker, without an independent fallback algorithm.
-`build-delivery/cases.json` assumes all unspecified prerequisites are valid: a
-finalized artifact with matching source identity, completed checks and consistent
-recorded hashes, a clean checkout, configured target and trusted access.
-A case's optional `productionBranch` sets `deploy.productionBranch` consistently
-in the source configuration and matching built artifact; omission means `main`.
-`branch` is the matching recorded/current source branch unless a case explicitly
-mutates provenance. Custom-branch cases verify deploy accepts only the configured
-branch and preview accepts other branches, including `main` when production is
-`master`. Successful upload cases assert no rebuild. These are declarative
-acceptance cases,
-not executed Cloudflare tests. Cases may provide simulated CI variables/Git
-metadata, release-runtime mismatches, retained-session failures and Worker-level
-Access policy conditions. Unspecified requirements remain satisfied; provenance
-SHA values are synthetic, not actual repository commits. Runtime-config cases use a synthetic release compatibility date: both upload
-commands must emit that exact top-level `compatibility_date`, `workers_dev: false`,
-`preview_urls: true`, `previews: {}` and
-top-level assets, independently of execution date. No real release compatibility
-test is claimed. Live integration acceptance also checks the public canonical
-custom domain, disabled production workers.dev route, and enabled Preview/Version
-URLs with Access protection, for fresh and previously configured Workers.
-Bootstrap acceptance
-checks pinned executable reuse across separate Workers Builds command shells.
-Build IDs are synthetic opaque strings, not required RFC UUIDs. Preserve their
-exact values in the manifest; `toolchainSessionId` and the workspace component
-are lowercase SHA-256 of the exact UTF-8 build-ID bytes. Path-separator cases
-assert only the hashed component is used and no raw-value path is created.
+`build-delivery/cases.json` assumes unspecified prerequisites are valid: a
+complete artifact with its required files, a publication snapshot, completed
+checks, a configured target, and trusted access. Recorded commit, branch, build
+ID, and provenance provider are optional diagnostics. A dirty checkout, an edit
+to site bytes after the build, and a difference between those diagnostics and
+the current invocation stay successful. The manifest carries no configuration,
+input, or output hashes.
+A case's optional `productionBranch` sets `deploy.productionBranch`. Omission
+means `main`. `branch` is the current invocation's branch. It may differ from a
+branch recorded in the artifact. Custom-branch cases verify deploy accepts only
+the configured branch and preview accepts other branches, including `main` when
+production is `master`. Successful upload cases assert no rebuild. These are
+declarative acceptance cases, not executed Cloudflare tests. Cases may provide
+simulated CI variables and Git metadata, release-runtime mismatches,
+retained-session failures, and Worker-level Access policy conditions.
+Unspecified requirements remain satisfied; diagnostic SHA values are synthetic,
+not actual repository commits. `expectedManifest` lists diagnostics that are
+present. An empty build identifier is omitted. Runtime-config cases use a
+synthetic release compatibility date: both upload commands must emit that exact
+top-level `compatibility_date`, `workers_dev: false`, `preview_urls: true`,
+`previews: {}`, and top-level assets, independently of execution date. No real
+release compatibility test is claimed. Live integration acceptance also checks
+the public canonical custom domain, disabled production workers.dev route, and
+enabled Preview/Version URLs with Access protection, for fresh and previously
+configured Workers. Bootstrap acceptance checks pinned executable reuse across
+separate Workers Builds command shells. Build IDs are synthetic opaque strings,
+not required RFC UUIDs. Preserve a non-empty value in the manifest as
+`buildUUID`. `toolchainSessionId` is the basename of a fresh workspace under the
+shared temporary directory (`os.TempDir()`), matching `cfgb-build-*`. The
+manifest ID equals that basename. Do not require a particular random suffix.
+The raw build identifier does not choose the workspace path, including when it
+contains path separators or differs from the identifier recorded in the
+artifact. Two builds get distinct workspaces even when their build identifiers
+are equal.
 
-Artifact hash/source/session checks test deployment correctness and reproducibility.
-They assume operator-trusted CI artifact storage/transfer and deployment environments;
-they do not authenticate site artifacts against malicious storage or transport.
-Transferred-artifact cases preserve original bytes/provenance and recreate only
-the pinned upload toolchain. See the [artifact verification scope](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/10-build-runtime.md#artifact-verification-scope).
+`expectedUploadArtifact: supplied-artifact` means CFGB uploads the bytes it was
+given, including an artifact edited after the build, and does not rebuild or
+change those bytes. Upload cases cover required files, runtime compatibility,
+publication timestamps, the current branch, and Access. Transferred-artifact
+cases leave the supplied bytes unchanged and recreate only the pinned upload
+toolchain. See the [artifact checks](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/10-build-runtime.md#artifact-checks).
 CFGB executable release-attestation verification is a separate security requirement.
 
 `expected/sitemap.json` fixes the corpus index, numbered sitemap file, canonical
