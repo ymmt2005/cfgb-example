@@ -11,7 +11,8 @@
         }
       ],
       "expectedExit": 0,
-      "expectedEffectivePreviewAccess": true
+      "expectedEffectivePreviewAccess": true,
+      "stage": "load"
     },
     {
       "id": "preview-access-omitted",
@@ -22,7 +23,8 @@
         }
       ],
       "expectedExit": 0,
-      "expectedEffectivePreviewAccess": true
+      "expectedEffectivePreviewAccess": true,
+      "stage": "load"
     },
     {
       "id": "security-omitted",
@@ -33,7 +35,8 @@
         }
       ],
       "expectedExit": 0,
-      "expectedEffectivePreviewAccess": true
+      "expectedEffectivePreviewAccess": true,
+      "stage": "load"
     },
     {
       "id": "preview-access-false",
@@ -44,8 +47,9 @@
           "value": false
         }
       ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 2
+      "expectedExit": 0,
+      "stage": "load",
+      "expectedEffectivePreviewAccess": false
     },
     {
       "id": "production-branch-explicit-master",
@@ -57,7 +61,8 @@
         }
       ],
       "expectedExit": 0,
-      "expectedEffectiveProductionBranch": "master"
+      "expectedEffectiveProductionBranch": "master",
+      "stage": "load"
     },
     {
       "id": "production-branch-omitted",
@@ -68,7 +73,8 @@
         }
       ],
       "expectedExit": 0,
-      "expectedEffectiveProductionBranch": "main"
+      "expectedEffectiveProductionBranch": "main",
+      "stage": "load"
     },
     {
       "id": "deploy-section-omitted",
@@ -79,7 +85,8 @@
         }
       ],
       "expectedExit": 0,
-      "expectedEffectiveProductionBranch": "main"
+      "expectedEffectiveProductionBranch": "main",
+      "stage": "load"
     },
     {
       "id": "production-branch-invalid-ref",
@@ -91,7 +98,9 @@
         }
       ],
       "expectedError": "E_DEPLOY_TARGET",
-      "expectedExit": 2
+      "expectedExit": 2,
+      "stage": "command",
+      "command": "deploy"
     },
     {
       "id": "ai-enabled-empty-summary",
@@ -103,7 +112,9 @@
         }
       ],
       "expectedError": "E_PROVIDER_CONFIG",
-      "expectedExit": 2
+      "expectedExit": 2,
+      "stage": "command",
+      "command": "summarize"
     }
   ]
 }

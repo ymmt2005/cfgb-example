@@ -17,13 +17,15 @@ checked before asset existence. A schema-valid cross-locale alias emits
 in default/authoring mode; publish mode rejects them.
 
 `fixtures/configuration/cases.json` uses `setConfig`/`removeConfig` operations
-with JSON Pointer paths on a copy of `cfgb.yaml`. Omitted preview-access settings
-must be populated by the configuration loader as true; Schema defaults alone do
-not mutate data. `deploy.productionBranch` defaults to `main` when the field or
-section is absent and accepts a valid custom Git short branch name such as
-`master`. Schema-valid invalid refs fail semantic `E_DEPLOY_TARGET`; enabled AI
-with an empty summary map fails semantic `E_PROVIDER_CONFIG`. Invalid
-configuration exits 2.
+with JSON Pointer paths on a copy of `cfgb.yaml`. `stage: load` exercises direct
+Go struct decoding and defaults; it does not run JSON Schema validation. Omitted
+preview-access settings default to true, while explicit false is preserved.
+`deploy.productionBranch` defaults to `main` when the field or section is absent.
+`stage: command` cases identify the later CLI command that checks a decoded
+setting: deploy rejects an invalid branch with `E_DEPLOY_TARGET`, and summarize
+rejects missing model settings with `E_PROVIDER_CONFIG`. Those command checks
+are not configuration-decoder constraints. Decode/configuration-use failures
+exit 2. The configuration schema is an optional standalone/editor aid.
 
 AI lifecycle records carry complete title/body/summary and sidecar hashes; a fake
 provider should be invoked only for `generate` cases, and never for protected/no-op
