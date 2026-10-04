@@ -24,13 +24,18 @@ jobs:
       AQUA_ENFORCE_REQUIRE_CHECKSUM: "true"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
-        with:
-          node-version: "24.21.0"
-      - run: npm install -g npm@12.2.0
-      - uses: ymmt2005/cfgb-action@270d2a5a23c913ac853bc4441e78a3381102f3d9
+      - uses: ymmt2005/cfgb-action@316e6d0fef51dd0887516fcbb17778c85fda5be1 # v0.3.0
+        id: cfgb
         with:
           cfgb-version: v0.1.0
+          package-manager: npm
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: ${{ steps.cfgb.outputs.node-version }}
+      - name: Install the tested npm version
+        env:
+          NPM_VERSION: ${{ steps.cfgb.outputs.npm-version }}
+        run: npm install --global "npm@$NPM_VERSION"
       - name: Build static site at the Pages project path
         run: cfgb build --out dist --static --base-url "$SITE_URL"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1

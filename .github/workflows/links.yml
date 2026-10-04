@@ -31,11 +31,18 @@ jobs:
           ref: v0.1.0
           path: cfgb-tool
           sparse-checkout: scripts
+      - uses: ymmt2005/cfgb-action@316e6d0fef51dd0887516fcbb17778c85fda5be1 # v0.3.0
+        id: cfgb
+        with:
+          cfgb-version: v0.1.0
+          package-manager: npm
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: "24.21.0"
-      - name: Install npm 12
-        run: npm install -g npm@12.2.0
+          node-version: ${{ steps.cfgb.outputs.node-version }}
+      - name: Install the tested npm version
+        env:
+          NPM_VERSION: ${{ steps.cfgb.outputs.npm-version }}
+        run: npm install --global "npm@$NPM_VERSION"
       - name: Install checksum-pinned lychee with aqua
         uses: aquaproj/aqua-installer@96a9bc20066c5bf5e275b41019cfc165b25f4e2e # v4.0.5
         with:
@@ -43,9 +50,6 @@ jobs:
           aqua_opts: ""
       - name: Check that tool checksums stayed fixed
         run: git diff --exit-code -- aqua-checksums.json
-      - uses: ymmt2005/cfgb-action@270d2a5a23c913ac853bc4441e78a3381102f3d9
-        with:
-          cfgb-version: v0.1.0
       - name: Build current example HTML
         run: cfgb build --out dist
       - name: Check every generated HTML file offline
