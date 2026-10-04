@@ -33,20 +33,6 @@
       "expectedExit": 1
     },
     {
-      "id": "invalid-slug",
-      "mode": "publish",
-      "operations": [
-        {
-          "op": "setFrontmatter",
-          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
-          "field": "slug",
-          "value": "Upper Case"
-        }
-      ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 1
-    },
-    {
       "id": "invalid-date",
       "mode": "publish",
       "operations": [
@@ -188,22 +174,6 @@
         }
       ],
       "expectedError": "E_URL_COLLISION",
-      "expectedExit": 1
-    },
-    {
-      "id": "external-alias",
-      "mode": "publish",
-      "operations": [
-        {
-          "op": "setFrontmatter",
-          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
-          "field": "aliases",
-          "value": [
-            "https://old.invalid/entry/1"
-          ]
-        }
-      ],
-      "expectedError": "E_SCHEMA",
       "expectedExit": 1
     },
     {
@@ -395,8 +365,9 @@
           "value": null
         }
       ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 1
+      "expectedExit": 0,
+      "expectedDecodedSummary": "",
+      "expectedWarning": "W_SUMMARY_REQUIRED"
     },
     {
       "id": "null-summary-default",
@@ -409,8 +380,9 @@
           "value": null
         }
       ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 1
+      "expectedExit": 1,
+      "expectedDecodedSummary": "",
+      "expectedError": "E_SUMMARY_REQUIRED"
     },
     {
       "id": "null-summary-publish",
@@ -423,8 +395,9 @@
           "value": null
         }
       ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 1
+      "expectedExit": 1,
+      "expectedDecodedSummary": "",
+      "expectedError": "E_SUMMARY_REQUIRED"
     },
     {
       "id": "numeric-summary-authoring",
@@ -437,8 +410,8 @@
           "value": 42
         }
       ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 1
+      "expectedExit": 0,
+      "expectedDecodedSummary": "42"
     },
     {
       "id": "numeric-summary-default",
@@ -451,8 +424,8 @@
           "value": 42
         }
       ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 1
+      "expectedExit": 0,
+      "expectedDecodedSummary": "42"
     },
     {
       "id": "numeric-summary-publish",
@@ -465,8 +438,8 @@
           "value": 42
         }
       ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 1
+      "expectedExit": 0,
+      "expectedDecodedSummary": "42"
     },
     {
       "id": "boolean-summary-authoring",
@@ -479,8 +452,8 @@
           "value": false
         }
       ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 1
+      "expectedExit": 0,
+      "expectedDecodedSummary": "false"
     },
     {
       "id": "boolean-summary-default",
@@ -493,8 +466,8 @@
           "value": false
         }
       ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 1
+      "expectedExit": 0,
+      "expectedDecodedSummary": "false"
     },
     {
       "id": "boolean-summary-publish",
@@ -507,8 +480,8 @@
           "value": false
         }
       ],
-      "expectedError": "E_SCHEMA",
-      "expectedExit": 1
+      "expectedExit": 0,
+      "expectedDecodedSummary": "false"
     },
     {
       "id": "duplicate-alias-default",

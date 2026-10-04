@@ -7,14 +7,24 @@ Each mutation is applied alone, with the fixed clock `2026-10-03T12:00:00+09:00`
 Supported fixture operations: set/remove a frontmatter key, replace body, remove
 an asset, copy a variant. Each operation is declarative input to the future test harness. Assert the specified
 `expectedError` or `expectedWarning` and `expectedExit`; warning-only authoring
-cases must succeed. `default` means no mode flag. Summary structural types are
-checked before semantic missing/empty/Unicode White_Space checks. Alias arrays
-may pass Schema with duplicates; semantic validation must emit `E_ALIAS_DUPLICATE`
-in every mode, including duplicates across variants. The OG path-escape mutation
-is schema-valid but resolves outside the article directory; path containment is
-checked before asset existence. A schema-valid cross-locale alias emits
-`E_URL_COLLISION`. Future publication dates warn with `W_FUTURE_DATE` and exit 0
-in default/authoring mode; publish mode rejects them.
+cases must succeed. `default` means no mode flag. Summary mode checks use the
+Go-decoded string: YAML `42` becomes `"42"`, `false` becomes `"false"`, and `null`
+becomes empty text. Numeric/boolean values are not raw-type errors; empty/null
+values follow the same missing-summary rule in each mode. Short summaries may
+also warn, without changing a successful exit. `expectedDecodedSummary` records
+the value to check at the typed loader boundary. Alias uniqueness is semantic
+validation on decoded slices; emit `E_ALIAS_DUPLICATE` in every mode, including
+duplicates across variants. The OG path-escape mutation resolves outside the
+article directory; path containment is checked before asset existence. A
+cross-locale alias emits `E_URL_COLLISION`. Future publication dates warn with
+`W_FUTURE_DATE` and exit 0 in default/authoring mode; publish mode rejects them.
+
+`fixtures/validation/schema-cases.json` contains optional standalone Schema
+scenarios. Apply those operations to a positive tree and check the article
+Schema's result against `expectedValid`, only when that separate check is
+explicitly requested. They are not `cfgb validate`/`build` rejection requirements
+and have no CLI exit-code/validation-mode contract. In particular, the existing
+slug/alias patterns and raw summary types are not typed-loader policies.
 
 Configuration and article front matter decode directly into Go structs; topics
 decode into a typed map. Loading uses the YAML decoder's behavior and preserves

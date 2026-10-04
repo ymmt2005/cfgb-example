@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "invalid-slug",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "slug",
+          "value": "Upper Case"
+        }
+      ],
+      "expectedValid": false
+    },
+    {
+      "id": "external-alias",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "aliases",
+          "value": [
+            "https://old.invalid/entry/1"
+          ]
+        }
+      ],
+      "expectedValid": false
+    },
+    {
+      "id": "null-summary",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": null
+        }
+      ],
+      "expectedValid": false
+    },
+    {
+      "id": "numeric-summary",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": 42
+        }
+      ],
+      "expectedValid": false
+    },
+    {
+      "id": "boolean-summary",
+      "operations": [
+        {
+          "op": "setFrontmatter",
+          "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ja.md",
+          "field": "summary",
+          "value": false
+        }
+      ],
+      "expectedValid": false
+    }
+  ]
+}
