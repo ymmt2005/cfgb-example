@@ -16,6 +16,15 @@ checked before asset existence. A schema-valid cross-locale alias emits
 `E_URL_COLLISION`. Future publication dates warn with `W_FUTURE_DATE` and exit 0
 in default/authoring mode; publish mode rejects them.
 
+Configuration and article front matter decode directly into Go structs; topics
+decode into a typed map. Loading uses the YAML decoder's behavior and preserves
+article body bytes. Do not apply the optional JSON Schemas or additional YAML
+tag/document/encoding rules as implicit loading/build gates. The validation
+fixtures above describe separate validation scenarios, not loader prerequisites.
+Before implementing a new correctness/input-rejection rule, obtain explicit
+human approval as required by [CFGB's AGENTS.md](https://github.com/ymmt2005/cfgb/blob/main/AGENTS.md).
+Existing unverified policies are listed in the [PR #3 audit](https://github.com/ymmt2005/cfgb/blob/cursor/phase1-renderer-build-47ed/docs/reviews/pr-3-policy-audit.md).
+
 `fixtures/configuration/cases.json` uses `setConfig`/`removeConfig` operations
 with JSON Pointer paths on a copy of `cfgb.yaml`. `stage: load` exercises direct
 Go struct decoding and defaults; it does not run JSON Schema validation. Omitted
