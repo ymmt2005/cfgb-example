@@ -9,3 +9,6 @@ dist/
 .astro/
 .wrangler/
 tests/ai/results/
+.lycheecache
+.link-reports/
+cfgb-tool/

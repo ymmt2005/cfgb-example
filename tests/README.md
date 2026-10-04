@@ -100,3 +100,12 @@ the CLI and registering it on PATH. Workflow
 Release-attestation/platform-selection/cache/PATH tests belong in `cfgb-action`; domain diagnostics and exit
 status remain CLI expectations here. See the [setup Action contract](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/09-github-action.md).
 No live Action acceptance has been run at this documentation-only stage.
+
+## Executed link checks
+
+The repository's [Links workflow](../.github/workflows/links.yml) builds the
+current positive corpus using a pinned CFGB commit and runs checksum-pinned
+lychee on the generated HTML. Internal link checks run on push/PR. Manual and
+weekly runs add advisory external-link availability reports with caching and
+retries. These checks do not execute the negative acceptance fixtures described
+above, and do not imply that later migration/AI/deployment gates are implemented.

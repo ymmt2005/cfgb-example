@@ -6,7 +6,7 @@ Cloudflare, Inc.
 
 This repository is a **content/specification corpus**, not an implemented Astro
 site or the Go CLI. Nothing here deploys a website or calls an AI provider.
-The command examples describe the CLI to be implemented. CFGB owns the reusable
+The command examples include later CLI milestones still under implementation. CFGB owns the reusable
 renderer, Worker and pinned dependencies, with sources embedded in its Go release
 binary. This corpus and real content repositories remain free of Astro, Worker
 and package configuration; Node.js is a CFGB build prerequisite.
@@ -52,9 +52,10 @@ They are not statements or imported publications by the repository owner.
 
 ## Using the corpus
 
-See `tests/README.md` for fixture semantics. No CLI, renderer, CI workflow, or
-validator is implemented here. Expected results are acceptance data for the future
-CFGB implementation. They do not imply that browser rendering, Pagefind quality,
+See `tests/README.md` for fixture semantics. The CLI and renderer live in CFGB.
+The Links CI workflow builds this content with a reviewed, pinned CFGB source
+commit and checks the generated HTML. Other
+expected results remain acceptance data for the ongoing CFGB implementation. They do not imply that browser rendering, Pagefind quality,
 Cloudflare Access, Hatena migration or LLM generation have already been tested.
 
 Pin a Git commit when consuming this repository. Review schema changes in the
@@ -63,10 +64,37 @@ Tool version, schema version, and site version remain independent. The
 [cfgb-action repository](https://github.com/ymmt2005/cfgb-action) installs a verified
 CLI and registers it on PATH. Workflows run the CLI directly against this corpus;
 Action and CLI releases are separately pinned. Future GitHub-specific capabilities
-stay in that single Action repository and entry point when justified. No Action
-implementation or active workflow is added to this corpus.
+stay in that single Action repository and entry point when justified. The setup Action implementation stays in its own repository.
 
 ## License
 
 This repository, including its documentation, sample articles, original assets
 and test fixtures, is licensed under the [Apache License, Version 2.0](LICENSE).
+
+## Link checks
+
+[Links CI](.github/workflows/links.yml) builds the current content and checks all
+generated HTML on pushes and pull requests. Internal files, images, and fragment
+references must resolve; self-origin absolute URLs are mapped to the generated
+site, and aliases resolve through `_redirects`. Worker endpoints are covered by
+CFGB's Worker tests. Negative validation/migration fixtures are not scanned.
+
+lychee is installed with [aqua.yaml](aqua.yaml) and
+[aqua-checksums.json](aqua-checksums.json): the tool/registry versions and their
+checksums are committed, and the aqua-installer Action uses a full commit SHA.
+CI enforces checksum verification and never regenerates the lock.
+
+Scheduled runs (Monday 06:17 Japan time) and manual runs additionally check the
+external links authored in the articles. The checker uses a one-day cache,
+limited concurrency, retries, and timeouts. Results appear in the Actions job
+summary and the `external-links` artifact. External availability is advisory;
+installation, build, and internal-link errors still fail the workflow. No
+website is deployed and no AI credentials are required.
+
+Until an immutable CLI release/setup Action is available, the workflow compiles
+its exact reviewed CFGB commit. The temporary `cfgb-tool/` checkout and build
+workspace supply the framework; this content repository still contains no
+Astro/Worker/package sources. Review the source pin when updating CFGB.
+
+To update lychee or the registry, edit the exact pins, run
+`aqua update-checksum -prune`, and review/commit the new checksums with the config.

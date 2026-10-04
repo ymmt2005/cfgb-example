@@ -1,0 +1,95 @@
+name: Links
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Monday 06:17 Japan time; external failures are reports, not merge gates.
+    - cron: "17 21 * * 0"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: links-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      AQUA_ENFORCE_CHECKSUM: "true"
+      AQUA_ENFORCE_REQUIRE_CHECKSUM: "true"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Until the CLI release/setup Action is available, build a reviewed source
+      # commit. Framework sources and dependencies stay in the CFGB workspace.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ymmt2005/cfgb
+          ref: 5d1b1eaf11e86be408e56493b0643e360614772b
+          path: cfgb-tool
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: "1.27.1"
+          cache-dependency-path: cfgb-tool/go.sum
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24.21.0"
+      - name: Install npm 12
+        run: npm install -g npm@12.2.0
+      - name: Install checksum-pinned lychee with aqua
+        uses: aquaproj/aqua-installer@96a9bc20066c5bf5e275b41019cfc165b25f4e2e # v4.0.5
+        with:
+          aqua_version: v2.63.0
+          aqua_opts: ""
+      - name: Check that tool checksums stayed fixed
+        run: git diff --exit-code -- aqua-checksums.json
+      - name: Build pinned CFGB CLI
+        working-directory: cfgb-tool
+        run: go build -o "$RUNNER_TEMP/cfgb" ./cmd/cfgb
+      - name: Build current example HTML
+        run: '"$RUNNER_TEMP/cfgb" build --out dist'
+      - name: Check every generated HTML file offline
+        run: node cfgb-tool/scripts/check-links.mjs dist/site https://example.invalid --config .github/lychee.toml
+      - name: Restore external link cache
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
+        with:
+          path: .lycheecache
+          key: lychee-${{ runner.os }}-${{ hashFiles('aqua.yaml', '.github/lychee.toml') }}-${{ github.run_id }}
+          restore-keys: |
+            lychee-${{ runner.os }}-${{ hashFiles('aqua.yaml', '.github/lychee.toml') }}-
+      - name: Report external link availability
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        id: external
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .link-reports
+          node cfgb-tool/scripts/check-links.mjs dist/site https://example.invalid --config .github/lychee.toml --online --output .link-reports/external.md
+      - name: Publish external link summary
+        if: always() && (steps.external.outcome == 'success' || steps.external.outcome == 'failure')
+        env:
+          RESULT: ${{ steps.external.outcome }}
+        run: |
+          printf '## External link availability\n\nResult: %s\n\n' "$RESULT" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f .link-reports/external.md ]; then
+            cat .link-reports/external.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf 'No report was produced; inspect the link-check step logs.\n' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [ "$RESULT" = failure ]; then
+            echo '::warning::External link checks reported failures; see the summary and report artifact.'
+          fi
+      - name: Save external link report
+        if: always() && (steps.external.outcome == 'success' || steps.external.outcome == 'failure')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: external-links
+          path: .link-reports/external.md
+          if-no-files-found: warn
+          retention-days: 14
