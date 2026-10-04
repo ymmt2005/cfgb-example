@@ -4,12 +4,13 @@ Reference content for the v1 implementation specifications for **CFGB — Git-ba
 an independent open-source project not affiliated with
 Cloudflare, Inc.
 
-This repository is a **content/specification corpus**, not an implemented Astro
-site or the Go CLI. Nothing here deploys a website or calls an AI provider.
-The command examples include later CLI milestones still under implementation. CFGB owns the reusable
-renderer, Worker and pinned dependencies, with sources embedded in its Go release
-binary. This corpus and real content repositories remain free of Astro, Worker
-and package configuration; Node.js is a CFGB build prerequisite.
+This repository owns the **content/specification corpus** and publishes its
+positive examples through GitHub Pages using CFGB v0.1.0. It does not call AI
+providers. CFGB owns the reusable renderer, Worker and pinned dependencies,
+with sources embedded in its Go release binary. This corpus and real content
+repositories remain free of Astro, Worker and package configuration; Node.js
+is a CFGB build prerequisite. Some command examples describe later CLI milestones
+that remain under implementation.
 
 ## Start here
 
@@ -53,8 +54,8 @@ They are not statements or imported publications by the repository owner.
 ## Using the corpus
 
 See `tests/README.md` for fixture semantics. The CLI and renderer live in CFGB.
-The Links CI workflow builds this content with a reviewed, pinned CFGB source
-commit and checks the generated HTML. Other
+The Links CI workflow installs an exact immutable CFGB release with the
+separately commit-pinned setup Action and checks the generated HTML. Other
 expected results remain acceptance data for the ongoing CFGB implementation. They do not imply that browser rendering, Pagefind quality,
 Cloudflare Access, Hatena migration or LLM generation have already been tested.
 
@@ -65,6 +66,23 @@ Tool version, schema version, and site version remain independent. The
 CLI and registers it on PATH. Workflows run the CLI directly against this corpus;
 Action and CLI releases are separately pinned. Future GitHub-specific capabilities
 stay in that single Action repository and entry point when justified. The setup Action implementation stays in its own repository.
+
+## GitHub Pages publication
+
+The [Pages workflow](.github/workflows/pages.yml) builds the site with
+`cfgb build --static --base-url https://ymmt2005.github.io/cfgb-example/ --out dist`,
+checks the generated links, and publishes `dist/site/` on main updates. Pull
+requests run the build/link checks without deploying. The project path is applied
+to navigation, images, bundles, search, feeds and canonical metadata. Static
+entry/alias pages and direct language links work without a Cloudflare Worker.
+The corpus's `cfgb.yaml` and expected URLs keep their reserved test origin;
+publication overrides the URL for that invocation.
+
+For initial setup, open this repository's **Settings → Pages** and select
+**GitHub Actions** as the source. Then run **Actions → Pages → Run workflow**
+on main, or push a main update. Publication uses the job's GitHub token with
+`pages: write` and `id-token: write`; no PAT or Cloudflare token is required.
+The public address is <https://ymmt2005.github.io/cfgb-example/>.
 
 ## License
 
@@ -88,13 +106,13 @@ Scheduled runs (Monday 06:17 Japan time) and manual runs additionally check the
 external links authored in the articles. The checker uses a one-day cache,
 limited concurrency, retries, and timeouts. Results appear in the Actions job
 summary and the `external-links` artifact. External availability is advisory;
-installation, build, and internal-link errors still fail the workflow. No
-website is deployed and no AI credentials are required.
+installation, build, and internal-link errors still fail the workflow. The
+Links workflow does not deploy the site, and no AI credentials are required.
 
-Until an immutable CLI release/setup Action is available, the workflow compiles
-its exact reviewed CFGB commit. The temporary `cfgb-tool/` checkout and build
-workspace supply the framework; this content repository still contains no
-Astro/Worker/package sources. Review the source pin when updating CFGB.
+The temporary `cfgb-tool/` checkout supplies only the link-check script from the
+same CLI release tag. Framework sources and dependencies come from the installed
+binary's temporary build workspace. Review the Action commit and CLI release
+pins independently when updating CFGB.
 
 To update lychee or the registry, edit the exact pins, run
 `aqua update-checksum -prune`, and review/commit the new checksums with the config.
