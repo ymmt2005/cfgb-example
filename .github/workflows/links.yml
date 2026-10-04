@@ -2,6 +2,7 @@ name: Links
 
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
   schedule:
@@ -24,17 +25,12 @@ jobs:
       AQUA_ENFORCE_REQUIRE_CHECKSUM: "true"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      # Until the CLI release/setup Action is available, build a reviewed source
-      # commit. Framework sources and dependencies stay in the CFGB workspace.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: ymmt2005/cfgb
-          ref: 5d1b1eaf11e86be408e56493b0643e360614772b
+          ref: v0.1.0
           path: cfgb-tool
-      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
-        with:
-          go-version: "1.27.1"
-          cache-dependency-path: cfgb-tool/go.sum
+          sparse-checkout: scripts
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: "24.21.0"
@@ -47,11 +43,11 @@ jobs:
           aqua_opts: ""
       - name: Check that tool checksums stayed fixed
         run: git diff --exit-code -- aqua-checksums.json
-      - name: Build pinned CFGB CLI
-        working-directory: cfgb-tool
-        run: go build -o "$RUNNER_TEMP/cfgb" ./cmd/cfgb
+      - uses: ymmt2005/cfgb-action@270d2a5a23c913ac853bc4441e78a3381102f3d9
+        with:
+          cfgb-version: v0.1.0
       - name: Build current example HTML
-        run: '"$RUNNER_TEMP/cfgb" build --out dist'
+        run: cfgb build --out dist
       - name: Check every generated HTML file offline
         run: node cfgb-tool/scripts/check-links.mjs dist/site https://example.invalid --config .github/lychee.toml
       - name: Restore external link cache

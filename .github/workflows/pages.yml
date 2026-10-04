@@ -1,0 +1,64 @@
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  SITE_URL: https://ymmt2005.github.io/cfgb-example/
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      AQUA_ENFORCE_CHECKSUM: "true"
+      AQUA_ENFORCE_REQUIRE_CHECKSUM: "true"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: "24.21.0"
+      - run: npm install -g npm@12.2.0
+      - uses: ymmt2005/cfgb-action@270d2a5a23c913ac853bc4441e78a3381102f3d9
+        with:
+          cfgb-version: v0.1.0
+      - name: Build static site at the Pages project path
+        run: cfgb build --out dist --static --base-url "$SITE_URL"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: ymmt2005/cfgb
+          ref: v0.1.0
+          path: cfgb-link-tools
+          sparse-checkout: scripts
+      - uses: aquaproj/aqua-installer@96a9bc20066c5bf5e275b41019cfc165b25f4e2e
+        with:
+          aqua_version: v2.63.0
+          aqua_opts: ""
+      - run: git diff --exit-code -- aqua-checksums.json
+      - name: Check generated links before publication
+        run: node cfgb-link-tools/scripts/check-links.mjs dist/site "$SITE_URL" --config .github/lychee.toml
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
+        with:
+          path: dist/site
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+        id: deploy
