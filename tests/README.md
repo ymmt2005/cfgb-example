@@ -28,8 +28,10 @@ slug/alias patterns and raw summary types are not typed-loader policies.
 
 Configuration and article front matter decode directly into Go structs; topics
 decode into a typed map. Loading uses the YAML decoder's behavior and preserves
-article body bytes. Do not apply the optional JSON Schemas or additional YAML
-tag/document/encoding rules as implicit loading/build gates. The validation
+valid UTF-8 article body bytes. The user explicitly requested malformed UTF-8
+checks and file-start BOM removal; preserve interior U+FEFF and line endings.
+Do not apply the optional JSON Schemas or additional YAML tag/document rules as
+implicit loading/build gates. The validation
 fixtures above describe separate validation scenarios, not loader prerequisites.
 Before implementing a new correctness/input-rejection rule, obtain explicit
 human approval as required by [CFGB's AGENTS.md](https://github.com/ymmt2005/cfgb/blob/main/AGENTS.md).
@@ -139,3 +141,14 @@ lychee on the generated HTML. Internal link checks run on push/PR. Manual and
 weekly runs add advisory external-link availability reports with caching and
 retries. These checks do not execute the negative acceptance fixtures described
 above, and do not imply that later migration/AI/deployment gates are implemented.
+
+## Archive and reader dates
+
+`site.timezone` controls monthly archive membership only. `expected/date-display.json`
+uses the September UTC / October Tokyo boundary article: its archive route stays
+fixed while browser-local date text changes. Generated `datetime`, JSON-LD and
+Pagefind timestamps remain UTC; RSS keeps the same UTC instant. Without JavaScript,
+display the static UTC date. `new` uses UTC for creation timestamps/group names.
+The renderer/browser never receives the configured archive timezone. The current
+CFGB tests cover this contract through Go metadata, generated HTML/RSS and real
+browser contexts; this fixture also exposes the expected values to corpus consumers.

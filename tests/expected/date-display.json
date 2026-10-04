@@ -1,0 +1,27 @@
+{
+  "archiveTimezone": "Asia/Tokyo",
+  "cases": [
+    {
+      "article": "2026/2026-09-30-timezone-boundary/ja",
+      "route": "/ja/posts/archive-timezone-boundary/",
+      "publishedUTC": "2026-09-30T16:30:00Z",
+      "archiveRoute": "/ja/archive/2026/10/",
+      "staticDate": "2026年9月30日",
+      "readerDates": [
+        {
+          "timezone": "Asia/Tokyo",
+          "text": "2026年10月1日"
+        },
+        {
+          "timezone": "America/Los_Angeles",
+          "text": "2026年9月30日"
+        },
+        {
+          "timezone": "Asia/Kathmandu",
+          "text": "2026年9月30日"
+        }
+      ],
+      "rssPubDate": "Wed, 30 Sep 2026 16:30:00 GMT"
+    }
+  ]
+}
