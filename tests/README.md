@@ -130,7 +130,7 @@ verifies its immutable release and GitHub release attestation before installing
 the CLI and registering it on PATH. Workflow
 `run` steps execute the selected CLI release against this corpus directly.
 Release-attestation/platform-selection/cache/PATH tests belong in `cfgb-action`; domain diagnostics and exit
-status remain CLI expectations here. See the [setup Action contract](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/09-github-action.md).
+status remain CLI expectations here. See the [setup Action documentation](https://github.com/ymmt2005/cfgb-action#readme).
 The setup Action's CI exercises release verification and installation on native
 runners. This repository consumes that tested Action with an exact release pin.
 
