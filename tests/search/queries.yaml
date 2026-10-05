@@ -183,3 +183,60 @@ cases:
   topK: 5
   expected:
   - /ko/posts/markdown-rendering-showcase/
+- locale: ja
+  query: 短い文章
+  topK: 5
+  expected:
+  - /ja/posts/what-to-keep-in-a-short-post/
+  filters:
+    topic: writing
+    year: '2025'
+- locale: ja
+  query: 短い文章
+  topK: 5
+  expected: []
+  filters:
+    year: '2026'
+- locale: ja
+  query: Protocol Buffers
+  topK: 5
+  expected: []
+  filters:
+    topic: writing
+- locale: ja
+  query: 認証認可
+  topK: 5
+  expected: []
+  filters:
+    topic: security
+    year: '2025'
+- locale: en
+  query: idempotency
+  topK: 5
+  expected: []
+  filters:
+    topic: oss
+- locale: ja
+  query: idempotency
+  topK: 5
+  expected: []
+- locale: en
+  query: ML-KEM
+  topK: 5
+  expected: []
+- locale: zh-Hans
+  query: Protocol Buffers
+  topK: 5
+  expected:
+  - /zh-Hans/posts/reading-protobuf-schemas/
+  filters:
+    topic: protobuf
+    year: '2026'
+- locale: ko
+  query: Protocol Buffers
+  topK: 5
+  expected:
+  - /ko/posts/reading-protobuf-schemas/
+  filters:
+    topic: protobuf
+    year: '2026'
