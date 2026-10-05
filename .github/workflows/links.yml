@@ -28,13 +28,13 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: ymmt2005/cfgb
-          ref: v0.2.1
+          ref: v0.3.0
           path: cfgb-tool
           sparse-checkout: scripts
       - uses: ymmt2005/cfgb-action@316e6d0fef51dd0887516fcbb17778c85fda5be1 # v0.3.0
         id: cfgb
         with:
-          cfgb-version: v0.2.1
+          cfgb-version: v0.3.0
           package-manager: npm
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
@@ -51,7 +51,7 @@ jobs:
       - name: Check that tool checksums stayed fixed
         run: git diff --exit-code -- aqua-checksums.json
       - name: Build current example HTML
-        run: cfgb build --out dist
+        run: cfgb build --force --out dist
       - name: Check every generated HTML file offline
         run: node cfgb-tool/scripts/check-links.mjs dist/site https://example.invalid --config .github/lychee.toml
       - name: Restore external link cache
