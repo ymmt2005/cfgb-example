@@ -65,6 +65,93 @@ flowchart TD
   Review --> Draft
 ```
 
+## 큰 Mermaid 다이어그램
+
+가상의 편집 과정을 나타내는 다이어그램입니다. 각 다이어그램을 확대해 글자를 읽고, 가장자리까지 스크롤하며, 창에 맞춘 크기와 실제 크기를 비교해 보세요. 확대와 축소, 전체 화면, 좁은 화면, 밝고 어두운 테마도 확인할 수 있습니다. 닫기 버튼이나 Escape 키로 글에 돌아옵니다.
+
+언어별 레이아웃을 비교할 수 있도록 모든 다이어그램에 같은 영어 문구를 사용합니다.
+
+### 가로로 긴 발행 과정
+
+```mermaid
+flowchart LR
+  Idea["Choose an article idea"] --> Outline["Write the outline"]
+  Outline --> Research["Collect sources and examples"]
+  Research --> Draft["Write the first draft"]
+  Draft --> Review["Ask for an editorial review"]
+  Review --> Revise["Revise the explanation"]
+  Revise --> Check["Check facts and references"]
+  Check --> Translate["Prepare translated versions"]
+  Translate --> Proof["Proofread every version"]
+  Proof --> Layout["Review the page layout"]
+  Layout --> Publish["Publish the article"]
+  Publish --> Archive["Keep the reviewed manuscript"]
+```
+
+### 세로로 긴 검토 절차
+
+```mermaid
+flowchart TD
+  Start["Begin the article review"] --> Title["Read the title and introduction"]
+  Title --> Scope{"Is the purpose clear?"}
+  Scope -->|No| Rewrite["Rewrite the opening"]
+  Rewrite --> Title
+  Scope -->|Yes| Body["Read the explanation"]
+  Body --> Evidence["Compare the examples with the claims"]
+  Evidence --> Sources{"Do the references support the claims?"}
+  Sources -->|No| Research["Find a source or qualify the claim"]
+  Research --> Body
+  Sources -->|Yes| Links["Follow the article links"]
+  Links --> Figures["Read labels in every diagram"]
+  Figures --> Narrow["Check a narrow screen"]
+  Narrow --> Themes["Compare light and dark themes"]
+  Themes --> Accessible["Try keyboard navigation"]
+  Accessible --> Translation["Review translated versions"]
+  Translation --> Proof["Proofread the final text"]
+  Proof --> Approval{"Ready to publish?"}
+  Approval -->|No| Revise["Address the remaining comments"]
+  Revise --> Body
+  Approval -->|Yes| Publish["Publish the reviewed article"]
+  Publish --> Finish["Record the final revision"]
+```
+
+### 자세한 편집 대화
+
+```mermaid
+sequenceDiagram
+  participant Author as Article author
+  participant Editor as Editorial reviewer
+  participant Researcher as Reference checker
+  participant Translator as Translation reviewer
+  participant Designer as Layout reviewer
+  participant Publisher as Publication editor
+  participant Reader as Article reader
+  Author->>Editor: Submit the outline and intended audience
+  Editor-->>Author: Clarify the main question
+  Author->>Researcher: Share sources and worked examples
+  Researcher-->>Author: Identify claims needing evidence
+  Author->>Editor: Submit the revised draft
+  Note over Author,Editor: Preserve the author's wording while making the explanation clear
+  Editor-->>Author: Suggest a clearer introduction
+  Author->>Translator: Share the reviewed manuscript
+  Translator->>Editor: Ask about an ambiguous technical term
+  Editor-->>Translator: Explain the intended meaning
+  Translator-->>Author: Return translated versions
+  Author->>Designer: Request desktop and mobile layout review
+  Designer-->>Author: Report a diagram with small labels
+  Author->>Designer: Expand the diagram and check its labels
+  Designer-->>Author: Confirm readability in both themes
+  Author->>Publisher: Submit the proofread versions
+  Publisher->>Editor: Confirm editorial approval
+  Editor-->>Publisher: Approve the final revision
+  Publisher->>Reader: Publish the article
+  Reader-->>Author: Ask a follow-up question
+  Author->>Editor: Propose a clarification
+  Editor-->>Author: Review the clarification
+  Author->>Publisher: Submit the updated text
+  Publisher->>Reader: Publish the clarification
+```
+
 문장 안의 [일반 링크](https://www.iana.org/domains/reserved)는 링크로 유지됩니다.
 아래 단독 URL은 캐시가 없으므로 하이퍼링크로 표시해야 합니다.
 

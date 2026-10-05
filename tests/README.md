@@ -155,3 +155,12 @@ display the static UTC date. `new` uses UTC for creation timestamps/group names.
 The renderer/browser never receives the configured archive timezone. The current
 CFGB tests cover this contract through Go metadata, generated HTML/RSS and real
 browser contexts; this fixture also exposes the expected values to corpus consumers.
+
+## Large Mermaid diagrams
+
+The translated Markdown showcases contain a wide flowchart, a tall flowchart
+with review loops, and a detailed sequence diagram. They share diagram source
+while keeping the surrounding instructions localized. Use the generated pages
+to check label readability, scrolling in both directions, zoom, fit, actual
+size, full screen, themes, and returning to the article. CFGB v0.4.0 supplies
+the expanded viewer; JavaScript-disabled pages retain the diagram source.
