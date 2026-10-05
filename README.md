@@ -6,7 +6,9 @@ You keep articles, images and settings in Git; CFGB builds the site.
 
 **[Visit the live blog](https://ymmt2005.github.io/cfgb-example/)** ·
 [English](https://ymmt2005.github.io/cfgb-example/en/) ·
-[日本語](https://ymmt2005.github.io/cfgb-example/ja/)
+[日本語](https://ymmt2005.github.io/cfgb-example/ja/) ·
+[简体中文](https://ymmt2005.github.io/cfgb-example/zh-Hans/) ·
+[한국어](https://ymmt2005.github.io/cfgb-example/ko/)
 
 Try the language switcher, search, topic and monthly archive pages, and light
 and dark themes. The [Markdown showcase](src/content/posts/2026/2026-09-20-markdown-showcase/en.md)
@@ -22,12 +24,12 @@ Install the following:
 
 - Git to clone the repository.
 - The binary for your OS and architecture from the
-  [CFGB v0.1.0 release](https://github.com/ymmt2005/cfgb/releases/tag/v0.1.0).
+  [CFGB v0.2.0 release](https://github.com/ymmt2005/cfgb/releases/tag/v0.2.0).
   Rename it to `cfgb` (`cfgb.exe` on Windows), make it executable where needed,
   and place it on your PATH. See [CFGB's installation guidance](https://github.com/ymmt2005/cfgb#build-a-site)
   for release verification.
 - Node.js and npm or pnpm compatible with the release's
-  [toolchain requirements](https://github.com/ymmt2005/cfgb/releases/download/v0.1.0/toolchain-requirements.json).
+  [toolchain requirements](https://github.com/ymmt2005/cfgb/releases/download/v0.2.0/toolchain-requirements.json).
   Its `testedNodeVersion`, `testedNpmVersion` and `testedPnpmVersion` identify
   a tested combination. CFGB uses npm by default; set `CFGB_PACKAGE_MANAGER=pnpm`
   to use pnpm.
@@ -47,7 +49,8 @@ python3 -m http.server 8000 --directory dist/site
 ```
 
 Open [http://localhost:8000/](http://localhost:8000/), or go directly to
-[/en/](http://localhost:8000/en/) or [/ja/](http://localhost:8000/ja/).
+[/en/](http://localhost:8000/en/), [/ja/](http://localhost:8000/ja/),
+[/zh-Hans/](http://localhost:8000/zh-Hans/) or [/ko/](http://localhost:8000/ko/).
 Re-run the build after editing content.
 
 `--static` creates entry and alias pages and direct language links for hosting
@@ -74,9 +77,12 @@ Start with these files:
 | [`src/data/topics.yaml`](src/data/topics.yaml)         | Topic IDs and labels for each enabled language                      |
 | [`src/data/linkcards/`](src/data/linkcards/)           | Cached metadata for link cards                                      |
 
-The example enables Japanese (`ja`) and English (`en`). Keep translated
-versions of an article in the same folder as `ja.md` and `en.md`; an article
-can also exist in only one language. Each version has its own title, slug,
+The example enables Japanese (`ja`), English (`en`), Simplified Chinese
+(`zh-Hans`) and Korean (`ko`). Keep translated versions of an article in the same
+folder as `ja.md`, `en.md`, `zh-Hans.md` and `ko.md`; an article can also exist
+in only one language. The Protocol Buffers guide and Markdown showcase have
+translations in each enabled language, while other articles demonstrate
+missing-translation fallback. Each version has its own title, slug,
 summary and publication date. If you remove a language from the configuration,
 remove its Markdown variants too.
 
@@ -108,7 +114,7 @@ publication timestamp, independently of the source folder name. Article times
 are displayed in the reader's browser timezone; the fallback without JavaScript
 is UTC.
 
-CFGB v0.1.0 provides `build` and `version`. Edit Markdown directly for authoring;
+CFGB v0.2.0 provides `build` and `version`. Edit Markdown directly for authoring;
 the planned authoring, migration and Cloudflare upload commands are not yet
 available.
 

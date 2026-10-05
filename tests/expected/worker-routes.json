@@ -92,6 +92,57 @@
       "expectedStatus": 303,
       "expectedLocation": "/en/",
       "expectedCookieLocale": "en"
+    },
+    {
+      "id": "root-simplified-chinese",
+      "path": "/",
+      "headers": {
+        "Accept-Language": "zh-CN"
+      },
+      "expectedStatus": 302,
+      "expectedLocation": "/zh-Hans/"
+    },
+    {
+      "id": "root-korean",
+      "path": "/",
+      "headers": {
+        "Accept-Language": "ko-KR"
+      },
+      "expectedStatus": 302,
+      "expectedLocation": "/ko/"
+    },
+    {
+      "id": "root-traditional-chinese-fallback",
+      "path": "/",
+      "headers": {
+        "Accept-Language": "zh-TW"
+      },
+      "expectedStatus": 302,
+      "expectedLocation": "/ja/"
+    },
+    {
+      "id": "root-chinese-cookie",
+      "path": "/",
+      "headers": {
+        "Cookie": "cfgb_locale=zh-Hans",
+        "Accept-Language": "ja"
+      },
+      "expectedStatus": 302,
+      "expectedLocation": "/zh-Hans/"
+    },
+    {
+      "id": "locale-zh-Hans-next",
+      "path": "/__locale?lang=zh-Hans&next=%2Fzh-Hans%2Fabout%2F",
+      "expectedStatus": 303,
+      "expectedLocation": "/zh-Hans/about/",
+      "expectedCookieLocale": "zh-Hans"
+    },
+    {
+      "id": "locale-ko-next",
+      "path": "/__locale?lang=ko&next=%2Fko%2Fabout%2F",
+      "expectedStatus": 303,
+      "expectedLocation": "/ko/about/",
+      "expectedCookieLocale": "ko"
     }
   ],
   "allResponses": {
