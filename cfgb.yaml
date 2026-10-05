@@ -1,6 +1,8 @@
 schemaVersion: 1
 site:
   title: CFGB Example
+  # Enable with a CFGB release that supports site.image:
+  # image: src/assets/site.svg
   baseUrl: https://example.invalid
   defaultLocale: ja
   timezone: Asia/Tokyo

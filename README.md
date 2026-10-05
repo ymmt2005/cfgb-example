@@ -114,6 +114,13 @@ publication timestamp, independently of the source folder name. Article times
 are displayed in the reader's browser timezone; the fallback without JavaScript
 is UTC.
 
+An original [site branding image](src/assets/site.svg) is included. With a CFGB
+release supporting `site.image`, uncomment `image: src/assets/site.svg` under
+`site` in `cfgb.yaml` to brand generated article OG cards and create favicon and
+Apple touch PNG icons. Article `ogImage` still overrides the generated card.
+The option stays commented because the publication workflow's independently
+pinned CLI release does not yet support it.
+
 CFGB v0.2.1 provides `build` and `version`. Edit Markdown directly for authoring;
 the planned authoring, migration and Cloudflare upload commands are not yet
 available.
