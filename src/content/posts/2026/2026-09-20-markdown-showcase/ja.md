@@ -65,6 +65,93 @@ flowchart TD
   Review --> Draft
 ```
 
+## 大きな Mermaid 図
+
+架空の編集工程を題材にした図です。それぞれの図を拡大してラベルを読み、端までスクロールし、ウィンドウに合わせた表示と実寸表示を比べてください。ズーム、全画面、狭い画面、明暗テーマも試せます。閉じるボタンまたは Escape キーで記事に戻ります。
+
+翻訳間でレイアウトを比較できるよう、図のラベルは共通の英語にしています。
+
+### 横に長い公開の流れ
+
+```mermaid
+flowchart LR
+  Idea["Choose an article idea"] --> Outline["Write the outline"]
+  Outline --> Research["Collect sources and examples"]
+  Research --> Draft["Write the first draft"]
+  Draft --> Review["Ask for an editorial review"]
+  Review --> Revise["Revise the explanation"]
+  Revise --> Check["Check facts and references"]
+  Check --> Translate["Prepare translated versions"]
+  Translate --> Proof["Proofread every version"]
+  Proof --> Layout["Review the page layout"]
+  Layout --> Publish["Publish the article"]
+  Publish --> Archive["Keep the reviewed manuscript"]
+```
+
+### 縦に長いレビューの手順
+
+```mermaid
+flowchart TD
+  Start["Begin the article review"] --> Title["Read the title and introduction"]
+  Title --> Scope{"Is the purpose clear?"}
+  Scope -->|No| Rewrite["Rewrite the opening"]
+  Rewrite --> Title
+  Scope -->|Yes| Body["Read the explanation"]
+  Body --> Evidence["Compare the examples with the claims"]
+  Evidence --> Sources{"Do the references support the claims?"}
+  Sources -->|No| Research["Find a source or qualify the claim"]
+  Research --> Body
+  Sources -->|Yes| Links["Follow the article links"]
+  Links --> Figures["Read labels in every diagram"]
+  Figures --> Narrow["Check a narrow screen"]
+  Narrow --> Themes["Compare light and dark themes"]
+  Themes --> Accessible["Try keyboard navigation"]
+  Accessible --> Translation["Review translated versions"]
+  Translation --> Proof["Proofread the final text"]
+  Proof --> Approval{"Ready to publish?"}
+  Approval -->|No| Revise["Address the remaining comments"]
+  Revise --> Body
+  Approval -->|Yes| Publish["Publish the reviewed article"]
+  Publish --> Finish["Record the final revision"]
+```
+
+### 詳しい編集のやり取り
+
+```mermaid
+sequenceDiagram
+  participant Author as Article author
+  participant Editor as Editorial reviewer
+  participant Researcher as Reference checker
+  participant Translator as Translation reviewer
+  participant Designer as Layout reviewer
+  participant Publisher as Publication editor
+  participant Reader as Article reader
+  Author->>Editor: Submit the outline and intended audience
+  Editor-->>Author: Clarify the main question
+  Author->>Researcher: Share sources and worked examples
+  Researcher-->>Author: Identify claims needing evidence
+  Author->>Editor: Submit the revised draft
+  Note over Author,Editor: Preserve the author's wording while making the explanation clear
+  Editor-->>Author: Suggest a clearer introduction
+  Author->>Translator: Share the reviewed manuscript
+  Translator->>Editor: Ask about an ambiguous technical term
+  Editor-->>Translator: Explain the intended meaning
+  Translator-->>Author: Return translated versions
+  Author->>Designer: Request desktop and mobile layout review
+  Designer-->>Author: Report a diagram with small labels
+  Author->>Designer: Expand the diagram and check its labels
+  Designer-->>Author: Confirm readability in both themes
+  Author->>Publisher: Submit the proofread versions
+  Publisher->>Editor: Confirm editorial approval
+  Editor-->>Publisher: Approve the final revision
+  Publisher->>Reader: Publish the article
+  Reader-->>Author: Ask a follow-up question
+  Author->>Editor: Propose a clarification
+  Editor-->>Author: Review the clarification
+  Author->>Publisher: Submit the updated text
+  Publisher->>Reader: Publish the clarification
+```
+
 インラインの[普通のリンク](https://www.iana.org/domains/reserved)はリンクのままです。
 この単独の URL にはキャッシュがなく、ハイパーリンクへ戻る必要があります。
 

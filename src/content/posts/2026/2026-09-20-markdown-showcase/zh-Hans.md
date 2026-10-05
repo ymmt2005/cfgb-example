@@ -65,6 +65,93 @@ flowchart TD
   Review --> Draft
 ```
 
+## 大型 Mermaid 图表
+
+这些图表展示一个虚构的编辑流程。展开每张图表阅读标签，滚动到边缘，并比较适应窗口和实际大小。也请试用缩放、全屏、窄屏以及明暗主题。点击关闭按钮或按 Escape 键返回文章。
+
+各语言版本的图表使用相同的英文标签，便于比较布局。
+
+### 横向的发布流程
+
+```mermaid
+flowchart LR
+  Idea["Choose an article idea"] --> Outline["Write the outline"]
+  Outline --> Research["Collect sources and examples"]
+  Research --> Draft["Write the first draft"]
+  Draft --> Review["Ask for an editorial review"]
+  Review --> Revise["Revise the explanation"]
+  Revise --> Check["Check facts and references"]
+  Check --> Translate["Prepare translated versions"]
+  Translate --> Proof["Proofread every version"]
+  Proof --> Layout["Review the page layout"]
+  Layout --> Publish["Publish the article"]
+  Publish --> Archive["Keep the reviewed manuscript"]
+```
+
+### 纵向的审核清单
+
+```mermaid
+flowchart TD
+  Start["Begin the article review"] --> Title["Read the title and introduction"]
+  Title --> Scope{"Is the purpose clear?"}
+  Scope -->|No| Rewrite["Rewrite the opening"]
+  Rewrite --> Title
+  Scope -->|Yes| Body["Read the explanation"]
+  Body --> Evidence["Compare the examples with the claims"]
+  Evidence --> Sources{"Do the references support the claims?"}
+  Sources -->|No| Research["Find a source or qualify the claim"]
+  Research --> Body
+  Sources -->|Yes| Links["Follow the article links"]
+  Links --> Figures["Read labels in every diagram"]
+  Figures --> Narrow["Check a narrow screen"]
+  Narrow --> Themes["Compare light and dark themes"]
+  Themes --> Accessible["Try keyboard navigation"]
+  Accessible --> Translation["Review translated versions"]
+  Translation --> Proof["Proofread the final text"]
+  Proof --> Approval{"Ready to publish?"}
+  Approval -->|No| Revise["Address the remaining comments"]
+  Revise --> Body
+  Approval -->|Yes| Publish["Publish the reviewed article"]
+  Publish --> Finish["Record the final revision"]
+```
+
+### 详细的编辑对话
+
+```mermaid
+sequenceDiagram
+  participant Author as Article author
+  participant Editor as Editorial reviewer
+  participant Researcher as Reference checker
+  participant Translator as Translation reviewer
+  participant Designer as Layout reviewer
+  participant Publisher as Publication editor
+  participant Reader as Article reader
+  Author->>Editor: Submit the outline and intended audience
+  Editor-->>Author: Clarify the main question
+  Author->>Researcher: Share sources and worked examples
+  Researcher-->>Author: Identify claims needing evidence
+  Author->>Editor: Submit the revised draft
+  Note over Author,Editor: Preserve the author's wording while making the explanation clear
+  Editor-->>Author: Suggest a clearer introduction
+  Author->>Translator: Share the reviewed manuscript
+  Translator->>Editor: Ask about an ambiguous technical term
+  Editor-->>Translator: Explain the intended meaning
+  Translator-->>Author: Return translated versions
+  Author->>Designer: Request desktop and mobile layout review
+  Designer-->>Author: Report a diagram with small labels
+  Author->>Designer: Expand the diagram and check its labels
+  Designer-->>Author: Confirm readability in both themes
+  Author->>Publisher: Submit the proofread versions
+  Publisher->>Editor: Confirm editorial approval
+  Editor-->>Publisher: Approve the final revision
+  Publisher->>Reader: Publish the article
+  Reader-->>Author: Ask a follow-up question
+  Author->>Editor: Propose a clarification
+  Editor-->>Author: Review the clarification
+  Author->>Publisher: Submit the updated text
+  Publisher->>Reader: Publish the clarification
+```
+
 行内的[普通链接](https://www.iana.org/domains/reserved)仍然显示为链接。
 下面的独立 URL 没有缓存元数据，应回退为超链接。
 
