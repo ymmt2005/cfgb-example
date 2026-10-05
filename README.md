@@ -24,12 +24,12 @@ Install the following:
 
 - Git to clone the repository.
 - The binary for your OS and architecture from the
-  [CFGB v0.2.0 release](https://github.com/ymmt2005/cfgb/releases/tag/v0.2.0).
+  [CFGB v0.2.1 release](https://github.com/ymmt2005/cfgb/releases/tag/v0.2.1).
   Rename it to `cfgb` (`cfgb.exe` on Windows), make it executable where needed,
   and place it on your PATH. See [CFGB's installation guidance](https://github.com/ymmt2005/cfgb#build-a-site)
   for release verification.
 - Node.js and npm or pnpm compatible with the release's
-  [toolchain requirements](https://github.com/ymmt2005/cfgb/releases/download/v0.2.0/toolchain-requirements.json).
+  [toolchain requirements](https://github.com/ymmt2005/cfgb/releases/download/v0.2.1/toolchain-requirements.json).
   Its `testedNodeVersion`, `testedNpmVersion` and `testedPnpmVersion` identify
   a tested combination. CFGB uses npm by default; set `CFGB_PACKAGE_MANAGER=pnpm`
   to use pnpm.
@@ -114,7 +114,7 @@ publication timestamp, independently of the source folder name. Article times
 are displayed in the reader's browser timezone; the fallback without JavaScript
 is UTC.
 
-CFGB v0.2.0 provides `build` and `version`. Edit Markdown directly for authoring;
+CFGB v0.2.1 provides `build` and `version`. Edit Markdown directly for authoring;
 the planned authoring, migration and Cloudflare upload commands are not yet
 available.
 
