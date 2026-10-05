@@ -7,7 +7,9 @@
     "archive": "/ja/archive/2026/09/",
     "alternates": {
       "ja": "/ja/posts/protobuf-schema-guide/",
-      "en": "/en/posts/reading-protobuf-schemas/"
+      "en": "/en/posts/reading-protobuf-schemas/",
+      "zh-Hans": "/zh-Hans/posts/reading-protobuf-schemas/",
+      "ko": "/ko/posts/reading-protobuf-schemas/"
     }
   },
   {
@@ -18,7 +20,9 @@
     "archive": "/en/archive/2026/09/",
     "alternates": {
       "ja": "/ja/posts/protobuf-schema-guide/",
-      "en": "/en/posts/reading-protobuf-schemas/"
+      "en": "/en/posts/reading-protobuf-schemas/",
+      "zh-Hans": "/zh-Hans/posts/reading-protobuf-schemas/",
+      "ko": "/ko/posts/reading-protobuf-schemas/"
     }
   },
   {
@@ -29,7 +33,9 @@
     "archive": "/ja/archive/2026/09/",
     "alternates": {
       "ja": "/ja/posts/markdown-showcase/",
-      "en": "/en/posts/markdown-rendering-showcase/"
+      "en": "/en/posts/markdown-rendering-showcase/",
+      "zh-Hans": "/zh-Hans/posts/markdown-rendering-showcase/",
+      "ko": "/ko/posts/markdown-rendering-showcase/"
     }
   },
   {
@@ -40,7 +46,9 @@
     "archive": "/en/archive/2026/09/",
     "alternates": {
       "ja": "/ja/posts/markdown-showcase/",
-      "en": "/en/posts/markdown-rendering-showcase/"
+      "en": "/en/posts/markdown-rendering-showcase/",
+      "zh-Hans": "/zh-Hans/posts/markdown-rendering-showcase/",
+      "ko": "/ko/posts/markdown-rendering-showcase/"
     }
   },
   {
@@ -90,5 +98,57 @@
     "url": "/ja/posts/archive-timezone-boundary/",
     "archive": "/ja/archive/2026/10/",
     "alternates": {}
+  },
+  {
+    "articleKey": "2026/2026-09-19-protobuf-guide",
+    "locale": "zh-Hans",
+    "path": "src/content/posts/2026/2026-09-19-protobuf-guide/zh-Hans.md",
+    "url": "/zh-Hans/posts/reading-protobuf-schemas/",
+    "archive": "/zh-Hans/archive/2026/09/",
+    "alternates": {
+      "ja": "/ja/posts/protobuf-schema-guide/",
+      "en": "/en/posts/reading-protobuf-schemas/",
+      "zh-Hans": "/zh-Hans/posts/reading-protobuf-schemas/",
+      "ko": "/ko/posts/reading-protobuf-schemas/"
+    }
+  },
+  {
+    "articleKey": "2026/2026-09-20-markdown-showcase",
+    "locale": "zh-Hans",
+    "path": "src/content/posts/2026/2026-09-20-markdown-showcase/zh-Hans.md",
+    "url": "/zh-Hans/posts/markdown-rendering-showcase/",
+    "archive": "/zh-Hans/archive/2026/09/",
+    "alternates": {
+      "ja": "/ja/posts/markdown-showcase/",
+      "en": "/en/posts/markdown-rendering-showcase/",
+      "zh-Hans": "/zh-Hans/posts/markdown-rendering-showcase/",
+      "ko": "/ko/posts/markdown-rendering-showcase/"
+    }
+  },
+  {
+    "articleKey": "2026/2026-09-19-protobuf-guide",
+    "locale": "ko",
+    "path": "src/content/posts/2026/2026-09-19-protobuf-guide/ko.md",
+    "url": "/ko/posts/reading-protobuf-schemas/",
+    "archive": "/ko/archive/2026/09/",
+    "alternates": {
+      "ja": "/ja/posts/protobuf-schema-guide/",
+      "en": "/en/posts/reading-protobuf-schemas/",
+      "zh-Hans": "/zh-Hans/posts/reading-protobuf-schemas/",
+      "ko": "/ko/posts/reading-protobuf-schemas/"
+    }
+  },
+  {
+    "articleKey": "2026/2026-09-20-markdown-showcase",
+    "locale": "ko",
+    "path": "src/content/posts/2026/2026-09-20-markdown-showcase/ko.md",
+    "url": "/ko/posts/markdown-rendering-showcase/",
+    "archive": "/ko/archive/2026/09/",
+    "alternates": {
+      "ja": "/ja/posts/markdown-showcase/",
+      "en": "/en/posts/markdown-rendering-showcase/",
+      "zh-Hans": "/zh-Hans/posts/markdown-rendering-showcase/",
+      "ko": "/ko/posts/markdown-rendering-showcase/"
+    }
   }
 ]

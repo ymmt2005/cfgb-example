@@ -123,3 +123,63 @@ cases:
   filters:
     topic: protobuf
     year: '2026'
+- locale: zh-Hans
+  query: Protocol Buffers
+  topK: 5
+  expected:
+  - /zh-Hans/posts/reading-protobuf-schemas/
+- locale: zh-Hans
+  query: 字段编号
+  topK: 5
+  expected:
+  - /zh-Hans/posts/reading-protobuf-schemas/
+- locale: zh-Hans
+  query: 类型引用
+  topK: 5
+  expected:
+  - /zh-Hans/posts/reading-protobuf-schemas/
+- locale: zh-Hans
+  query: Mermaid
+  topK: 5
+  expected:
+  - /zh-Hans/posts/markdown-rendering-showcase/
+- locale: zh-Hans
+  query: 脚注
+  topK: 5
+  expected:
+  - /zh-Hans/posts/markdown-rendering-showcase/
+- locale: zh-Hans
+  query: 人工修改
+  topK: 5
+  expected:
+  - /zh-Hans/posts/markdown-rendering-showcase/
+- locale: ko
+  query: Protocol Buffers
+  topK: 5
+  expected:
+  - /ko/posts/reading-protobuf-schemas/
+- locale: ko
+  query: 필드 번호
+  topK: 5
+  expected:
+  - /ko/posts/reading-protobuf-schemas/
+- locale: ko
+  query: 타입 참조
+  topK: 5
+  expected:
+  - /ko/posts/reading-protobuf-schemas/
+- locale: ko
+  query: Mermaid
+  topK: 5
+  expected:
+  - /ko/posts/markdown-rendering-showcase/
+- locale: ko
+  query: 각주
+  topK: 5
+  expected:
+  - /ko/posts/markdown-rendering-showcase/
+- locale: ko
+  query: 미리 보기
+  topK: 5
+  expected:
+  - /ko/posts/markdown-rendering-showcase/

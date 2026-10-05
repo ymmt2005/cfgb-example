@@ -1,18 +1,30 @@
 protobuf:
   ja: Protocol Buffers
   en: Protocol Buffers
+  zh-Hans: Protocol Buffers
+  ko: Protocol Buffers
 oss:
   ja: オープンソース
   en: Open Source
+  zh-Hans: 开源
+  ko: 오픈 소스
 software-engineering:
   ja: ソフトウェアエンジニアリング
   en: Software Engineering
+  zh-Hans: 软件工程
+  ko: 소프트웨어 엔지니어링
 security:
   ja: セキュリティ
   en: Security
+  zh-Hans: 安全
+  ko: 보안
 ai:
   ja: AI
   en: AI
+  zh-Hans: AI
+  ko: AI
 writing:
   ja: 文章を書く
   en: Writing
+  zh-Hans: 写作
+  ko: 글쓰기

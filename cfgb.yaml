@@ -9,6 +9,10 @@ locales:
     label: 日本語
   en:
     label: English
+  zh-Hans:
+    label: 简体中文
+  ko:
+    label: 한국어
 content:
   root: src/content
   topics: src/data/topics.yaml

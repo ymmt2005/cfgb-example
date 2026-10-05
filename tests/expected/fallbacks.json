@@ -4,7 +4,7 @@
   "assets": [
     {
       "path": "/404.html",
-      "locale": "bilingual"
+      "locale": "multilingual"
     },
     {
       "path": "/ja/404.html",
@@ -13,6 +13,14 @@
     {
       "path": "/en/404.html",
       "locale": "en"
+    },
+    {
+      "path": "/zh-Hans/404.html",
+      "locale": "zh-Hans"
+    },
+    {
+      "path": "/ko/404.html",
+      "locale": "ko"
     }
   ],
   "excludedFromSitemap": true,
@@ -72,6 +80,22 @@
       "method": "HEAD",
       "expectedStatus": 404,
       "expectedBodyBytes": 0
+    },
+    {
+      "id": "zh-Hans-navigation",
+      "path": "/zh-Hans/missing/",
+      "requestKind": "navigation",
+      "method": "GET",
+      "expectedStatus": 404,
+      "expectedAsset": "/zh-Hans/404.html"
+    },
+    {
+      "id": "ko-navigation",
+      "path": "/ko/missing/",
+      "requestKind": "navigation",
+      "method": "GET",
+      "expectedStatus": 404,
+      "expectedAsset": "/ko/404.html"
     }
   ]
 }

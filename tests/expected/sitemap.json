@@ -38,7 +38,27 @@
     "/ja/topics/protobuf/",
     "/ja/topics/security/",
     "/ja/topics/software-engineering/",
-    "/ja/topics/writing/"
+    "/ja/topics/writing/",
+    "/ko/",
+    "/ko/about/",
+    "/ko/archive/",
+    "/ko/archive/2026/09/",
+    "/ko/posts/",
+    "/ko/posts/markdown-rendering-showcase/",
+    "/ko/posts/reading-protobuf-schemas/",
+    "/ko/topics/oss/",
+    "/ko/topics/protobuf/",
+    "/ko/topics/software-engineering/",
+    "/zh-Hans/",
+    "/zh-Hans/about/",
+    "/zh-Hans/archive/",
+    "/zh-Hans/archive/2026/09/",
+    "/zh-Hans/posts/",
+    "/zh-Hans/posts/markdown-rendering-showcase/",
+    "/zh-Hans/posts/reading-protobuf-schemas/",
+    "/zh-Hans/topics/oss/",
+    "/zh-Hans/topics/protobuf/",
+    "/zh-Hans/topics/software-engineering/"
   ],
   "excludedPaths": [
     "/",
@@ -51,37 +71,51 @@
     "/ja/feed.xml",
     "/ja/posts/old-protobuf-guide/",
     "/ja/search/",
+    "/ko/404.html",
+    "/ko/feed.xml",
+    "/ko/search/",
     "/robots.txt",
     "/sitemap-0.xml",
-    "/sitemap-index.xml"
+    "/sitemap-index.xml",
+    "/zh-Hans/404.html",
+    "/zh-Hans/feed.xml",
+    "/zh-Hans/search/"
   ],
   "articleAlternates": [
     {
       "path": "/ja/posts/protobuf-schema-guide/",
       "alternates": {
         "ja": "/ja/posts/protobuf-schema-guide/",
-        "en": "/en/posts/reading-protobuf-schemas/"
+        "en": "/en/posts/reading-protobuf-schemas/",
+        "zh-Hans": "/zh-Hans/posts/reading-protobuf-schemas/",
+        "ko": "/ko/posts/reading-protobuf-schemas/"
       }
     },
     {
       "path": "/en/posts/reading-protobuf-schemas/",
       "alternates": {
         "ja": "/ja/posts/protobuf-schema-guide/",
-        "en": "/en/posts/reading-protobuf-schemas/"
+        "en": "/en/posts/reading-protobuf-schemas/",
+        "zh-Hans": "/zh-Hans/posts/reading-protobuf-schemas/",
+        "ko": "/ko/posts/reading-protobuf-schemas/"
       }
     },
     {
       "path": "/ja/posts/markdown-showcase/",
       "alternates": {
         "ja": "/ja/posts/markdown-showcase/",
-        "en": "/en/posts/markdown-rendering-showcase/"
+        "en": "/en/posts/markdown-rendering-showcase/",
+        "zh-Hans": "/zh-Hans/posts/markdown-rendering-showcase/",
+        "ko": "/ko/posts/markdown-rendering-showcase/"
       }
     },
     {
       "path": "/en/posts/markdown-rendering-showcase/",
       "alternates": {
         "ja": "/ja/posts/markdown-showcase/",
-        "en": "/en/posts/markdown-rendering-showcase/"
+        "en": "/en/posts/markdown-rendering-showcase/",
+        "zh-Hans": "/zh-Hans/posts/markdown-rendering-showcase/",
+        "ko": "/ko/posts/markdown-rendering-showcase/"
       }
     },
     {
@@ -107,6 +141,42 @@
     {
       "path": "/ja/posts/archive-timezone-boundary/",
       "alternates": {}
+    },
+    {
+      "path": "/zh-Hans/posts/reading-protobuf-schemas/",
+      "alternates": {
+        "ja": "/ja/posts/protobuf-schema-guide/",
+        "en": "/en/posts/reading-protobuf-schemas/",
+        "zh-Hans": "/zh-Hans/posts/reading-protobuf-schemas/",
+        "ko": "/ko/posts/reading-protobuf-schemas/"
+      }
+    },
+    {
+      "path": "/zh-Hans/posts/markdown-rendering-showcase/",
+      "alternates": {
+        "ja": "/ja/posts/markdown-showcase/",
+        "en": "/en/posts/markdown-rendering-showcase/",
+        "zh-Hans": "/zh-Hans/posts/markdown-rendering-showcase/",
+        "ko": "/ko/posts/markdown-rendering-showcase/"
+      }
+    },
+    {
+      "path": "/ko/posts/reading-protobuf-schemas/",
+      "alternates": {
+        "ja": "/ja/posts/protobuf-schema-guide/",
+        "en": "/en/posts/reading-protobuf-schemas/",
+        "zh-Hans": "/zh-Hans/posts/reading-protobuf-schemas/",
+        "ko": "/ko/posts/reading-protobuf-schemas/"
+      }
+    },
+    {
+      "path": "/ko/posts/markdown-rendering-showcase/",
+      "alternates": {
+        "ja": "/ja/posts/markdown-showcase/",
+        "en": "/en/posts/markdown-rendering-showcase/",
+        "zh-Hans": "/zh-Hans/posts/markdown-rendering-showcase/",
+        "ko": "/ko/posts/markdown-rendering-showcase/"
+      }
     }
   ]
 }
