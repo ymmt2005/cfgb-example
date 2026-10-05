@@ -24,12 +24,12 @@ Install the following:
 
 - Git to clone the repository.
 - The binary for your OS and architecture from the
-  [CFGB v0.2.1 release](https://github.com/ymmt2005/cfgb/releases/tag/v0.2.1).
+  [CFGB v0.3.0 release](https://github.com/ymmt2005/cfgb/releases/tag/v0.3.0).
   Rename it to `cfgb` (`cfgb.exe` on Windows), make it executable where needed,
   and place it on your PATH. See [CFGB's installation guidance](https://github.com/ymmt2005/cfgb#build-a-site)
   for release verification.
 - Node.js and npm or pnpm compatible with the release's
-  [toolchain requirements](https://github.com/ymmt2005/cfgb/releases/download/v0.2.1/toolchain-requirements.json).
+  [toolchain requirements](https://github.com/ymmt2005/cfgb/releases/download/v0.3.0/toolchain-requirements.json).
   Its `testedNodeVersion`, `testedNpmVersion` and `testedPnpmVersion` identify
   a tested combination. CFGB uses npm by default; set `CFGB_PACKAGE_MANAGER=pnpm`
   to use pnpm.
@@ -51,7 +51,9 @@ python3 -m http.server 8000 --directory dist/site
 Open [http://localhost:8000/](http://localhost:8000/), or go directly to
 [/en/](http://localhost:8000/en/), [/ja/](http://localhost:8000/ja/),
 [/zh-Hans/](http://localhost:8000/zh-Hans/) or [/ko/](http://localhost:8000/ko/).
-Re-run the build after editing content.
+Re-run the build after editing content. If `dist` already exists, CFGB asks for
+confirmation before replacing it. Use `--force` (or `-f`) to skip confirmation
+in automation; the selected output entry and its contents will be removed.
 
 `--static` creates entry and alias pages and direct language links for hosting
 without a Cloudflare Worker. `--base-url` overrides the public URL for this build.
@@ -114,14 +116,13 @@ publication timestamp, independently of the source folder name. Article times
 are displayed in the reader's browser timezone; the fallback without JavaScript
 is UTC.
 
-An original [site branding image](src/assets/site.svg) is included. With a CFGB
-release supporting `site.image`, uncomment `image: src/assets/site.svg` under
-`site` in `cfgb.yaml` to brand generated article OG cards and create favicon and
-Apple touch PNG icons. Article `ogImage` still overrides the generated card.
-The option stays commented because the publication workflow's independently
-pinned CLI release does not yet support it.
+An original [site branding image](src/assets/site.svg) is enabled through
+`site.image` in `cfgb.yaml`. It brands generated article OG cards and creates
+favicon and Apple touch PNG icons. Article `ogImage` still overrides the
+generated card. Replace the image with your own, or remove `site.image` to omit
+the branding and icons.
 
-CFGB v0.2.1 provides `build` and `version`. Edit Markdown directly for authoring;
+CFGB v0.3.0 provides `build` and `version`. Edit Markdown directly for authoring;
 the planned authoring, migration and Cloudflare upload commands are not yet
 available.
 
@@ -142,7 +143,7 @@ To publish your own copy:
 4. In **Settings → Pages**, select **GitHub Actions** as the source.
 5. Push to `main`, or select **Actions → Pages → Run workflow**.
 
-The workflow uses `--static --base-url "$SITE_URL"` and uploads `dist/site/`.
+The workflow uses `--force --static --base-url "$SITE_URL"` and uploads `dist/site/`.
 CFGB applies the hosting path to navigation, images, search, feeds and canonical
 URLs. The workflow uses GitHub's job token; no PAT or Cloudflare API token is
 needed.
