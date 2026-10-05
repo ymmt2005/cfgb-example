@@ -121,9 +121,20 @@ Rendering checks substitute `site.baseUrl`
 for absolute canonical metadata. Preview origin must never replace canonical
 origin. The fixture clock is for tests only; production validation uses real time.
 
-Search expectations must run against actual Pagefind output in a browser.
-Initial data validation only checks that query targets exist, not actual ranking.
-No production validator or test harness is implemented in this repository.
+CFGB's browser acceptance consumes `search/queries.yaml` against the completed
+normal and prefixed static-site builds. It runs Pagefind's actual language WASM,
+materializes result data, and exercises the rendered search input and filter
+checkboxes. Expected canonical articles must appear within `topK`; exact ranking
+is not fixed. `expected: []` requires no results, including mismatched topic/year
+filters and queries found only in another language. Positive cases also cover
+combined filters and articles from different publication years.
+
+The complete article-only index and result title, summary, publication timestamp,
+locale, topics and archive year are compared with source metadata. Search requests
+and result navigation must retain a static host's URL prefix. Run the checks in
+the CFGB checkout with `CFGB_REQUIRE_SEARCH=1` after installing its pinned browser
+test dependencies and Chromium; see [CFGB's renderer test instructions](https://github.com/ymmt2005/cfgb/blob/main/docs/implementation/renderer.md).
+No production validator or test harness is implemented in this content repository.
 
 `ymmt2005/cfgb-action` requires an exact version, selects the runner asset and
 verifies its immutable release and GitHub release attestation before installing
