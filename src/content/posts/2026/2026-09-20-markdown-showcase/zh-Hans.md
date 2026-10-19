@@ -58,7 +58,12 @@ func main() {
 
 ![包含三条彩色条纹的无损位图示例](./assets/bars.png)
 
+下图通过 Mermaid 代码块内的 `title` 设置标题。
+
 ```mermaid
+---
+title: 文章发布流程
+---
 flowchart TD
   Draft["草稿"] --> Review["审阅"]
   Review --> Publish["发布"]

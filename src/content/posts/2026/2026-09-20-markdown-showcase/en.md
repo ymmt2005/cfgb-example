@@ -58,7 +58,12 @@ Check Mermaid diagrams, alerts, tables, and footnotes.
 
 ![Lossless raster fixture with three colored bars](./assets/bars.png)
 
+The following diagram sets its title with `title` inside the Mermaid fence.
+
 ```mermaid
+---
+title: Publishing workflow
+---
 flowchart TD
   Draft["Draft"] --> Review["Review"]
   Review --> Publish["Publish"]

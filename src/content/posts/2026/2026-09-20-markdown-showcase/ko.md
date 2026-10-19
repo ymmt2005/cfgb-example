@@ -58,7 +58,12 @@ Mermaid 다이어그램, 알림, 표와 각주를 확인합니다.
 
 ![색 막대가 세 개 있는 무손실 래스터 예제](./assets/bars.png)
 
+다음 다이어그램은 Mermaid 코드 블록 안의 `title`로 제목을 지정합니다.
+
 ```mermaid
+---
+title: 글 발행 과정
+---
 flowchart TD
   Draft["초안"] --> Review["검토"]
   Review --> Publish["게시"]
