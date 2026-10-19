@@ -58,7 +58,12 @@ Mermaid の図、注意書き、表、脚注を確認します。
 
 ![三本の色付きバーを持つ可逆ラスタの見本](./assets/bars.png)
 
+次の図は、Mermaid フェンス内の `title` でタイトルを指定しています。
+
 ```mermaid
+---
+title: 記事の公開フロー
+---
 flowchart TD
   Draft["下書き"] --> Review["レビュー"]
   Review --> Publish["公開"]
