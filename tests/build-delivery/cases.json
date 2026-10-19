@@ -325,7 +325,7 @@
       "expectedWranglerConfig": {
         "compatibility_date": "2026-10-03",
         "workers_dev": false,
-        "preview_urls": true,
+        "preview_urls": false,
         "previews": {}
       },
       "expectedAssetsTopLevel": true,
