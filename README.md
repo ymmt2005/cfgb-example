@@ -18,6 +18,9 @@ include a wide workflow, a tall checklist, and a detailed sequence diagram.
 Expand them to compare zoom, fit, actual size, and full screen on desktop and
 mobile. The site also generates RSS feeds and a sitemap.
 
+Mermaid fences render with [Pele](https://github.com/obsidianmd/pele), following
+the page palette as themes change.
+
 The sample articles are fictional and reusable. This repository contains blog
 content and settings; CFGB supplies the renderer and its dependencies.
 
@@ -27,12 +30,12 @@ Install the following:
 
 - Git to clone the repository.
 - The binary for your OS and architecture from the
-  [CFGB v0.4.0 release](https://github.com/ymmt2005/cfgb/releases/tag/v0.4.0).
+  [CFGB v0.5.0 release](https://github.com/ymmt2005/cfgb/releases/tag/v0.5.0).
   Rename it to `cfgb` (`cfgb.exe` on Windows), make it executable where needed,
   and place it on your PATH. See [CFGB's installation guidance](https://github.com/ymmt2005/cfgb#build-a-site)
   for release verification.
 - Node.js and npm or pnpm compatible with the release's
-  [toolchain requirements](https://github.com/ymmt2005/cfgb/releases/download/v0.4.0/toolchain-requirements.json).
+  [toolchain requirements](https://github.com/ymmt2005/cfgb/releases/download/v0.5.0/toolchain-requirements.json).
   Its `testedNodeVersion`, `testedNpmVersion` and `testedPnpmVersion` identify
   a tested combination. CFGB uses npm by default; set `CFGB_PACKAGE_MANAGER=pnpm`
   to use pnpm.
@@ -125,9 +128,11 @@ favicon and Apple touch PNG icons. Article `ogImage` still overrides the
 generated card. Replace the image with your own, or remove `site.image` to omit
 the branding and icons.
 
-CFGB v0.4.0 provides `build` and `version`. Edit Markdown directly for authoring;
-the planned authoring, migration and Cloudflare upload commands are not yet
-available.
+CFGB v0.5.0 provides `build`, `deploy` and `version`. Cloudflare deployment is
+optional; see [CFGB's deployment guidance](https://github.com/ymmt2005/cfgb#optional-cloudflare-deployment)
+for custom-domain configuration and credentials. The included workflows publish
+to GitHub Pages. Edit Markdown directly for authoring; authoring, migration and
+private-preview commands are not yet available.
 
 ## Publish to GitHub Pages
 

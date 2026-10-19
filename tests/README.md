@@ -174,4 +174,5 @@ with review loops, and a detailed sequence diagram. They share diagram source
 while keeping the surrounding instructions localized. Use the generated pages
 to check label readability, scrolling in both directions, zoom, fit, actual
 size, full screen, themes, and returning to the article. CFGB v0.4.0 supplies
-the expanded viewer; JavaScript-disabled pages retain the diagram source.
+the expanded viewer; v0.5.0 renders through Pele with live CSS theme colors.
+JavaScript-disabled pages retain the diagram source.
