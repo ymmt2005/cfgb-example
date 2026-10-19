@@ -344,11 +344,15 @@
         "compatibility_date": "2026-10-03",
         "workers_dev": false,
         "preview_urls": true,
-        "previews": {}
+        "previews": {},
+        "no_bundle": true
       },
       "expectedAssetsTopLevel": true,
       "expectedRebuildCalls": 0,
-      "expectedExit": 0
+      "expectedExit": 0,
+      "accessVerified": true,
+      "expectedProductionRoutesAttached": false,
+      "expectedPreviewBaseConfigInherited": false
     },
     {
       "id": "worker-runtime-date-mismatch",
@@ -406,6 +410,187 @@
       "accessVerified": true,
       "expectedRebuildCalls": 0,
       "expectedUploadArtifact": "supplied-artifact",
+      "expectedExit": 0
+    },
+    {
+      "id": "private-preview-dry-run",
+      "command": "preview --from dist --dry-run",
+      "branch": "post/test",
+      "accessVerified": true,
+      "credentials": "upload, read-only Access inspector and readiness service token",
+      "expectedRemoteOperations": "read-only",
+      "expectedUploadCalls": 0,
+      "expectedURLSettingChanges": 0,
+      "expectedToolchainRetained": true,
+      "expectedExit": 0
+    },
+    {
+      "id": "preview-missing-inspection-credentials",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "credentials": "Access inspector absent",
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0,
+      "expectedURLSettingChanges": 0
+    },
+    {
+      "id": "preview-public-future-host-override",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "access": {
+        "destinationType": "preview_worker",
+        "workerIdMatches": true,
+        "publicPathOverride": "future-preview.example.com/pagefind/*"
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0,
+      "expectedURLSettingChanges": 0
+    },
+    {
+      "id": "preview-service-auth-everyone",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "access": {
+        "destinationType": "preview_worker",
+        "workerIdMatches": true,
+        "policyDecision": "non_identity",
+        "include": [
+          {
+            "everyone": {}
+          }
+        ]
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0,
+      "expectedURLSettingChanges": 0
+    },
+    {
+      "id": "preview-service-auth-token-group",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "access": {
+        "destinationType": "preview_worker",
+        "workerIdMatches": true,
+        "policyDecision": "non_identity",
+        "includeGroupRequiresServiceToken": true,
+        "groupReadSucceeds": true
+      },
+      "expectedExit": 0,
+      "expectedReadinessRequiresPostUploadChecks": true
+    },
+    {
+      "id": "preview-missing-summary",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "mutation": "publication snapshot summary is empty",
+      "expectedError": "E_SUMMARY_REQUIRED",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0
+    },
+    {
+      "id": "preview-anonymous-html-leak",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "postUpload": {
+        "resource": "HTML",
+        "anonymousStatus": 200
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 3,
+      "expectedReadyURLs": [],
+      "expectedCleanupDeployment": "current-attempt-only",
+      "expectedPriorDeploymentsPreserved": true
+    },
+    {
+      "id": "preview-anonymous-image-leak",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "postUpload": {
+        "resource": "image",
+        "anonymousStatus": 200
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 3,
+      "expectedReadyURLs": [],
+      "expectedCleanupDeployment": "current-attempt-only",
+      "expectedPriorDeploymentsPreserved": true
+    },
+    {
+      "id": "preview-anonymous-feed-leak",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "postUpload": {
+        "resource": "feed",
+        "anonymousStatus": 200
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 3,
+      "expectedReadyURLs": [],
+      "expectedCleanupDeployment": "current-attempt-only",
+      "expectedPriorDeploymentsPreserved": true
+    },
+    {
+      "id": "preview-anonymous-pagefind-leak",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "postUpload": {
+        "resource": "Pagefind",
+        "anonymousStatus": 200
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 3,
+      "expectedReadyURLs": [],
+      "expectedCleanupDeployment": "current-attempt-only",
+      "expectedPriorDeploymentsPreserved": true
+    },
+    {
+      "id": "preview-authorized-login-redirect",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "postUpload": {
+        "authorizedStatus": 302,
+        "location": "https://login.invalid/"
+      },
+      "expectedCredentialsForwardedToRedirect": false,
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 3,
+      "expectedReadyURLs": [],
+      "expectedCleanupDeployment": "current-attempt-only"
+    },
+    {
+      "id": "preview-failed-cleanup",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "postUpload": {
+        "anonymousStatus": 200,
+        "cleanupDeleteFails": true
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 3,
+      "expectedReadyURLs": [],
+      "expectedPrimaryAndCleanupFailures": true
+    },
+    {
+      "id": "preview-original-branch-name",
+      "command": "preview --from dist",
+      "branch": "feature/diagram",
+      "accessVerified": true,
+      "expectedWranglerPreviewName": "feature/diagram",
+      "expectedAllReturnedHostsVerified": true,
       "expectedExit": 0
     }
   ]
