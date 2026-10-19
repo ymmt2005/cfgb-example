@@ -86,12 +86,15 @@ Unspecified requirements remain satisfied; diagnostic SHA values are synthetic,
 not actual repository commits. `expectedManifest` lists diagnostics that are
 present. An empty build identifier is omitted. Runtime-config cases use a
 synthetic release compatibility date: both upload commands must emit that exact
-top-level `compatibility_date`, `workers_dev: false`, `preview_urls: true`,
-`previews: {}`, and top-level assets, independently of execution date. No real
+top-level `compatibility_date`, `workers_dev: false`, `previews: {}`, and
+top-level assets, independently of execution date. Production disables
+Preview/Version URLs with `preview_urls: false` until Access verification exists;
+the planned preview uploader may enable them only after the Access gate. No real
 release compatibility test is claimed. Live integration acceptance also checks
-the public canonical custom domain, disabled production workers.dev route, and
-enabled Preview/Version URLs with Access protection, for fresh and previously
-configured Workers. Bootstrap acceptance checks pinned executable reuse across
+the public canonical custom domain and disabled production workers.dev route.
+It must verify production keeps Preview/Version URLs disabled and that future
+private-preview uploads enable them only with verified Access protection, for
+fresh and previously configured Workers. Bootstrap acceptance checks pinned executable reuse across
 separate Workers Builds command shells. Build IDs are synthetic opaque strings,
 not required RFC UUIDs. Preserve a non-empty value in the manifest as
 `buildUUID`. `toolchainSessionId` is the basename of a fresh workspace under the
