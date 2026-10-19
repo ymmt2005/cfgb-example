@@ -1,8 +1,9 @@
 # CFGB Example
 
-An example blog you can explore and use as a starting point for your own site
-with [**CFGB — Git-based Blog on Cloudflare**](https://github.com/ymmt2005/cfgb).
-You keep articles, images and settings in Git; CFGB builds the site.
+A fictional multilingual blog and acceptance corpus for
+[CFGB — Git-based Blog on Cloudflare](https://github.com/ymmt2005/cfgb).
+This repository supplies the sample content, assets and settings; CFGB builds
+the site, which is published on GitHub Pages.
 
 **[Visit the live blog](https://ymmt2005.github.io/cfgb-example/)** ·
 [English](https://ymmt2005.github.io/cfgb-example/en/) ·
@@ -10,164 +11,69 @@ You keep articles, images and settings in Git; CFGB builds the site.
 [简体中文](https://ymmt2005.github.io/cfgb-example/zh-Hans/) ·
 [한국어](https://ymmt2005.github.io/cfgb-example/ko/)
 
-Try the language switcher, search, topic and monthly archive pages, and light
-and dark themes. The [Markdown showcase](src/content/posts/2026/2026-09-20-markdown-showcase/en.md)
-demonstrates highlighted code, Mermaid diagrams, tables, footnotes, images and
-internal links. Its [large diagrams](https://ymmt2005.github.io/cfgb-example/en/posts/markdown-rendering-showcase/#large-mermaid-diagrams)
-include a wide workflow, a tall checklist, and a detailed sequence diagram.
-Expand them to compare zoom, fit, actual size, and full screen on desktop and
-mobile. The site also generates RSS feeds and a sitemap.
+## Explore the example
 
-Mermaid fences render with [Pele](https://github.com/obsidianmd/pele), following
-the page palette as themes change.
+The [Markdown showcase](src/content/posts/2026/2026-09-20-markdown-showcase/en.md)
+contains code, diagrams, tables, footnotes, images and internal links. Its
+[large diagrams](https://ymmt2005.github.io/cfgb-example/en/posts/markdown-rendering-showcase/#large-mermaid-diagrams)
+provide a place to try the expanded viewer, zoom, fit and full screen.
 
-The sample articles are fictional and reusable. This repository contains blog
-content and settings; CFGB supplies the renderer and its dependencies.
+The showcase and Protocol Buffers guide have Japanese, English, Simplified
+Chinese and Korean versions. Other articles demonstrate missing translations.
+Browse the topic and monthly archives, try search, and compare light and dark
+views. The sample articles are fictional and reusable.
 
-## Build and preview locally
+## Repository contents
 
-Install the following:
+| Path | Purpose |
+| --- | --- |
+| [`cfgb.yaml`](cfgb.yaml) | Example site settings |
+| [`src/content/`](src/content/) | Articles, home/about pages and sidebar content |
+| [`src/assets/site.svg`](src/assets/site.svg) | Original branding image used by this site |
+| [`src/data/`](src/data/) | Topic definitions and cached link cards |
+| [`examples/ymmt2005.dev.yaml`](examples/ymmt2005.dev.yaml) | An alternative site configuration example |
+| [`tests/`](tests/README.md) | Acceptance data and developer notes, separate from published content |
 
-- Git to clone the repository.
-- The binary for your OS and architecture from the
-  [CFGB v0.5.0 release](https://github.com/ymmt2005/cfgb/releases/tag/v0.5.0).
-  Rename it to `cfgb` (`cfgb.exe` on Windows), make it executable where needed,
-  and place it on your PATH. See [CFGB's installation guidance](https://github.com/ymmt2005/cfgb#build-a-site)
-  for release verification.
-- Node.js and npm or pnpm compatible with the release's
-  [toolchain requirements](https://github.com/ymmt2005/cfgb/releases/download/v0.5.0/toolchain-requirements.json).
-  Its `testedNodeVersion`, `testedNpmVersion` and `testedPnpmVersion` identify
-  a tested combination. CFGB uses npm by default; set `CFGB_PACKAGE_MANAGER=pnpm`
-  to use pnpm.
+The example defaults to Japanese, uses `Asia/Tokyo` for archives, and enables
+site branding in `cfgb.yaml`. Its checked-in public URL is the placeholder
+`https://example.invalid`; local and Pages builds override it.
 
-Then clone and build:
+## Run this example locally
+
+Install CFGB and its build prerequisites using the
+[CFGB installation guidance](https://github.com/ymmt2005/cfgb#build-a-site), then:
 
 ```sh
 git clone https://github.com/ymmt2005/cfgb-example.git
 cd cfgb-example
 cfgb build --static --base-url http://localhost:8000/ --out dist
-```
-
-Serve `dist/site/` with a local HTTP server. For example, if you have Python:
-
-```sh
 python3 -m http.server 8000 --directory dist/site
 ```
 
-Open [http://localhost:8000/](http://localhost:8000/), or go directly to
-[/en/](http://localhost:8000/en/), [/ja/](http://localhost:8000/ja/),
-[/zh-Hans/](http://localhost:8000/zh-Hans/) or [/ko/](http://localhost:8000/ko/).
-Re-run the build after editing content. If `dist` already exists, CFGB asks for
-confirmation before replacing it. Use `--force` (or `-f`) to skip confirmation
-in automation; the selected output entry and its contents will be removed.
+The last command uses Python's HTTP server; another static server works too.
+Open `http://localhost:8000/` to browse the generated example. Edit the sample
+content and rebuild to see changes.
 
-`--static` creates entry and alias pages and direct language links for hosting
-without a Cloudflare Worker. `--base-url` overrides the public URL for this build.
-The checked-in configuration uses the placeholder `https://example.invalid`.
+## How this example is published
 
-CFGB installs its embedded build dependencies in a temporary workspace. You
-do not need a `package.json` or framework source in your blog repository.
-Building requires internet access to download dependencies; serving the
-generated site requires only a static host.
+The [Pages workflow](.github/workflows/pages.yml) installs a pinned CFGB release
+through [cfgb-action](https://github.com/ymmt2005/cfgb-action), builds with
+`--force --static --base-url "$SITE_URL"`, checks generated links, and publishes
+`dist/site/` when `main` changes. Pull requests build and check links without
+publishing. The live example uses GitHub Pages.
 
-## Make it your blog
+The [Links workflow](.github/workflows/links.yml) also builds the corpus and
+checks generated links. Scheduled and manual runs add advisory external-link
+reports. Both workflows obtain link-check tooling from the matching CFGB tag.
 
-Fork this repository, or copy its content and settings into your own repository.
-Start with these files:
+For a fork, update `cfgb.yaml`, `SITE_URL` in the Pages workflow, and the matching
+origin in the Links workflow. Select **GitHub Actions** as the Pages source in
+repository settings.
 
-| File or directory                                      | What to change                                                      |
-| ------------------------------------------------------ | ------------------------------------------------------------------- |
-| [`cfgb.yaml`](cfgb.yaml)                               | Site title, public base URL, default language and enabled languages |
-| [`src/content/posts/`](src/content/posts/)             | Articles and their images                                           |
-| [`src/content/home/`](src/content/home/)               | Introduction on each language's home page                           |
-| [`src/content/pages/about/`](src/content/pages/about/) | About pages                                                         |
-| [`src/content/aside/`](src/content/aside/)             | Optional sidebar Markdown                                           |
-| [`src/data/topics.yaml`](src/data/topics.yaml)         | Topic IDs and labels for each enabled language                      |
-| [`src/data/linkcards/`](src/data/linkcards/)           | Cached metadata for link cards                                      |
-
-The example enables Japanese (`ja`), English (`en`), Simplified Chinese
-(`zh-Hans`) and Korean (`ko`). Keep translated versions of an article in the same
-folder as `ja.md`, `en.md`, `zh-Hans.md` and `ko.md`; an article can also exist
-in only one language. The Protocol Buffers guide and Markdown showcase have
-translations in each enabled language, while other articles demonstrate
-missing-translation fallback. Each version has its own title, slug,
-summary and publication date. If you remove a language from the configuration,
-remove its Markdown variants too.
-
-To add an article, create a folder such as
-`src/content/posts/2026/2026-10-05-hello/` and write an `en.md` file:
-
-```markdown
----
-title: Hello, CFGB
-slug: hello-cfgb
-publishedAt: "2026-10-05T09:00:00Z"
-topics:
-  - writing
-summary: My first article on a Git-based blog.
----
-
-## Hello
-
-Write your article here.
-```
-
-Use topic IDs defined in `src/data/topics.yaml`. Put article images in that
-article's `assets/` directory and reference them with Markdown, for example
-`![A description](./assets/photo.png)`. See the existing articles for more
-formatting and links between articles.
-
-`site.timezone` in `cfgb.yaml` determines monthly archive membership from the
-publication timestamp, independently of the source folder name. Article times
-are displayed in the reader's browser timezone; the fallback without JavaScript
-is UTC.
-
-An original [site branding image](src/assets/site.svg) is enabled through
-`site.image` in `cfgb.yaml`. It brands generated article OG cards and creates
-favicon and Apple touch PNG icons. Article `ogImage` still overrides the
-generated card. Replace the image with your own, or remove `site.image` to omit
-the branding and icons.
-
-CFGB v0.5.0 provides `build`, `deploy` and `version`. Cloudflare deployment is
-optional; see [CFGB's deployment guidance](https://github.com/ymmt2005/cfgb#optional-cloudflare-deployment)
-for custom-domain configuration and credentials. The included workflows publish
-to GitHub Pages. Edit Markdown directly for authoring; authoring, migration and
-private-preview commands are not yet available.
-
-## Publish to GitHub Pages
-
-The included [Pages workflow](.github/workflows/pages.yml) installs CFGB with
-[cfgb-action](https://github.com/ymmt2005/cfgb-action), builds the site, checks
-generated links and publishes it when `main` changes. Pull requests build and
-check links without publishing.
-
-To publish your own copy:
-
-1. Set `site.baseUrl` in `cfgb.yaml` to your public site URL.
-2. Set `SITE_URL` in `.github/workflows/pages.yml` to the same URL. For a project
-   site, include the repository path: `https://YOUR-NAME.github.io/YOUR-REPO/`.
-3. If you keep the separate [Links workflow](.github/workflows/links.yml), replace
-   its `https://example.invalid` link-check arguments with your public site URL.
-4. In **Settings → Pages**, select **GitHub Actions** as the source.
-5. Push to `main`, or select **Actions → Pages → Run workflow**.
-
-The workflow uses `--force --static --base-url "$SITE_URL"` and uploads `dist/site/`.
-CFGB applies the hosting path to navigation, images, search, feeds and canonical
-URLs. The workflow uses GitHub's job token; no PAT or Cloudflare API token is
-needed.
-
-For another static host, build with that host's complete public URL and
-`--static`, then publish `dist/site/`.
-
-## Further reading
-
-- [CFGB](https://github.com/ymmt2005/cfgb) — CLI releases and documentation.
-- [cfgb-action usage](https://github.com/ymmt2005/cfgb-action/blob/main/docs/usage.md)
-  — installing CFGB and its matching build toolchain in GitHub Actions.
-- [Test fixtures](tests/README.md) — developer reference for the acceptance data
-  in this repository. These files are separate from the published blog content.
-
-CFGB is an independent open-source project, not affiliated with Cloudflare, Inc.
+See [CFGB's documentation](https://github.com/ymmt2005/cfgb) for content syntax,
+CLI options and other hosting choices, and the
+[setup Action documentation](https://github.com/ymmt2005/cfgb-action/blob/main/docs/usage.md)
+for installation in workflows.
 
 ## License
 
