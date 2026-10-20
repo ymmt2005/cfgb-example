@@ -88,11 +88,11 @@ present. An empty build identifier is omitted. Runtime-config cases use a
 synthetic release compatibility date: both upload commands must emit that exact
 top-level `compatibility_date`, `workers_dev: false`, `previews: {}`, and
 top-level assets, independently of execution date. Production disables
-Preview/Version URLs with `preview_urls: false` until Access verification exists;
-the planned preview uploader may enable them only after the Access gate. No real
+Preview/Version URLs with `preview_urls: false`; the private preview uploader
+may enable them only after the Access gate. No real
 release compatibility test is claimed. Live integration acceptance also checks
 the public canonical custom domain and disabled production workers.dev route.
-It must verify production keeps Preview/Version URLs disabled and that future
+It must verify production keeps Preview/Version URLs disabled and that
 private-preview uploads enable them only with verified Access protection, for
 fresh and previously configured Workers. Bootstrap acceptance checks pinned executable reuse across
 separate Workers Builds command shells. Build IDs are synthetic opaque strings,
@@ -112,6 +112,25 @@ publication timestamps, the current branch, and Access. Transferred-artifact
 cases leave the supplied bytes unchanged and recreate only the pinned upload
 toolchain. See the [artifact checks](https://github.com/ymmt2005/cfgb/blob/main/docs/spec/10-build-runtime.md#artifact-checks).
 CFGB executable release-attestation verification is a separate security requirement.
+
+Private-preview fixtures target the new `cfgb preview --from DIR [--dry-run]`
+contract; the example's released CLI pin is unchanged until a release containing
+that command is available. Dry runs inspect Worker/Access metadata and validate
+locally with Wrangler, with no upload or URL-setting changes. They require the
+upload API token, separate read-only Access inspector and readiness service token.
+The current branch selects the Preview name, not artifact diagnostics. Runtime
+configuration avoids production routes and dashboard Preview base-config
+inheritance, with `no_bundle: true` and top-level assets.
+
+The Access gate covers prospective branch/deployment hosts, including future
+names, and rejects public overrides and Service Auth paths that do not require
+verifiable credentials. Group-backed Service Auth also needs group inspection.
+Post-upload fixtures exercise anonymous leaks from HTML, media, feeds and search,
+and authenticated login redirects. Readiness requires every returned hostname to
+pass. Failure cleanup removes only this attempt's deployment; previous branch
+history survives. Cleanup errors retain the primary verification error. These
+remain declarative cases, without live Cloudflare provisioning or credentials.
+
 
 `expected/sitemap.json` fixes the corpus index, numbered sitemap file, canonical
 HTML URL set and article alternates. Parse real `@astrojs/sitemap` output in
@@ -179,3 +198,18 @@ to check label readability, scrolling in both directions, zoom, fit, actual
 size, full screen, themes, and returning to the article. CFGB v0.4.0 supplies
 the expanded viewer; v0.5.0 renders through Pele with live CSS theme colors.
 JavaScript-disabled pages retain the diagram source.
+
+Preview readiness entry URLs preserve the artifact's escaped mount path. Static
+artifacts still use the locale Worker when uploaded to Cloudflare: root fallback
+HTML is served as a locale-home 302, and alias fallback HTML yields to generated
+`_redirects` 301 rules. Check these statuses/destinations without following them;
+anonymous denial applies to redirect routes as well as byte-serving assets.
+
+Worker-scoped Access coverage needs a readiness-token-compatible Service Auth
+path before URL changes/upload, including dry runs. Human-only, deny-only,
+certificate-only, mismatched-token and excluded-token policies cannot establish
+that path. Explicit token-ID rules may require read-only service-token metadata
+inspection; a separate compatible policy can avoid that lookup. Client-secret
+validity, request-dependent conditions and actual hostname overrides remain
+post-upload checks. Private policies on unrelated future hostnames do not need
+a readiness-token grant.
