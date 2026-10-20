@@ -198,3 +198,18 @@ to check label readability, scrolling in both directions, zoom, fit, actual
 size, full screen, themes, and returning to the article. CFGB v0.4.0 supplies
 the expanded viewer; v0.5.0 renders through Pele with live CSS theme colors.
 JavaScript-disabled pages retain the diagram source.
+
+Preview readiness entry URLs preserve the artifact's escaped mount path. Static
+artifacts still use the locale Worker when uploaded to Cloudflare: root fallback
+HTML is served as a locale-home 302, and alias fallback HTML yields to generated
+`_redirects` 301 rules. Check these statuses/destinations without following them;
+anonymous denial applies to redirect routes as well as byte-serving assets.
+
+Worker-scoped Access coverage needs a readiness-token-compatible Service Auth
+path before URL changes/upload, including dry runs. Human-only, deny-only,
+certificate-only, mismatched-token and excluded-token policies cannot establish
+that path. Explicit token-ID rules may require read-only service-token metadata
+inspection; a separate compatible policy can avoid that lookup. Client-secret
+validity, request-dependent conditions and actual hostname overrides remain
+post-upload checks. Private policies on unrelated future hostnames do not need
+a readiness-token grant.

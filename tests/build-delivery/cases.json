@@ -592,6 +592,94 @@
       "expectedWranglerPreviewName": "feature/diagram",
       "expectedAllReturnedHostsVerified": true,
       "expectedExit": 0
+    },
+    {
+      "id": "preview-ready-mounted-entry",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "artifactBaseUrl": "https://production.invalid/blog%20space/",
+      "providerURL": "https://preview.example.com",
+      "expectedReadyURLs": [
+        "https://preview.example.com/blog%20space/"
+      ],
+      "expectedExit": 0
+    },
+    {
+      "id": "preview-static-root-and-alias",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "artifactMode": "static",
+      "expectedRootStatus": 302,
+      "expectedRootTarget": "same-origin locale home",
+      "expectedAliasStatus": 301,
+      "expectedAliasTarget": "supplied _redirects destination",
+      "expectedRedirectFollowing": false,
+      "expectedAnonymousDenialOnRedirects": true,
+      "expectedExit": 0
+    },
+    {
+      "id": "preview-human-only-worker-policy",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "access": {
+        "destinationType": "preview_worker",
+        "workerIdMatches": true,
+        "policyDecision": "allow",
+        "serviceAuthPath": false
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0,
+      "expectedURLSettingChanges": 0
+    },
+    {
+      "id": "preview-wrong-readiness-token-policy",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "access": {
+        "destinationType": "preview_worker",
+        "workerIdMatches": true,
+        "policyDecision": "non_identity",
+        "serviceTokenIdMatchesReadinessClientId": false
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0,
+      "expectedURLSettingChanges": 0
+    },
+    {
+      "id": "preview-excluded-readiness-token",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "access": {
+        "destinationType": "preview_worker",
+        "workerIdMatches": true,
+        "policyDecision": "non_identity",
+        "excludeReadinessToken": true
+      },
+      "expectedError": "E_PREVIEW_ACCESS",
+      "expectedExit": 1,
+      "expectedUploadCalls": 0,
+      "expectedURLSettingChanges": 0
+    },
+    {
+      "id": "preview-unrelated-private-future-host",
+      "command": "preview --from dist",
+      "branch": "post/test",
+      "accessVerified": true,
+      "access": {
+        "destinationType": "preview_worker",
+        "workerIdMatches": true,
+        "readinessServiceAuthCompatible": true,
+        "unrelatedFutureHostHumanOnly": true
+      },
+      "expectedExit": 0,
+      "expectedAllReturnedHostsVerified": true
     }
   ]
 }
